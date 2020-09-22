@@ -3,7 +3,7 @@
 if pac#loaded('nord-vim')
   augroup nord-overrides
     autocmd!
-    autocmd ColorScheme nord highlight Comment guifg=#7b88a1 gui=bold
+    autocmd ColorScheme nord highlight Comment guifg=#7b88a1
     autocmd ColorScheme nord highlight Folded guifg=#7b88a1
     autocmd ColorScheme nord highlight FoldColumn guifg=#7b88a1
     autocmd ColorScheme nord highlight Conceal guifg=#7b88a1 guibg=bg
