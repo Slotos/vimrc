@@ -27,7 +27,7 @@ call minpac#add('arcticicestudio/nord-vim')
 call minpac#add('andymass/vim-matchup')
 call minpac#add('wsdjeg/vim-fetch')
 
-call minpac#add('neoclide/coc.nvim', {'rev': 'release'})
+call minpac#add('neoclide/coc.nvim', { 'do': {-> system('yarn install --frozen-lockfile') } })
 
 call minpac#add('tpope/vim-characterize')
 call minpac#add('kassio/neoterm')
