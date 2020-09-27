@@ -1,1 +1,8 @@
-pack
+pack/*
+!pack/minpac
+
+pack/minpac/*
+!pack/minpac/opt/
+
+pack/minpac/opt/*
+!pack/minpac/opt/minpac
