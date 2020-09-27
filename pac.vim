@@ -79,6 +79,11 @@ call minpac#add('Yggdroot/indentLine')
 call minpac#add('luochen1990/rainbow')
 call minpac#add('terryma/vim-expand-region')
 
+call minpac#add('pangloss/vim-javascript')    " JavaScript support
+call minpac#add('leafgarland/typescript-vim') " TypeScript syntax
+call minpac#add('maxmellon/vim-jsx-pretty')   " JS and JSX syntax
+call minpac#add('posva/vim-vue')
+
 call minpac#add('Shougo/echodoc.vim')
 
 " - repo: liuchengxu/vim-which-key
