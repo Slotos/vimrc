@@ -110,8 +110,8 @@ if pac#loaded('fzf.vim')
   nnoremap <silent> <leader>fw :Rg <C-R><C-W><CR>
 endif
 
-if pac#loaded('vim-mundo')
-  nnoremap <silent> <leader>m :MundoToggle<CR>
+if pac#loaded('undotree')
+  nnoremap <silent> <localleader>u :UndotreeToggle<CR>
 endif
 
 if pac#loaded('neoterm')

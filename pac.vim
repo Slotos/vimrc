@@ -38,7 +38,7 @@ call minpac#add('t9md/vim-choosewin')
 
 call minpac#add('godlygeek/tabular')
 call minpac#add('nelstrom/vim-visual-star-search')
-call minpac#add('simnalamburt/vim-mundo')
+call minpac#add('mbbill/undotree')
 call minpac#add('tpope/vim-repeat')
 
 call minpac#add('vim-scripts/camelcasemotion')
