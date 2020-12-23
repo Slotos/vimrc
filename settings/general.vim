@@ -44,6 +44,7 @@ set undofile
 set relativenumber
 set backspace=2
 set backspace=indent,eol,start
+set scrolloff=3
 " Tabs and Indents {{{
 " ----------------
 set expandtab
