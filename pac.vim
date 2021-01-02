@@ -65,6 +65,7 @@ call minpac#add('joker1007/vim-ruby-heredoc-syntax')
 call minpac#add('vim-ruby/vim-ruby')
 call minpac#add('tpope/vim-rails')
 call minpac#add('slim-template/vim-slim')
+call minpac#add('airblade/vim-localorie')
 
 call minpac#add('slashmili/alchemist.vim')
 call minpac#add('elixir-editors/vim-elixir')

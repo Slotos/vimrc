@@ -159,3 +159,8 @@ if pac#loaded('vim-which-key')
   nnoremap <silent>[              :<c-u>WhichKey  '['<CR>
   nnoremap <silent>]              :<c-u>WhichKey  ']'<CR>
 endif
+
+if pac#loaded('vim-localorie')
+  nnoremap <silent> <leader>yt :call localorie#translate()<CR>
+  nnoremap <silent> <leader>ye :echo localorie#expand_key()<CR>
+endif
