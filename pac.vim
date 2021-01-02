@@ -67,6 +67,8 @@ call minpac#add('tpope/vim-rails')
 call minpac#add('slim-template/vim-slim')
 call minpac#add('airblade/vim-localorie')
 
+call minpac#add('rust-lang/rust.vim')
+
 call minpac#add('slashmili/alchemist.vim')
 call minpac#add('elixir-editors/vim-elixir')
 
