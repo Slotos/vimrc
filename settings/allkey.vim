@@ -117,11 +117,9 @@ endif
 if pac#loaded('neoterm')
   function! ZombieServer()
     if has_key(g:neoterm.instances, g:neoterm.last_active)
-      belowright T 
+      Tkill
     endif
     belowright T live-server '%'
-    Ttoggle resize=5
-    Ttoggle resize=5
     call g:neoterm.instances[g:neoterm.last_active].normal('G')
   endfunction
   nnoremap <leader>l :call ZombieServer()<CR>
