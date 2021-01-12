@@ -10,7 +10,7 @@ let g:fzf_action = {
 " Customize fzf colors to match your color scheme
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Visual'],
+  \ 'bg':      ['bg', 'TermCursorNC'],
   \ 'hl':      ['fg', 'Comment'],
   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
@@ -33,7 +33,6 @@ let g:fzf_preview_window = 'right:50%'
 if executable('rg')
   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
   set grepprg=rg\ --vimgrep
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
 
 let $FZF_DEFAULT_OPTS='--layout=reverse --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up'
@@ -60,13 +59,3 @@ function! FloatingFZF()
   call setwinvar(win, '&number', 0)
   call setwinvar(win, '&relativenumber', 0)
 endfunction
-
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%'),
-  \   <bang>0)
-
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
