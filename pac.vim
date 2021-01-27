@@ -72,8 +72,6 @@ call minpac#add('rust-lang/rust.vim')
 call minpac#add('slashmili/alchemist.vim')
 call minpac#add('elixir-editors/vim-elixir')
 
-call minpac#add('kchmck/vim-coffee-script')
-
 call minpac#add('tpope/vim-commentary')
 call minpac#add('tpope/vim-endwise')
 
