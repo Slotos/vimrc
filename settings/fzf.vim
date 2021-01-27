@@ -35,7 +35,7 @@ if executable('rg')
   set grepprg=rg\ --vimgrep
 endif
 
-let $FZF_DEFAULT_OPTS='--layout=reverse --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up'
+let $FZF_DEFAULT_OPTS='--layout=reverse --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up,ctrl-]:toggle-preview'
 let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 
 function! FloatingFZF()
