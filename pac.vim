@@ -90,5 +90,6 @@ call minpac#add('posva/vim-vue')
 
 call minpac#add('Shougo/echodoc.vim')
 
+call minpac#add('antoinemadec/FixCursorHold.nvim')
 
 call pac#reset_loaded()
