@@ -90,13 +90,5 @@ call minpac#add('posva/vim-vue')
 
 call minpac#add('Shougo/echodoc.vim')
 
-" - repo: liuchengxu/vim-which-key
-"   on_cmd: [Whichkey, Whichkey!]
-"   hook_source: source  $VIM_PATH/core/plugins/whichkey.vim
-"   hook_post_source: |
-"         call which_key#register('<Space>', 'g:which_key_map')
-"         call which_key#register(';', 'g:which_key_localmap')
-"         call which_key#register(']', 'g:which_key_rsbgmap')
-"         call which_key#register('[', 'g:which_key_lsbgmap')
 
 call pac#reset_loaded()
