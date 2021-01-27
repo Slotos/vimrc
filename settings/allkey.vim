@@ -140,11 +140,6 @@ if pac#loaded('vista.vim')
   nnoremap <silent><leader>fv     :Vista finder coc<CR>
 endif
 
-if pac#loaded('ale')
-  nmap [a <Plug>(ale_next_wrap)
-  nmap ]a <Plug>(ale_previous_wrap)
-endif
-
 if pac#loaded('vim-easymotion')
   nmap <Leader><Leader>w <Plug>(easymotion-w)
   nmap <Leader><Leader>f <Plug>(easymotion-f)

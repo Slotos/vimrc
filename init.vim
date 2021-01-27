@@ -47,8 +47,7 @@ execute 'source' fnameescape($VIM_CONFIG_DIR . '/pac.vim')
 
 " plugin configurations
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/lightline.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/ale.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/lightline-ale.vim')
+execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/lightline-coc.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/nord.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/neoterm.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/coc.vim')

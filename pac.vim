@@ -20,8 +20,8 @@ function! pac#loaded(name)
 endfunction
 
 call minpac#add('itchyny/lightline.vim')
-call minpac#add('w0rp/ale')
-call minpac#add('maximbaz/lightline-ale')
+call minpac#add('josa42/vim-lightline-coc')
+
 call minpac#add('arcticicestudio/nord-vim')
 
 call minpac#add('andymass/vim-matchup')

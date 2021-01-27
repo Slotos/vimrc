@@ -37,11 +37,9 @@ let g:lightline.colorscheme = 'nord'
 let g:lightline.active = {
             \   'left': [ [ 'mode', 'paste' ],
             \             [ 'gitbranch', 'readonly', 'shortname', 'method', 'modified' ] ],
-            \   'right': [ [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
-            \              [ 'lineinfo' ],
+            \   'right': [ [ 'lineinfo' ],
             \              [ 'percent' ],
-            \              [ 'fileformat', 'fileencoding', 'filetype' ],
-            \              [ 'cocstatus' ] ],
+            \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
             \ }
 
 let g:lightline.inactive = {
@@ -54,7 +52,6 @@ let g:lightline.inactive = {
 let g:lightline.component_function = get(g:lightline, 'component_function', {})
 let g:lightline.component_function.gitbranch = 'VimacsLineGit'
 let g:lightline.component_function.method = 'CocCurrentFunction'
-let g:lightline.component_function.cocstatus = 'coc#status'
 let g:lightline.component_function.shortname = 'ShortName'
 let g:lightline.component_function.modified = 'LightlineModified'
 
