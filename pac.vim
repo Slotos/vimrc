@@ -29,6 +29,8 @@ call minpac#add('gkeep/iceberg-dark')
 call minpac#add('rakr/vim-two-firewatch')
 call minpac#add('tyrannicaltoucan/vim-deep-space')
 
+call minpac#add('sheerun/vim-polyglot')
+
 call minpac#add('andymass/vim-matchup')
 call minpac#add('wsdjeg/vim-fetch')
 
@@ -36,7 +38,6 @@ call minpac#add('neoclide/coc.nvim', { 'do': {-> system('yarn install --frozen-l
 
 call minpac#add('tpope/vim-characterize')
 call minpac#add('kassio/neoterm')
-call minpac#add('othree/html5.vim')
 
 call minpac#add('ryanoasis/vim-devicons')
 call minpac#add('t9md/vim-choosewin')
@@ -61,21 +62,13 @@ call minpac#add('junegunn/fzf', { 'do': {-> system('./install --all') } })
 call minpac#add('junegunn/fzf.vim')
 
 call minpac#add('mattn/emmet-vim')
-call minpac#add('cespare/vim-toml')
-call minpac#add('vim-scripts/xml.vim')
-call minpac#add('elzr/vim-json')
 
 call minpac#add('Shougo/context_filetype.vim')
 call minpac#add('joker1007/vim-ruby-heredoc-syntax')
-call minpac#add('vim-ruby/vim-ruby')
 call minpac#add('tpope/vim-rails')
-call minpac#add('slim-template/vim-slim')
 call minpac#add('airblade/vim-localorie')
 
-call minpac#add('rust-lang/rust.vim')
-
 call minpac#add('slashmili/alchemist.vim')
-call minpac#add('elixir-editors/vim-elixir')
 
 call minpac#add('tpope/vim-commentary')
 call minpac#add('tpope/vim-endwise')
@@ -85,11 +78,6 @@ call minpac#add('liuchengxu/vista.vim')
 call minpac#add('Yggdroot/indentLine')
 call minpac#add('luochen1990/rainbow')
 call minpac#add('terryma/vim-expand-region')
-
-call minpac#add('pangloss/vim-javascript')    " JavaScript support
-call minpac#add('leafgarland/typescript-vim') " TypeScript syntax
-call minpac#add('maxmellon/vim-jsx-pretty')   " JS and JSX syntax
-call minpac#add('posva/vim-vue')
 
 call minpac#add('Shougo/echodoc.vim')
 
