@@ -28,6 +28,11 @@ call minpac#add('cocopon/iceberg.vim')
 call minpac#add('gkeep/iceberg-dark')
 call minpac#add('rakr/vim-two-firewatch')
 call minpac#add('tyrannicaltoucan/vim-deep-space')
+call minpac#add('ghifarit53/tokyonight-vim')
+call minpac#add('davidklsn/vim-sialoquent')
+call minpac#add('adrian5/oceanic-next-vim')
+call minpac#add('ulwlu/elly.vim')
+call minpac#add('kyazdani42/blue-moon')
 
 call minpac#add('sheerun/vim-polyglot')
 
