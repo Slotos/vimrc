@@ -1,3 +1,33 @@
+augroup LightlineColorsheme
+  autocmd!
+  autocmd ColorScheme * call UpdateLightlineTheme()
+
+  autocmd OptionSet background call UpdateLightlineTheme()
+augroup END
+
+function! UpdateLightlineTheme() abort
+  let l:known_good_themes = ['nord', 'iceberg', 'dogrun']
+  let l:colors_name = get(g:, 'colors_name')
+  let $BAT_THEME = 'base16' " works ok with any colors
+
+  if index(l:known_good_themes, l:colors_name) != -1
+    let g:lightline.colorscheme = l:colors_name
+  endif
+
+  " Special cases
+  if l:colors_name == 'nord'
+    let $BAT_THEME = 'nord'
+  elseif l:colors_name == 'iceberg'
+    let g:lightline.colorscheme = (&bg == 'light' ? 'iceberg' : 'icebergDark')
+  elseif l:colors_name == 'deep-space'
+    let g:lightline.colorscheme = 'deepspace'
+  elseif l:colors_name == 'two-firewatch'
+    let g:lightline.colorscheme = 'twofirewatch'
+  end
+
+  call LightlineReload()
+endfunction
+
 function! VimacsLineGit() abort
     let gitbranch=get(g:, 'coc_git_status', '')
     let gitcount=get(b:, 'coc_git_status', '')
@@ -29,6 +59,12 @@ endfunction
 function! LightlineTabModified(n) abort
     let winnr = tabpagewinnr(a:n)
     return gettabwinvar(a:n, winnr, '&modified') ? "\uf448" : gettabwinvar(a:n, winnr, '&modifiable') ? '' : "\uf83d"
+endfunction
+
+function! LightlineReload()
+  call lightline#init()
+  call lightline#colorscheme()
+  call lightline#update()
 endfunction
 
 let g:lightline = get(g:, 'lightline', {})

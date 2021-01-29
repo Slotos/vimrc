@@ -23,6 +23,11 @@ call minpac#add('itchyny/lightline.vim')
 call minpac#add('josa42/vim-lightline-coc')
 
 call minpac#add('arcticicestudio/nord-vim')
+call minpac#add('wadackel/vim-dogrun')
+call minpac#add('cocopon/iceberg.vim')
+call minpac#add('gkeep/iceberg-dark')
+call minpac#add('rakr/vim-two-firewatch')
+call minpac#add('tyrannicaltoucan/vim-deep-space')
 
 call minpac#add('andymass/vim-matchup')
 call minpac#add('wsdjeg/vim-fetch')
