@@ -39,7 +39,11 @@ call minpac#add('sheerun/vim-polyglot')
 call minpac#add('andymass/vim-matchup')
 call minpac#add('wsdjeg/vim-fetch')
 
+call minpac#add('junegunn/fzf', { 'do': {-> system('./install --all') } })
+call minpac#add('junegunn/fzf.vim')
+
 call minpac#add('neoclide/coc.nvim', { 'do': {-> system('yarn install --frozen-lockfile') } })
+call minpac#add('antoinemadec/coc-fzf')
 
 call minpac#add('tpope/vim-characterize')
 call minpac#add('kassio/neoterm')
@@ -62,9 +66,6 @@ call minpac#add('tpope/vim-dispatch')
 call minpac#add('tpope/vim-unimpaired')
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('idanarye/vim-merginal')
-
-call minpac#add('junegunn/fzf', { 'do': {-> system('./install --all') } })
-call minpac#add('junegunn/fzf.vim')
 
 call minpac#add('mattn/emmet-vim')
 
