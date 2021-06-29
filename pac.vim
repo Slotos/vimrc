@@ -89,4 +89,6 @@ call minpac#add('Shougo/echodoc.vim')
 
 call minpac#add('antoinemadec/FixCursorHold.nvim')
 
+call minpac#add('rickhowe/diffchar.vim')
+
 call pac#reset_loaded()
