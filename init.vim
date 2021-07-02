@@ -42,6 +42,7 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 " general settings
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/general.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/style.vim')
+execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/vim-polyglot.vim')
 
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/pac.vim')
 
