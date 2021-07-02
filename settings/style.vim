@@ -12,8 +12,9 @@ endif
 
 set background=dark
 
-" Italic comments
+" Italics
 hi Comment gui=italic cterm=italic
+let g:two_firewatch_italics=1
 
 "GetColorSynatxGroup
 " ---------------------------------------------------------
