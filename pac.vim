@@ -33,6 +33,7 @@ call minpac#add('davidklsn/vim-sialoquent')
 call minpac#add('adrian5/oceanic-next-vim')
 call minpac#add('ulwlu/elly.vim')
 call minpac#add('kyazdani42/blue-moon')
+call minpac#add('NLKNguyen/papercolor-theme')
 
 call minpac#add('pedrohdz/vim-yaml-folds')
 call minpac#add('sheerun/vim-polyglot')

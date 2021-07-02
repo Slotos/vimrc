@@ -6,7 +6,7 @@ augroup LightlineColorsheme
 augroup END
 
 function! UpdateLightlineTheme() abort
-  let l:known_good_themes = ['nord', 'iceberg', 'dogrun', 'tokyonight', 'sialoquent', 'oceanicnext', 'elly', 'blue-moon']
+  let l:known_good_themes = ['nord', 'iceberg', 'dogrun', 'tokyonight', 'sialoquent', 'oceanicnext', 'elly', 'blue-moon', 'PaperColor']
   let l:colors_name = get(g:, 'colors_name')
   let $BAT_THEME = 'base16' " works ok with any colors
 
