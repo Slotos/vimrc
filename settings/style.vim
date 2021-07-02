@@ -12,36 +12,8 @@ endif
 
 set background=dark
 
-" Vim Colors
-" ---------------------------------------------------------
-hi Whitespace ctermfg=96 guifg=#725972 guibg=NONE ctermbg=NONE
-hi VertSplit  ctermfg=Black  guifg=Black
-"hi Normal guibg=NONE ctermbg=NONE
-"hi LineNr ctermbg=NONE guibg=NONE
-hi SignColumn ctermfg=187 ctermbg=NONE guifg=#ebdbb2 guibg=NONE guisp=NONE cterm=NONE gui=NONE
-highlight! link pythonSpaceError  NONE
-highlight! link pythonIndentError NONE
-" highlight NormalFloat cterm=NONE ctermfg=14 ctermbg=0 gui=NONE guifg=#93a1a1 guibg=#002931
-
-"Pmenu Colors
-" ---------------------------------------------------------
-hi PMenuSel ctermfg=252 ctermbg=106 guifg=#d0d0d0 guibg=#859900 guisp=#859900 cterm=NONE gui=NONE
-
-"coc setting
-" ---------------------------------------------------------
-hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
-hi default CocHighlightText  guibg=#725972 ctermbg=96
-hi CocWarningSign  ctermfg=32 ctermbg=NONE guifg=#0087d7 guibg=NONE
-
 " Italic comments
 hi Comment gui=italic cterm=italic
-
-"GitGutter Coc-git Highlight
-" ---------------------------------------------------------
-highlight GitGutterAdd ctermfg=22 guifg=#006000 ctermbg=NONE guibg=NONE
-highlight GitGutterChange ctermfg=58 guifg=#5F6000 ctermbg=NONE guibg=NONE
-highlight GitGutterDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
-highlight GitGutterChangeDelete ctermfg=52 guifg=#600000 ctermbg=NONE guibg=NONE
 
 "GetColorSynatxGroup
 " ---------------------------------------------------------
