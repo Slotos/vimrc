@@ -39,21 +39,25 @@ packadd minpac
 call minpac#init()
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-" general settings
+" general and early settings
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/general.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/style.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/vim-polyglot.vim')
 
+" plugins
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/pac.vim')
 
+" LSP configuration and completion
+execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/LSP.vim')
+execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/nvim-compe.vim')
+
 " plugin configurations
+execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/gitsigns.vim')
+execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/nvim-treesitter.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/lightline.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/lightline-coc.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/nord.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/tokyonight.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/oceanic-next.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/neoterm.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/coc.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/vim-devicons.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/vim-choosewin.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/hexokinase.vim')

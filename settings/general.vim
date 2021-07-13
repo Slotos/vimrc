@@ -59,9 +59,6 @@ set shiftround
 set hidden
 set shortmess=aFc
 set signcolumn=yes
-set completefunc=emoji#complete
-set completeopt =longest,menu
-set completeopt-=preview
 set list
 set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
 
@@ -93,11 +90,7 @@ set nospell spellfile=$VIM_PATH/spell/en.utf-8.add
 
 " History saving
 set history=1000
-if has('nvim')
-  set shada='300,<50,@100,s10,h
-else
-  set viminfo='300,<10,@50,h,n$VIM_DATA_DIR/viminfo
-endif
+set shada='300,<50,@100,s10,h
 
 " If sudo, disable vim swap/backup/undo/shada/viminfo writing
 if $SUDO_USER !=# '' && $USER !=# $SUDO_USER
@@ -108,11 +101,7 @@ if $SUDO_USER !=# '' && $USER !=# $SUDO_USER
   set nobackup
   set nowritebackup
   set noundofile
-  if has('nvim')
-    set shada="NONE"
-  else
-    set viminfo="NONE"
-  endif
+  set shada="NONE"
 endif
 
 " Secure sensitive information, disable backup files in temp directories
@@ -138,16 +127,3 @@ endif
 let g:netrw_preview   = 1
 let g:netrw_liststyle = 3
 let g:netrw_winsize   = 30
-
-" nvim sometimes provides an empty flag
-" CocTagFunc skips lookup if flag is not 'c'
-" This is a crude patch around it
-function! GotoTag(pattern, flags, info) abort
-  if a:flags ==# ''
-    return CocTagFunc(a:pattern, 'c', a:info)
-  else
-    return CocTagFunc(a:pattern, a:flags, a:info)
-  endif
-endfunction
-
-set tagfunc=GotoTag

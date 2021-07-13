@@ -6,7 +6,7 @@ augroup LightlineColorsheme
 augroup END
 
 function! UpdateLightlineTheme() abort
-  let l:known_good_themes = ['nord', 'iceberg', 'dogrun', 'tokyonight', 'sialoquent', 'oceanicnext', 'elly', 'blue-moon', 'PaperColor']
+  let l:known_good_themes = ['nord', 'nordlight', 'iceberg', 'dogrun', 'tokyonight', 'sialoquent', 'oceanicnext', 'elly', 'blue-moon', 'PaperColor']
   let l:colors_name = get(g:, 'colors_name')
   let $BAT_THEME = 'base16' " works ok with any colors
 
@@ -28,25 +28,33 @@ function! UpdateLightlineTheme() abort
   call LightlineReload()
 endfunction
 
-function! VimacsLineGit() abort
-    let gitbranch=get(g:, 'coc_git_status', '')
-    let gitcount=get(b:, 'coc_git_status', '')
-    let gitinfo = []
-    if empty(gitbranch)
-        let gitbranch=''
-        return ''
+if pac#loaded('nvim-treesitter')
+  function! CurrentFunction()
+    let l:tree_sitter_indicator = nvim_treesitter#statusline({'indicator_size': 50, 'type_patterns': ['class', 'module', 'function', 'method']})
+    if tree_sitter_indicator is v:null
+      return ''
     endif
-    if empty(gitcount)
-        let gitcount=''
-    endif
-    call add(gitinfo,gitbranch)
-    call add(gitinfo,gitcount)
-    return trim(join(gitinfo,''))
-endfunction
+    return tree_sitter_indicator
+  endfunction
+else
+  function! CurrentFunction()
+    return ''
+  endfunction
+end
 
-function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
-endfunction
+if pac#loaded('lsp-status.nvim')
+  lua << LUA
+  local lsp_status = require'lsp-status'
+  _G.lsp_status_progress = lsp_status.status_progress
+LUA
+  function! LspProgress()
+    return v:lua.lsp_status_progress()
+  endfunction
+else
+  function! LspProgress()
+    return ''
+  endfunction
+endif
 
 function! ShortName()
     return pathshorten(expand('%'))
@@ -73,9 +81,11 @@ let g:lightline.colorscheme = 'nord'
 let g:lightline.active = {
             \   'left': [ [ 'mode', 'paste' ],
             \             [ 'gitbranch', 'readonly', 'shortname', 'method', 'modified' ] ],
-            \   'right': [ [ 'lineinfo' ],
+            \   'right': [
+            \              [ 'lineinfo' ],
             \              [ 'percent' ],
-            \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
+            \              [ 'fileformat', 'fileencoding', 'filetype' ],
+            \              [ 'lsp_progress' ] ],
             \ }
 
 let g:lightline.inactive = {
@@ -86,10 +96,11 @@ let g:lightline.inactive = {
             \ }
 
 let g:lightline.component_function = get(g:lightline, 'component_function', {})
-let g:lightline.component_function.gitbranch = 'VimacsLineGit'
-let g:lightline.component_function.method = 'CocCurrentFunction'
+let g:lightline.component_function.gitbranch = 'FugitiveHead'
+let g:lightline.component_function.method = 'CurrentFunction'
 let g:lightline.component_function.shortname = 'ShortName'
 let g:lightline.component_function.modified = 'LightlineModified'
+let g:lightline.component_function.lsp_progress = 'LspProgress'
 
 let g:lightline.component_type = {
            \   'linter_checking': 'left',

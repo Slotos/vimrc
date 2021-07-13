@@ -26,84 +26,84 @@ nmap <C-w>] :vertical resize +3<CR>
 " Remove spaces at the end of lines
 nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
-" plugin specific mappings
-if pac#loaded('coc.nvim')
-  " Using CocList
-  " Show all diagnostics
-  nnoremap <silent> <leader>cd  :<C-u>CocList diagnostics<cr>
-  " Manage extensions
-  nnoremap <silent> <leader>ce  :<C-u>CocList extensions<cr>
-  " Show commands
-  nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
-  " Find symbol of current document
-  nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
-  " Search workspace symbols
-  nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
-  " Do default action for next item.
-  nnoremap <silent> <leader>cj  :<C-u>CocNext<CR>
-  " Do default action for previous item.
-  nnoremap <silent> <leader>ck  :<C-u>CocPrev<CR>
-  " Resume latest coc list
-  nnoremap <silent> <leader>cr  :<C-u>CocListResume<CR>
-  " Use `[c` and `]c` for navigate diagnostics
-  nmap <silent> ]c <Plug>(coc-diagnostic-prev)
-  nmap <silent> [c <Plug>(coc-diagnostic-next)
-  " Remap for rename current word
-  nmap <leader>cn <Plug>(coc-rename)
-  " Remap for format selected region
-  vmap <leader>cf  <Plug>(coc-format-selected)
-  nmap <leader>cf  <Plug>(coc-format-selected)
-  " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-  xmap <leader>ca  <Plug>(coc-codeaction-selected)
-  nmap <leader>ca  <Plug>(coc-codeaction-selected)
-  " Remap for do codeAction of current line
-  nmap <leader>ac  <Plug>(coc-codeaction)
-  " Fix autofix problem of current line
-  nmap <leader>qf  <Plug>(coc-fix-current)
-  " Remap keys for gotos
-  nmap <silent> gd <Plug>(coc-definition)
-  nmap <silent> gy <Plug>(coc-type-definition)
-  nmap <silent> gi <Plug>(coc-implementation)
-  nmap <silent> gr <Plug>(coc-references)
-  " Use K for show documentation in preview window
-  nnoremap <silent> K :call <sid>show_documentation()<cr>
-  " use <c-space> for trigger completion.
-  inoremap <silent><expr> <c-space> coc#refresh()
-  nmap [g <Plug>(coc-git-prevchunk)
-  nmap ]g <Plug>(coc-git-nextchunk)
-  " show chunk diff at current position
-  nmap gs <Plug>(coc-git-chunkinfo)
-  " show commit contains current position
-  nmap gm <Plug>(coc-git-commit)
-  nnoremap <silent> <leader>cg  :<C-u>CocList --normal gstatus<CR>
-  " float window scroll
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  " multiple cursors session
-  nmap <silent> <C-c> <Plug>(coc-cursors-position)
-  nmap <silent> <M-c> <Plug>(coc-cursors-word)
-  xmap <silent> <M-c> <Plug>(coc-cursors-range)
-  nnoremap <silent> <leader>cm ::CocSearch -w 
-  " use normal command like `<leader>xi(`
-  nmap <leader>x <Plug>(coc-cursors-operator)
+if pac#loaded('nvim-lspconfig')
+  " Too lazy to translate this to vimscript
+  lua << LUA
+  local opts = { noremap=true, silent=true }
+  vim.api.nvim_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  vim.api.nvim_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  vim.api.nvim_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  vim.api.nvim_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  vim.api.nvim_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  vim.api.nvim_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  vim.api.nvim_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  vim.api.nvim_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  vim.api.nvim_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  vim.api.nvim_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  vim.api.nvim_set_keymap('n', '<leader>d', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+  vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+  vim.api.nvim_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+LUA
+endif
 
-  " Explorer
-  nnoremap <silent> <Leader>e
-        \ :CocCommand explorer<CR> getcwd()
-  nnoremap <silent> <Leader>fe
-        \ :CocCommand explorer<CR>
+if pac#loaded('nvim-compe')
+  let g:endwise_no_mappings = v:true
+  inoremap <silent><expr> <Tab> compe#complete()
+  inoremap <silent><expr> <CR> compe#confirm('<CR><C-R>=EndwiseDiscretionary()<CR>')
+  inoremap <silent><expr> <C-e> compe#close('<C-e>')
 
-  function! s:show_documentation()
-    if (index(['vim','help'], &filetype) >= 0)
-      execute 'h '.expand('<cword>')
+  lua << LUA
+  local t = function(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+  end
+
+  local check_back_space = function()
+    local col = vim.fn.col('.') - 1
+    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+      return true
     else
-      call CocActionAsync('doHover')
-    endif
-  endfunction
+      return false
+    end
+  end
+
+  -- Use (s-)tab to:
+  --- move to prev/next item in completion menuone
+  --- jump to prev/next snippet's placeholder
+  _G.tab_complete = function()
+    if vim.fn.pumvisible() == 1 then
+      return t "<C-n>"
+    elseif check_back_space() then
+      return t "<Tab>"
+    else
+      return vim.fn['compe#complete']()
+    end
+  end
+  _G.s_tab_complete = function()
+    if vim.fn.pumvisible() == 1 then
+      return t "<C-p>"
+    else
+      return t "<S-Tab>"
+    end
+  end
+
+  vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+  vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+  vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+  vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+LUA
+endif
+
+if pac#loaded('indent-blankline.nvim')
+  nnoremap <silent> <localleader>i :IndentBlanklineToggle<CR>
+endif
+
+if pac#loaded('nvim-tree.lua')
+  " Explorer
+  nnoremap <silent> <leader>e :NvimTreeToggle<CR>
+  nnoremap <silent> <leader>fe :NvimTreeFindFile<CR>
 endif
 
 if pac#loaded('fzf.vim')
@@ -141,20 +141,7 @@ endif
 
 if pac#loaded('vista.vim')
   nnoremap <silent><localleader>v :Vista<CR>
-  nnoremap <silent><leader>fv     :Vista finder coc<CR>
-endif
-
-if pac#loaded('vim-easymotion')
-  nmap <Leader><Leader>w <Plug>(easymotion-w)
-  nmap <Leader><Leader>f <Plug>(easymotion-f)
-  nmap <Leader><Leader>b <Plug>(easymotion-b)
-endif
-
-if pac#loaded('vim-which-key')
-  nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-  nnoremap <silent> <localleader> :<c-u>WhichKey  ';'<CR>
-  nnoremap <silent>[              :<c-u>WhichKey  '['<CR>
-  nnoremap <silent>]              :<c-u>WhichKey  ']'<CR>
+  nnoremap <silent><leader>fv     :Vista finder<CR>
 endif
 
 if pac#loaded('vim-localorie')

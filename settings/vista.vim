@@ -4,13 +4,12 @@ let g:vista#renderer#enable_icon = 1
 
 let g:vista_executive_for = {
   \ 'go': 'ctags',
-  \ 'javascript': 'coc',
-  \ 'javascript.jsx': 'coc',
+  \ 'javascript': 'nvim_lsp',
+  \ 'javascript.jsx': 'nvim_lsp',
   \ 'python': 'ctags',
-  \ 'ruby': 'coc',
+  \ 'ruby': 'nvim_lsp',
   \ }
 
 let g:vista_ctags_cmd = {
   \ 'go': 'gotags',
   \ }
-

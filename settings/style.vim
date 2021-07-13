@@ -14,7 +14,6 @@ set background=dark
 
 " Italics
 hi Comment gui=italic cterm=italic
-let g:two_firewatch_italics=1
 
 "GetColorSynatxGroup
 " ---------------------------------------------------------
@@ -24,3 +23,9 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 
 " Enable transparency
 hi Normal guibg=NONE ctermbg=NONE
+
+" Highlight yank
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=150}
+augroup END

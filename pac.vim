@@ -16,47 +16,80 @@ endfunction
 
 " inefficient, can be cached (and maybe is not needed at all)
 function! pac#loaded(name)
-  return index( get(g:, 'pac#installed_pacs', []), a:name ) != -1
+  let load_index = index( get(g:, 'pac#installed_pacs', []), a:name )
+  if load_index == -1
+    return v:false
+  else
+    return v:true
+  endif
 endfunction
 
-call minpac#add('itchyny/lightline.vim')
-call minpac#add('josa42/vim-lightline-coc')
+" Basics
+call minpac#add('nvim-treesitter/nvim-treesitter', { 'do': 'TSUpdate' })
+call minpac#add('neovim/nvim-lspconfig')
+call minpac#add('weilbith/nvim-lsp-smag')
 
-call minpac#add('arcticicestudio/nord-vim')
+" Commonly used library
+call minpac#add('nvim-lua/plenary.nvim')
+
+" File navigation
+call minpac#add('kyazdani42/nvim-web-devicons') " for file icons
+call minpac#add('kyazdani42/nvim-tree.lua')
+
+" Completion engine
+call minpac#add('hrsh7th/nvim-compe')
+call minpac#add('onsails/lspkind-nvim')
+
+" Status and tab lines
+call minpac#add('itchyny/lightline.vim')
+call minpac#add('nvim-lua/lsp-status.nvim')
+
+" LSP tricks
+call minpac#add('folke/trouble.nvim')
+
+" Git signs
+call minpac#add('lewis6991/gitsigns.nvim')
+
+" Colorschemes
+call minpac#add('shaunsingh/nord.nvim')
 call minpac#add('wadackel/vim-dogrun')
 call minpac#add('cocopon/iceberg.vim')
 call minpac#add('gkeep/iceberg-dark')
-call minpac#add('rakr/vim-two-firewatch')
 call minpac#add('tyrannicaltoucan/vim-deep-space')
-call minpac#add('ghifarit53/tokyonight-vim')
-call minpac#add('davidklsn/vim-sialoquent')
-call minpac#add('adrian5/oceanic-next-vim')
-call minpac#add('ulwlu/elly.vim')
-call minpac#add('kyazdani42/blue-moon')
-call minpac#add('NLKNguyen/papercolor-theme')
+call minpac#add('folke/tokyonight.nvim')
 
+" Colorscheme patches
+call minpac#add('folke/lsp-colors.nvim')
+
+" Syntax dump
 call minpac#add('pedrohdz/vim-yaml-folds')
 call minpac#add('sheerun/vim-polyglot')
-
 call minpac#add('andymass/vim-matchup')
+
+" Open file:lineno
 call minpac#add('wsdjeg/vim-fetch')
 
+" FZF, duh
 call minpac#add('junegunn/fzf', { 'do': {-> system('./install --all') } })
 call minpac#add('junegunn/fzf.vim')
 
-call minpac#add('neoclide/coc.nvim', { 'do': {-> system('yarn install --frozen-lockfile') } })
-call minpac#add('antoinemadec/coc-fzf')
+" FZF alternative
+call minpac#add('nvim-lua/popup.nvim')
+call minpac#add('nvim-telescope/telescope.nvim')
 
-call minpac#add('tpope/vim-characterize')
+" Terminals and REPLs interactions
 call minpac#add('kassio/neoterm')
 
-call minpac#add('ryanoasis/vim-devicons')
+" Handy window selector
 call minpac#add('t9md/vim-choosewin')
 
+" Alignment hacker
 call minpac#add('godlygeek/tabular')
+
+" Search visual selections
 call minpac#add('nelstrom/vim-visual-star-search')
+
 call minpac#add('mbbill/undotree')
-call minpac#add('tpope/vim-repeat')
 
 call minpac#add('vim-scripts/camelcasemotion')
 call minpac#add('itchyny/vim-qfedit')
@@ -64,7 +97,9 @@ call minpac#add('chrisbra/NrrwRgn')
 
 call minpac#add('rrethy/vim-hexokinase', { 'do': {-> system('make hexokinase') } })
 
+" Git tools
 call minpac#add('tpope/vim-dispatch')
+call minpac#add('radenling/vim-dispatch-neovim')
 call minpac#add('tpope/vim-unimpaired')
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('idanarye/vim-merginal')
@@ -72,7 +107,6 @@ call minpac#add('idanarye/vim-merginal')
 call minpac#add('mattn/emmet-vim')
 
 call minpac#add('Shougo/context_filetype.vim')
-call minpac#add('joker1007/vim-ruby-heredoc-syntax')
 call minpac#add('tpope/vim-rails')
 call minpac#add('airblade/vim-localorie')
 
@@ -83,8 +117,8 @@ call minpac#add('tpope/vim-endwise')
 
 call minpac#add('liuchengxu/vista.vim')
 
-call minpac#add('Yggdroot/indentLine')
-call minpac#add('luochen1990/rainbow')
+call minpac#add('lukas-reineke/indent-blankline.nvim')
+call minpac#add('p00f/nvim-ts-rainbow')
 call minpac#add('terryma/vim-expand-region')
 
 call minpac#add('Shougo/echodoc.vim')
