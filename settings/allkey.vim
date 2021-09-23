@@ -106,12 +106,14 @@ if pac#loaded('nvim-tree.lua')
   nnoremap <silent> <leader>fe :NvimTreeFindFile<CR>
 endif
 
-if pac#loaded('fzf.vim')
-  nnoremap <silent> <leader>fc :Colors<CR>
-  nnoremap <silent> <leader>fb :Buffers<CR>
-  nnoremap <silent> <leader>ff :Files<CR>
-  nnoremap <silent> <leader>fr :Rg<CR>
-  nnoremap <silent> <leader>fw :Rg <C-R><C-W><CR>
+if pac#loaded('telescope.nvim')
+  nnoremap <silent> <leader>fc :Telescope colorscheme theme=get_dropdown<CR>
+  nnoremap <silent> <leader>fb :Telescope buffers ignore_current_buffer=true sort_mru=true theme=get_dropdown<CR>
+  nnoremap <silent> <leader>ff :Telescope find_files<CR>
+  nnoremap <silent> <leader>fw :Telescope grep_string<CR>
+  nnoremap <silent> <leader>fr :Telescope resume<CR>
+  nnoremap <silent> <leader>fs :Telescope lsp_dynamic_workspace_symbols<CR>
+  command! -nargs=+ Rg execute 'lua require(''telescope.builtin'').grep_string({ search = ''' . substitute(<q-args>, '''', '\\''', 'g') . ''' })'
 endif
 
 if pac#loaded('undotree')

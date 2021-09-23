@@ -69,13 +69,11 @@ call minpac#add('andymass/vim-matchup')
 " Open file:lineno
 call minpac#add('wsdjeg/vim-fetch')
 
-" FZF, duh
-call minpac#add('junegunn/fzf', { 'do': {-> system('./install --all') } })
-call minpac#add('junegunn/fzf.vim')
-
 " FZF alternative
 call minpac#add('nvim-lua/popup.nvim')
 call minpac#add('nvim-telescope/telescope.nvim')
+call minpac#add('nvim-telescope/telescope-fzy-native.nvim')
+call minpac#add('gbrlsnchs/telescope-lsp-handlers.nvim')
 
 " Terminals and REPLs interactions
 call minpac#add('kassio/neoterm')
