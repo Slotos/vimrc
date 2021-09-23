@@ -51,7 +51,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
   nvim_lsp.solargraph.setup {
     on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = { "ruby", "slim" },
+    filetypes = { "ruby" },
     flags = { debounce_text_changes = 150, },
     settings = {
       solargraph = {
