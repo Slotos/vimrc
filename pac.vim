@@ -72,7 +72,7 @@ call minpac#add('wsdjeg/vim-fetch')
 " FZF alternative
 call minpac#add('nvim-lua/popup.nvim')
 call minpac#add('nvim-telescope/telescope.nvim')
-call minpac#add('nvim-telescope/telescope-fzy-native.nvim')
+call minpac#add('nvim-telescope/telescope-fzf-native.nvim', { 'do': {-> system('make') } })
 call minpac#add('gbrlsnchs/telescope-lsp-handlers.nvim')
 
 " Terminals and REPLs interactions

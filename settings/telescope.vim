@@ -2,8 +2,8 @@ lua <<LUA
 if vim.fn['pac#loaded']('telescope.nvim') then
   local telescope = require('telescope')
 
-  if vim.fn['pac#loaded']('telescope-fzy-native.nvim') then
-    telescope.load_extension('fzy_native')
+  if vim.fn['pac#loaded']('telescope-fzf-native.nvim') then
+    telescope.load_extension('fzf')
   end
 
   if vim.fn['pac#loaded']('telescope-lsp-handlers.nvim') then
