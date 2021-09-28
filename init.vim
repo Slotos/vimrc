@@ -53,6 +53,7 @@ execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/nvim-compe.vim')
 
 " plugin configurations
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/gitsigns.vim')
+execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/nvim-tree.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/nvim-treesitter.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/lightline.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/nord.vim')
