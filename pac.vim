@@ -112,6 +112,7 @@ call minpac#add('airblade/vim-localorie')
 call minpac#add('slashmili/alchemist.vim')
 
 call minpac#add('tpope/vim-commentary')
+call minpac#add('JoosepAlviste/nvim-ts-context-commentstring')
 call minpac#add('tpope/vim-endwise')
 
 call minpac#add('liuchengxu/vista.vim')
