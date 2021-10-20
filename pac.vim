@@ -101,6 +101,7 @@ call minpac#add('radenling/vim-dispatch-neovim')
 call minpac#add('tpope/vim-unimpaired')
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('idanarye/vim-merginal')
+call minpac#add('f-person/git-blame.nvim')
 
 call minpac#add('mattn/emmet-vim')
 
