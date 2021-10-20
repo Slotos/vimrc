@@ -16,8 +16,8 @@ if vim.fn['pac#loaded']('telescope.nvim') then
     telescope.setup {
       defaults = {
         mappings = {
-          i = { ["<c-q>"] = trouble.open_with_trouble },
-          n = { ["<c-q>"] = trouble.open_with_trouble },
+          i = { ["<c-q>"] = trouble.smart_open_with_trouble },
+          n = { ["<c-q>"] = trouble.smart_open_with_trouble },
           },
         },
       }
