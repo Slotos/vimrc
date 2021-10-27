@@ -49,7 +49,7 @@ execute 'source' fnameescape($VIM_CONFIG_DIR . '/pac.vim')
 
 " LSP configuration and completion
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/LSP.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/nvim-compe.vim')
+execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/nvim-cmp.vim')
 
 " plugin configurations
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/gitsigns.vim')

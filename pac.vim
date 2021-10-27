@@ -37,7 +37,10 @@ call minpac#add('kyazdani42/nvim-web-devicons') " for file icons
 call minpac#add('kyazdani42/nvim-tree.lua')
 
 " Completion engine
-call minpac#add('hrsh7th/nvim-compe')
+call minpac#add('hrsh7th/cmp-nvim-lsp')
+call minpac#add('hrsh7th/cmp-buffer')
+call minpac#add('hrsh7th/nvim-cmp')
+
 call minpac#add('onsails/lspkind-nvim')
 
 " Status and tab lines

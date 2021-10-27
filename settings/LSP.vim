@@ -61,8 +61,4 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
     }
   }
 end
-
-if vim.fn['pac#loaded']('lspkind-nvim') then
-  require('lspkind').init({})
-end
 LUA
