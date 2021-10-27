@@ -81,4 +81,9 @@ execute 'source' fnameescape($VIM_CONFIG_DIR . '/plugins/difftools.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/plugins/hlsearch.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/plugins/nicefold.vim')
 
+let b:local_override_file = fnameescape($HOME . '/.vimrc_local')
+if filereadable(b:local_override_file)
+  execute 'source' b:local_override_file
+endif
+
 set secure
