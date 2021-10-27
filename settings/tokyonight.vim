@@ -1,3 +1,3 @@
-if pac#loaded('tokyonight.vim')
-  let g:tokyonight_enable_italic = 1
+if pac#loaded('tokyonight.nvim')
+  let tokyonight_style='night'
 endif
