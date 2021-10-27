@@ -20,11 +20,24 @@ if vim.fn['pac#loaded']('nvim-cmp') then
         behavior = cmp.ConfirmBehavior.Replace,
       }),
     },
-    sources = {
-      { name = 'nvim_lsp' },
-      { name = 'buffer' },
-    }
+    sources = {}
   }
+
+  if vim.fn['pac#loaded']('cmp-nvim-lsp') then
+    table.insert(options["sources"], { name = 'nvim_lsp' })
+  end
+
+  if vim.fn['pac#loaded']('cmp-buffer') then
+    table.insert(options["sources"], { name = 'buffer' })
+  end
+
+  if vim.fn['pac#loaded']('cmp-path') then
+    table.insert(options["sources"], { name = 'path' })
+  end
+
+  if vim.fn['pac#loaded']('cmp-latex_symbols') then
+    table.insert(options["sources"], { name = 'latex_symbols' })
+  end
 
   if vim.fn['pac#loaded']('lspkind-nvim') then
     options["formatting"] = {
