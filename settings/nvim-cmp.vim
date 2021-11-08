@@ -16,7 +16,6 @@ if vim.fn['pac#loaded']('nvim-cmp') then
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-e>'] = cmp.mapping.close(),
       ['<CR>'] = cmp.mapping.confirm({
-        select = true,
         behavior = cmp.ConfirmBehavior.Replace,
       }),
     },
