@@ -1,10 +1,17 @@
-let g:indent_blankline_enabled = v:false
-let g:indent_blankline_char_list = ['|', '¦', '┆', '┊']
+lua <<LUA
+if vim.fn['pac#loaded']('indent-blankline.nvim') then
+  require("indent_blankline").setup {
+    enabled = false, -- it can slow down startup, but toggling afterwards is fast
 
-let g:indent_blankline_filetype = ['vim', 'ruby', 'javascript', 'vue']
-let g:indent_blankline_buftype_exclude = ['terminal']
+    space_char_blankline = " ",
+    use_treesitter = true,
+    show_current_context = true,
+    show_current_context_start = true,
 
-let g:indent_blankline_use_treesitter = v:true
-let g:indent_blankline_show_current_context = v:true
-let g:indent_blankline_context_highlight_list = ['Warning']
-let g:indent_blankline_context_patterns = ['function', 'method', 'lambda']
+    buftype_exclude = {"terminal"},
+    filetype = {'vim', 'ruby', 'javascript', 'vue'},
+    char_list = {'|', '¦', '┆', '┊'},
+    context_patterns = {'class', 'function', 'method', 'lambda'},
+  }
+end
+LUA
