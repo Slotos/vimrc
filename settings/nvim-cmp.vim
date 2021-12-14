@@ -19,7 +19,10 @@ if vim.fn['pac#loaded']('nvim-cmp') then
         behavior = cmp.ConfirmBehavior.Replace,
       }),
     },
-    sources = {}
+    sources = {},
+    experimental = {
+      native_menu = true
+    },
   }
 
   if vim.fn['pac#loaded']('cmp-nvim-lsp') then
