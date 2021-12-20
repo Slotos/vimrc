@@ -104,11 +104,6 @@ if pac#loaded('vim-expand-region')
   xmap V <Plug>(expand_region_shrink)
 endif
 
-if pac#loaded('vista.vim')
-  nnoremap <silent><localleader>v :Vista<CR>
-  nnoremap <silent><leader>fv     :Vista finder<CR>
-endif
-
 if pac#loaded('vim-localorie')
   nnoremap <silent> <leader>yt :call localorie#translate()<CR>
   nnoremap <silent> <leader>ye :echo localorie#expand_key()<CR>

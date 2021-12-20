@@ -120,7 +120,7 @@ call minpac#add('tpope/vim-commentary')
 call minpac#add('JoosepAlviste/nvim-ts-context-commentstring')
 call minpac#add('tpope/vim-endwise')
 
-call minpac#add('liuchengxu/vista.vim')
+call minpac#add('stevearc/aerial.nvim')
 
 call minpac#add('lukas-reineke/indent-blankline.nvim')
 call minpac#add('p00f/nvim-ts-rainbow')

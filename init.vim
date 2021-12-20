@@ -66,7 +66,7 @@ execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/telescope.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/vim-json.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/vim-ruby.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/indentline.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/vista.vim')
+execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/aerial.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/rainbow.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/echodoc.vim')
 
