@@ -65,11 +65,10 @@ call minpac#add('tyrannicaltoucan/vim-deep-space')
 call minpac#add('folke/tokyonight.nvim')
 call minpac#add('yashguptaz/calvera-dark.nvim')
 call minpac#add('shaunsingh/moonlight.nvim')
-call minpac#add('projekt0n/github-nvim-theme')
 call minpac#add('rose-pine/neovim')
 call minpac#add('EdenEast/nightfox.nvim')
 call minpac#add('olimorris/onedarkpro.nvim')
-call minpac#add('FrenzyExists/aquarium-vim')
+call minpac#add('Slotos/aquarium-vim')
 
 " Colorscheme patches
 call minpac#add('folke/lsp-colors.nvim')
