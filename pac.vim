@@ -57,18 +57,18 @@ call minpac#add('folke/trouble.nvim')
 call minpac#add('lewis6991/gitsigns.nvim')
 
 " Colorschemes
-call minpac#add('shaunsingh/nord.nvim')
+call minpac#add('Slotos/nord.nvim')
 call minpac#add('wadackel/vim-dogrun')
 call minpac#add('cocopon/iceberg.vim')
 call minpac#add('gkeep/iceberg-dark')
 call minpac#add('tyrannicaltoucan/vim-deep-space')
 call minpac#add('folke/tokyonight.nvim')
 call minpac#add('Slotos/calvera-dark.nvim')
-call minpac#add('shaunsingh/moonlight.nvim')
+call minpac#add('Slotos/moonlight.nvim')
 call minpac#add('rose-pine/neovim')
 call minpac#add('EdenEast/nightfox.nvim')
-call minpac#add('olimorris/onedarkpro.nvim')
-call minpac#add('Slotos/aquarium-vim')
+call minpac#add('FrenzyExists/aquarium-vim')
+call minpac#add('rebelot/kanagawa.nvim')
 
 " Colorscheme patches
 call minpac#add('folke/lsp-colors.nvim')
