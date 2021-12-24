@@ -10,8 +10,14 @@ if vim.fn['pac#loaded']('nvim-cmp') then
     mapping = {
       ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
       ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-      ['<Down>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-      ['<Up>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+      ['<Down>'] = {
+        i = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+        c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+        },
+      ['<Up>'] = {
+        i = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+        c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+        },
       ['<C-d>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
       ['<C-e>'] = cmp.mapping.close(),
@@ -48,5 +54,7 @@ if vim.fn['pac#loaded']('nvim-cmp') then
   end
 
   cmp.setup(options)
+  cmp.setup.cmdline('/', false)
+  cmp.setup.cmdline(':', false)
 end
 LUA
