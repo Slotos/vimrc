@@ -39,6 +39,17 @@ endfunction
 
 lua << LUA
 if vim.fn['pac#loaded']('lualine.nvim') then
+  local aerial_extension = vim.deepcopy(require 'lualine.extensions.symbols-outline')
+  aerial_extension.filetypes = { 'aerial' }
+
+  local neoterm_extension = {
+    sections = {
+      lualine_a = { (function() return 'NeoTerm #' .. vim.b.neoterm_id end) },
+      },
+    filetypes = { 'neoterm' }
+    }
+
+
   local lualine_config = {
     options = {
       icons_enabled = true,
@@ -51,7 +62,7 @@ if vim.fn['pac#loaded']('lualine.nvim') then
     sections = {
       lualine_a = {'mode'},
       lualine_b = {'branch', 'diff', 'diagnostics'},
-      lualine_c = {'ShortName', 'CurrentFunction'},
+      lualine_c = {'ShortName', vim.fn['pac#loaded']('aerial.nvim') and 'aerial' or 'CurrentFunction'},
       lualine_x = {'LspProgress', 'encoding', 'fileformat', 'filetype'},
       lualine_y = {'progress'},
       lualine_z = {'location'}
@@ -66,7 +77,7 @@ if vim.fn['pac#loaded']('lualine.nvim') then
       },
     tabline = {
       },
-    extensions = {'fugitive', 'nvim-tree', 'quickfix'},
+    extensions = {'fugitive', 'nvim-tree', 'quickfix', aerial_extension, neoterm_extension},
     }
 
   require'lualine'.setup(lualine_config)
@@ -136,4 +147,5 @@ if vim.fn['pac#loaded']('lualine.nvim') then
     require'luatab'.setup(luatab_config)
   end
 end
+
 LUA

@@ -296,7 +296,11 @@ end
 function M.extract_highlight_colors(color_group, scope)
   if vim.fn.hlexists(color_group) == 0 then return nil end
   local color = vim.api.nvim_get_hl_by_name(color_group, true)
-  local term_color = vim.api.nvim_get_hl_by_name(color_group, true)
+  local term_color = vim.api.nvim_get_hl_by_name(color_group, false)
+
+  if color and color.reverse then color.background, color.foreground = color.foreground, color.background end
+  if term_color and term_color.reverse then term_color.background, term_color.foreground = term_color.foreground, term_color.background end
+
   if color.background ~= nil then
     color.bg = string.format('#%06x', color.background)
     color.background = nil
@@ -348,6 +352,7 @@ end
 ---@param color number
 ---@return string
 function M.cterm2rgb(color)
+  if not color then return 'NONE' end
   local color_data = color_table[color + 1]
   if color_data ~= nil then
     color_data = color_data[2]
