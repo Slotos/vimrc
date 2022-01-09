@@ -28,6 +28,7 @@ endfunction
 call minpac#add('nvim-treesitter/nvim-treesitter', { 'do': 'TSUpdate' })
 call minpac#add('nvim-treesitter/playground')
 call minpac#add('neovim/nvim-lspconfig')
+call minpac#add('williamboman/nvim-lsp-installer')
 call minpac#add('weilbith/nvim-lsp-smag')
 
 " Commonly used library
