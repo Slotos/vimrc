@@ -1,1 +1,1 @@
-let g:Hexokinase_refreshEvents = ['BufWrite', 'BufRead', 'TextChangedI', 'TextChanged', 'InsertLeave']
+let g:Hexokinase_refreshEvents = ['BufWrite', 'BufRead', 'TextChangedI', 'TextChanged', 'InsertLeave', 'ColorScheme']
