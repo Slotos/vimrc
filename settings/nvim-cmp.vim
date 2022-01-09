@@ -31,6 +31,10 @@ if vim.fn['pac#loaded']('nvim-cmp') then
     },
   }
 
+  if vim.fn['pac#loaded']('cmp-treesitter') then
+    table.insert(options["sources"], { name = 'treesitter' })
+  end
+
   if vim.fn['pac#loaded']('cmp-nvim-lsp') then
     table.insert(options["sources"], { name = 'nvim_lsp' })
   end
@@ -54,7 +58,20 @@ if vim.fn['pac#loaded']('nvim-cmp') then
   end
 
   cmp.setup(options)
-  cmp.setup.cmdline('/', false)
-  cmp.setup.cmdline(':', false)
+
+  -- Waiting for https://github.com/neovim/neovim/issues/11439 fix
+  -- cmp.setup.cmdline('/', {
+  --   sources = {
+  --     { name = 'buffer' }
+  --     }
+  --   })
+
+  -- cmp.setup.cmdline(':', {
+  --   sources = cmp.config.sources({
+  --     { name = 'path' }
+  --   }, {
+  --     { name = 'cmdline' }
+  --   })
+  -- })
 end
 LUA
