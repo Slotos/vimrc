@@ -9,7 +9,10 @@ if vim.fn['pac#loaded']('nvim-treesitter') then
     },
     context_commentstring = {
       enable = true,
-    }
+    },
+    indent = {
+      enable = true
+    },
   }
 
   vim.api.nvim_command('augroup RubyTreeSitterFold')
