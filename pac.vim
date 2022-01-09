@@ -73,6 +73,7 @@ call minpac#add('rose-pine/neovim', {'name': 'rose-pine'})
 call minpac#add('EdenEast/nightfox.nvim')
 call minpac#add('FrenzyExists/aquarium-vim')
 call minpac#add('rebelot/kanagawa.nvim')
+call minpac#add('bluz71/vim-nightfly-guicolors')
 
 " Colorscheme patches
 call minpac#add('folke/lsp-colors.nvim')
