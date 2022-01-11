@@ -46,9 +46,17 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
       }
 
       -- (optional) Customize the options passed to the server
-      -- if server.name == "tsserver" then
-      --     opts.root_dir = function() ... end
-      -- end
+      if server.name == "solargraph" then
+
+        opts.filetypes = { "ruby" }
+        opts.flags = { debounce_text_changes = 150, }
+        opts.settings = {
+          solargraph = {
+            diagnostics = true,
+            formatting = true,
+            }
+          }
+      end
 
       -- This setup() function is exactly the same as lspconfig's setup function.
       -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
