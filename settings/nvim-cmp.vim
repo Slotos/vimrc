@@ -31,6 +31,10 @@ if vim.fn['pac#loaded']('nvim-cmp') then
     },
   }
 
+  if vim.fn['pac#loaded']('vim-vsnip') then
+    options.snippet = { expand = function(args) vim.fn["vsnip#anonymous"](args.body) end }
+  end
+
   if vim.fn['pac#loaded']('cmp-treesitter') then
     table.insert(options["sources"], { name = 'treesitter' })
   end

@@ -46,6 +46,8 @@ call minpac#add('ray-x/cmp-treesitter')
 call minpac#add('kdheepak/cmp-latex-symbols')
 call minpac#add('hrsh7th/cmp-cmdline')
 call minpac#add('hrsh7th/nvim-cmp')
+call minpac#add('hrsh7th/vim-vsnip')
+call minpac#add('hrsh7th/vim-vsnip-integ')
 
 call minpac#add('onsails/lspkind-nvim')
 
