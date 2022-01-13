@@ -83,17 +83,6 @@ if pac#loaded('undotree')
   nnoremap <silent> <localleader>u :UndotreeToggle<CR>
 endif
 
-if pac#loaded('neoterm')
-  function! ZombieServer()
-    if has_key(g:neoterm.instances, g:neoterm.last_active)
-      Tkill
-    endif
-    belowright T live-server '%'
-    call g:neoterm.instances[g:neoterm.last_active].normal('G')
-  endfunction
-  nnoremap <leader>l :call ZombieServer()<CR>
-end
-
 if pac#loaded('vim-choosewin')
   nmap -         <Plug>(choosewin)
   nmap <Leader>- :<C-u>ChooseWinSwapStay<CR>
