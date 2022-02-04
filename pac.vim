@@ -77,6 +77,7 @@ call minpac#add('EdenEast/nightfox.nvim')
 call minpac#add('FrenzyExists/aquarium-vim')
 call minpac#add('rebelot/kanagawa.nvim')
 call minpac#add('bluz71/vim-nightfly-guicolors')
+call minpac#add('katawful/kat.nvim')
 
 " Colorscheme patches
 call minpac#add('folke/lsp-colors.nvim')
