@@ -97,3 +97,10 @@ if pac#loaded('vim-localorie')
   nnoremap <silent> <leader>yt :call localorie#translate()<CR>
   nnoremap <silent> <leader>ye :echo localorie#expand_key()<CR>
 endif
+
+if pac#loaded('vim-dadbod-ui')
+  nnoremap <silent> <leader>du :DBUIToggle<CR>
+  nnoremap <silent> <leader>df :DBUIFindBuffer<CR>
+  nnoremap <silent> <leader>dr :DBUIRenameBuffer<CR>
+  nnoremap <silent> <leader>dl :DBUILastQueryInfo<CR>
+endif

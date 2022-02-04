@@ -3,6 +3,11 @@ if vim.fn['pac#loaded']('nvim-cmp') then
   -- Set completeopt to have a better completion experience
   vim.o.completeopt="menu,menuone,noselect"
 
+  vim.api.nvim_command("augroup nvim-cmp")
+  vim.api.nvim_command("au!")
+  vim.api.nvim_command("autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })")
+  vim.api.nvim_command("augroup END")
+
   -- Setup nvim-cmp.
   local cmp = require'cmp'
 
