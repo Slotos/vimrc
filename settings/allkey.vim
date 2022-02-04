@@ -104,3 +104,8 @@ if pac#loaded('vim-dadbod-ui')
   nnoremap <silent> <leader>dr :DBUIRenameBuffer<CR>
   nnoremap <silent> <leader>dl :DBUILastQueryInfo<CR>
 endif
+
+" TODO: Check for OSX
+" Browse command that opens arguments with system's `open`
+" Used by Fugitive's GBrowse
+command! -bar -nargs=1 Browse silent! !open <args>

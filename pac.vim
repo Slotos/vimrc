@@ -116,10 +116,8 @@ call minpac#add('chrisbra/NrrwRgn')
 call minpac#add('rrethy/vim-hexokinase', { 'do': {-> system('make hexokinase') } })
 
 " Git tools
-call minpac#add('tpope/vim-dispatch')
-call minpac#add('radenling/vim-dispatch-neovim')
-call minpac#add('tpope/vim-unimpaired')
 call minpac#add('tpope/vim-fugitive')
+call minpac#add('shumphrey/fugitive-gitlab.vim')
 call minpac#add('idanarye/vim-merginal')
 call minpac#add('f-person/git-blame.nvim')
 
@@ -127,6 +125,8 @@ call minpac#add('f-person/git-blame.nvim')
 call minpac#add('tpope/vim-dadbod')
 call minpac#add('kristijanhusak/vim-dadbod-ui')
 call minpac#add('kristijanhusak/vim-dadbod-completion')
+
+call minpac#add('tpope/vim-unimpaired')
 
 call minpac#add('mattn/emmet-vim')
 
