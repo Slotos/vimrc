@@ -297,26 +297,37 @@ function M.extract_highlight_colors(color_group, scope)
   if vim.fn.hlexists(color_group) == 0 then return nil end
   local color = vim.api.nvim_get_hl_by_name(color_group, true)
   local term_color = vim.api.nvim_get_hl_by_name(color_group, false)
+  local result = {}
 
-  if color and color.reverse then color.background, color.foreground = color.foreground, color.background end
-  if term_color and term_color.reverse then term_color.background, term_color.foreground = term_color.foreground, term_color.background end
+  -- if color and color.reverse then color.background, color.foreground = color.foreground, color.background end
+  -- if term_color and term_color.reverse then term_color.background, term_color.foreground = term_color.foreground, term_color.background end
 
-  if color.background ~= nil then
-    color.bg = string.format('#%06x', color.background)
-    color.background = nil
-  elseif term_color.background ~= nil then
-    color.bg = M.cterm2rgb(color.background)
-    color.background = nil
-  end
-  if color.foreground ~= nil then
-    color.fg = string.format('#%06x', color.foreground)
-    color.foreground = nil
-  elseif term_color.foreground ~= nil then
-    color.bg = M.cterm2rgb(color.foreground)
-    color.foreground = nil
-  end
-  if scope then return color[scope] end
-  return color
+  local normal_color = vim.api.nvim_get_hl_by_name('Normal', true)
+  local normal_term_color = vim.api.nvim_get_hl_by_name('Normal', false)
+
+  -- This is fugly, I know
+  --
+  -- Ideally, I'd get terminal background and foreground color and ultimately fall back to those
+  -- since `:colorscheme default` does exactly that, but I haven't discovered a reliable
+  -- way to do this, and vim doesn't seem to provide these values, despite clearly following
+  -- terminal coloring, even when said coloring changes with vim already running
+  --
+  -- I just can't be arsed at this point, this works for all _my_ cases.
+  -- As in, the only colorscheme that doesn't work with this is `default`
+  result.bg =
+    color.background and string.format('#%06x', color.reverse and color.foreground or color.background) or
+    term_color.background and M.cterm2rgb(term_color.reverse and term_color.foreground or term_color.background) or
+    normal_color.background and string.format('#%06x', color.reverse and normal_color.foreground or normal_color.background) or
+    normal_term_color.background and M.cterm2rgb(term_color.reverse and normal_term_color.foreground or normal_term_color.background)
+
+  result.fg =
+    color.foreground and string.format('#%06x', color.reverse and color.background or color.foreground) or
+    term_color.foreground and M.cterm2rgb(term_color.reverse and term_color.background or term_color.foreground) or
+    normal_color.foreground and string.format('#%06x', color.reverse and normal_color.background or normal_color.foreground) or
+    normal_term_color.foreground and M.cterm2rgb(term_color.reverse and normal_term_color.background or normal_term_color.foreground)
+
+  if scope then return result[scope] end
+  return result
 end
 
 ---converts #rrggbb fomated color to cterm ('0'-'255') color
