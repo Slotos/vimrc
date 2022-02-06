@@ -10,22 +10,32 @@ if has('termguicolors')
     set termguicolors
 endif
 
-set background=dark
-
-" Italics
-hi Comment gui=italic cterm=italic
-
-"GetColorSynatxGroup
-" ---------------------------------------------------------
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-
-" Enable transparency
-hi Normal guibg=NONE ctermbg=NONE
-
 " Highlight yank
 augroup highlight_yank
     autocmd!
     au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=150}
 augroup END
+
+" tokyonight.nvim
+let g:tokyonight_style = 'night'
+let g:tokyonight_italic_functions = v:true
+let g:tokyonight_italic_variables = v:true
+
+" nord.nvim
+let g:nord_contrast = v:true
+let g:nord_borders = v:true
+
+" calvera-darl.nvim
+let g:calvera_italic_comments = 1
+let g:calvera_italic_keywords = 1
+let g:calvera_italic_functions = 1
+let g:calvera_contrast = 1
+
+" moonlight.nvim
+let g:moonlight_italic_comments = v:true
+let g:moonlight_italic_keywords = v:true
+let g:moonlight_italic_functions = v:true
+let g:moonlight_italic_variables = v:false
+let g:moonlight_contrast = v:true
+let g:moonlight_borders = v:false 
+let g:moonlight_disable_background = v:false

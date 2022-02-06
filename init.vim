@@ -55,8 +55,6 @@ execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/gitsigns.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/nvim-tree.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/nvim-treesitter.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/lualine.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/nord.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/tokyonight.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/neoterm.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/vim-choosewin.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/hexokinase.vim')
@@ -81,6 +79,8 @@ execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/neovide.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/plugins/difftools.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/plugins/hlsearch.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/plugins/nicefold.vim')
+
+colorscheme nord
 
 let b:local_override_file = fnameescape($HOME . '/.vimrc_local')
 if filereadable(b:local_override_file)
