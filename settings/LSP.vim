@@ -7,18 +7,8 @@ vim.fn.sign_define("LspDiagnosticsSignHint", {text = "", texthl = "String"})
 if vim.fn['pac#loaded']('nvim-lspconfig') then
   local nvim_lsp = require('lspconfig')
   local attach_handlers = {}
-  local capabilities = {}
 
   -- vim.lsp.set_log_level("debug")
-
-  if vim.fn['pac#loaded']('lsp-status.nvim') then
-    local lsp_status = require'lsp-status'
-    lsp_status.register_progress()
-
-    table.insert(attach_handlers, lsp_status.on_attach)
-
-    capabilities = lsp_status.capabilities
-  end
 
   if vim.fn['pac#loaded']('aerial.nvim') then
     local aerial = require'aerial'
@@ -32,6 +22,10 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
     for _key, handler in pairs(attach_handlers) do
       handler(unpack(args))
     end
+  end
+
+  if vim.fn['pac#loaded']('fidget.nvim') then
+    require"fidget".setup{}
   end
 
   if vim.fn['pac#loaded']('nvim-lsp-installer') then

@@ -15,20 +15,6 @@ else
   endfunction
 end
 
-if pac#loaded('lsp-status.nvim')
-  lua << LUA
-  local lsp_status = require'lsp-status'
-  _G.lsp_status_progress = lsp_status.status_progress
-LUA
-  function! LspProgress()
-    return v:lua.lsp_status_progress()
-  endfunction
-else
-  function! LspProgress()
-    return ''
-  endfunction
-endif
-
 function! ShortName()
     return pathshorten(expand('%')) . BuffModificationStatus()
 endfunction
@@ -63,7 +49,7 @@ if vim.fn['pac#loaded']('lualine.nvim') then
       lualine_a = {'mode'},
       lualine_b = {'branch', 'diff', 'diagnostics'},
       lualine_c = {'ShortName', vim.fn['pac#loaded']('aerial.nvim') and 'aerial' or 'CurrentFunction'},
-      lualine_x = {'LspProgress', 'encoding', 'fileformat', 'filetype'},
+      lualine_x = {'encoding', 'fileformat', 'filetype'},
       lualine_y = {'progress'},
       lualine_z = {'location'}
       },
