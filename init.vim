@@ -74,6 +74,9 @@ execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/allkey.vim')
 " Generic configs
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/cursorline.vim')
 
+" Neovide
+execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/neovide.vim')
+
 " Custom plugins
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/plugins/difftools.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/plugins/hlsearch.vim')
@@ -83,16 +86,5 @@ let b:local_override_file = fnameescape($HOME . '/.vimrc_local')
 if filereadable(b:local_override_file)
   execute 'source' b:local_override_file
 endif
-
-" Neovide
-" Paste with Command+V
-imap <silent> <D-v> <C-r>*
-cmap <D-v> <C-r>*
-
-let g:neovide_input_use_logo=v:true
-let g:neovide_cursor_antialiasing=v:true
-let g:neovide_cursor_vfx_mode = "railgun"
-let g:neovide_cursor_vfx_particle_density=0
-" END Neovide
 
 set secure
