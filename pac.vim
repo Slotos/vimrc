@@ -119,7 +119,6 @@ call minpac#add('rrethy/vim-hexokinase', { 'do': {-> system('make hexokinase') }
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('shumphrey/fugitive-gitlab.vim')
 call minpac#add('idanarye/vim-merginal')
-call minpac#add('f-person/git-blame.nvim')
 
 " DB tools
 call minpac#add('tpope/vim-dadbod')
