@@ -103,7 +103,7 @@ if vim.fn['pac#loaded']('aerial.nvim') then
       if vim.fn['pac#loaded']('telescope.nvim') then
         -- Open Telescope list
         require('telescope').load_extension('aerial')
-        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<localleader>f', '<cmd>Telescope aerial<CR>', {})
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<localleader>[', '<cmd>Telescope aerial<CR>', {})
       end
     end,
 
