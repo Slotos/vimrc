@@ -4,14 +4,34 @@ if vim.fn['pac#loaded']('indent-blankline.nvim') then
     enabled = false, -- it can slow down startup, but toggling afterwards is fast
 
     space_char_blankline = " ",
-    use_treesitter = true,
+    -- use_treesitter = true,
     show_current_context = true,
     show_current_context_start = true,
 
     buftype_exclude = {"terminal"},
     filetype = {'vim', 'ruby', 'javascript', 'vue'},
     char_list = {'|', '¦', '┆', '┊'},
-    context_patterns = {'class', 'function', 'method', 'lambda'},
-  }
+    context_patterns = {
+      'class',
+      'function',
+      'method',
+      'lambda',
+      'block',
+      '^func',
+      '^if',
+      'while',
+      'for',
+      'with',
+      'try',
+      'except',
+      'arguments',
+      'argument_list',
+      'object',
+      'dictionary',
+      'element',
+      'table',
+      'tuple',
+      },
+    }
 end
 LUA
