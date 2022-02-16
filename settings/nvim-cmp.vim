@@ -31,9 +31,6 @@ if vim.fn['pac#loaded']('nvim-cmp') then
       }),
     },
     sources = {},
-    experimental = {
-      native_menu = true
-    },
   }
 
   if vim.fn['pac#loaded']('vim-vsnip') then
