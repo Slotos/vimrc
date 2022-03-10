@@ -16,9 +16,6 @@ nnoremap <C-l> <C-w>l
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 
-"yank to end
-nnoremap Y y$
-
 " settings for resize splitted window
 nmap <C-w>[ :vertical resize -3<CR>
 nmap <C-w>] :vertical resize +3<CR>
