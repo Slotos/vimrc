@@ -58,23 +58,13 @@ if pac#loaded('nvim-tree.lua')
 endif
 
 if pac#loaded('telescope.nvim')
-  function! s:PrepareRgString(query)
-    let l:result = a:query
-
-    " Escape single quote
-    let l:result = substitute(l:result, "'", "\\'", 'g')
-    " Escape backslash
-    let l:result = substitute(l:result, '\\', '\\\\', 'g')
-
-    return l:result
-  endfunction
   nnoremap <silent> <leader>fc :Telescope colorscheme theme=get_dropdown<CR>
   nnoremap <silent> <leader>fb :Telescope buffers ignore_current_buffer=true sort_mru=true theme=get_dropdown<CR>
   nnoremap <silent> <leader>ff :Telescope find_files<CR>
   nnoremap <silent> <leader>fw :Telescope grep_string<CR>
   nnoremap <silent> <leader>fr :Telescope resume<CR>
   nnoremap <silent> <leader>fs :Telescope lsp_dynamic_workspace_symbols<CR>
-  command! -nargs=+ Rg execute 'lua require(''telescope.builtin'').grep_string({ search = ''' . s:PrepareRgString(<q-args>) . ''' })'
+  command! -nargs=1 Rg execute 'Telescope grep_string use_regex=true search=' . substitute("<args>", ' ', '\\ ', 'g')
 endif
 
 if pac#loaded('undotree')
