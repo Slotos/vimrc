@@ -25,7 +25,7 @@ function! pac#loaded(name)
 endfunction
 
 " Basics
-call minpac#add('nvim-treesitter/nvim-treesitter', { 'do': 'TSUpdate' })
+call minpac#add('nvim-treesitter/nvim-treesitter', { 'do': 'packloadall! | TSUpdate' })
 call minpac#add('nvim-treesitter/playground')
 call minpac#add('neovim/nvim-lspconfig')
 call minpac#add('williamboman/nvim-lsp-installer')
