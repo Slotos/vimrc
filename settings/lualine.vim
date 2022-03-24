@@ -16,7 +16,7 @@ else
 end
 
 function! ShortName()
-    return pathshorten(expand('%')) . BuffModificationStatus()
+    return pathshorten( fnamemodify(expand("%"), ":~:."), 3 ) . BuffModificationStatus()
 endfunction
 
 function! BuffModificationStatus() abort
@@ -44,6 +44,7 @@ if vim.fn['pac#loaded']('lualine.nvim') then
       section_separators = { left = '', right = ''},
       disabled_filetypes = {},
       always_divide_middle = false, -- this really needs a separate tabline option
+      globalstatus = true,
       },
     sections = {
       lualine_a = {'mode'},
@@ -62,6 +63,10 @@ if vim.fn['pac#loaded']('lualine.nvim') then
       lualine_z = {}
       },
     tabline = {
+      -- TODO: Update tabs config/implementation with personal formatter
+      -- lualine_a = {
+      --   {'tabs', max_length = vim.o.columns, mode = 2,}
+      --   },
       },
     extensions = {'fugitive', 'nvim-tree', 'quickfix', aerial_extension, neoterm_extension},
     }
