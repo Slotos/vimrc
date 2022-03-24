@@ -13,6 +13,9 @@ if vim.fn['pac#loaded']('nvim-treesitter') then
     indent = {
       enable = true
     },
+    endwise = {
+      enable = true,
+    },
   }
 
   local parser_config = require "nvim-treesitter.parsers".get_parser_configs()

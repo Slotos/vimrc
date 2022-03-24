@@ -135,7 +135,8 @@ call minpac#add('slashmili/alchemist.vim')
 
 call minpac#add('tpope/vim-commentary')
 call minpac#add('JoosepAlviste/nvim-ts-context-commentstring')
-call minpac#add('tpope/vim-endwise')
+call minpac#add('tpope/vim-endwise') " when using syntax
+call minpac#add('RRethy/nvim-treesitter-endwise') " when using treesitter
 
 call minpac#add('stevearc/aerial.nvim')
 
