@@ -93,6 +93,14 @@ if pac#loaded('vim-dadbod-ui')
   nnoremap <silent> <leader>dl :DBUILastQueryInfo<CR>
 endif
 
+if pac#loaded('diffview.nvim')
+  command! -nargs=? Greview call s:greview(<f-args>)
+  function! s:greview(...)
+    let origin = trim(execute('Git merge-base -a HEAD ' . get(a:, 1, 'origin/master')))
+    execute 'DiffviewOpen ' . origin . '..HEAD'
+  endfunction
+endif
+
 " TODO: Check for OSX
 " Browse command that opens arguments with system's `open`
 " Used by Fugitive's GBrowse

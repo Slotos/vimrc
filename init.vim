@@ -65,6 +65,7 @@ execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/indentline.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/aerial.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/rainbow.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/echodoc.vim')
+execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/diffview.vim')
 
 " Mappings
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/allkey.vim')
@@ -76,7 +77,6 @@ execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/cursorline.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/neovide.vim')
 
 " Custom plugins
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/plugins/difftools.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/plugins/hlsearch.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/plugins/nicefold.vim')
 
