@@ -1,8 +1,8 @@
 lua << LUA
-vim.fn.sign_define("LspDiagnosticsSignError", {text = "", texthl = "Error"})
-vim.fn.sign_define("LspDiagnosticsSignWarning", {text = "", texthl = "Warnings"})
-vim.fn.sign_define("LspDiagnosticsSignInformation", {text = "", texthl = "Operator"})
-vim.fn.sign_define("LspDiagnosticsSignHint", {text = "", texthl = "String"})
+vim.fn.sign_define("DiagnosticSignError", {text = "", texthl = "Error"})
+vim.fn.sign_define("DiagnosticSignWarning", {text = "", texthl = "Warnings"})
+vim.fn.sign_define("DiagnosticSignInformation", {text = "", texthl = "Operator"})
+vim.fn.sign_define("DiagnosticSignHint", {text = "", texthl = "String"})
 
 if vim.fn['pac#loaded']('nvim-lspconfig') then
   local nvim_lsp = require('lspconfig')
