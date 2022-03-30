@@ -127,9 +127,7 @@ call minpac#add('tpope/vim-unimpaired')
 
 call minpac#add('mattn/emmet-vim')
 
-call minpac#add('Shougo/context_filetype.vim')
 call minpac#add('tpope/vim-rails')
-call minpac#add('airblade/vim-localorie')
 
 call minpac#add('slashmili/alchemist.vim')
 
