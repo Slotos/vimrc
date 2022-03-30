@@ -76,7 +76,7 @@ set grepprg=rg\ --vimgrep\ $*
 set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store,*/tmp/*
 
 if has('conceal')
-  set conceallevel=3 concealcursor=niv
+  set conceallevel=3 concealcursor=nv
 endif
 
 " Vim Directories {{{
