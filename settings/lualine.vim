@@ -68,7 +68,7 @@ if vim.fn['pac#loaded']('lualine.nvim') then
       --   {'tabs', max_length = vim.o.columns, mode = 2,}
       --   },
       },
-    extensions = {'fugitive', 'nvim-tree', 'quickfix', aerial_extension, neoterm_extension},
+    extensions = {'fugitive', 'quickfix', neoterm_extension},
     }
 
   require'lualine'.setup(lualine_config)

@@ -51,10 +51,10 @@ if pac#loaded('indent-blankline.nvim')
   nnoremap <silent> <localleader>i :IndentBlanklineToggle<CR>
 endif
 
-if pac#loaded('nvim-tree.lua')
+if pac#loaded('neo-tree.nvim')
   " Explorer
-  nnoremap <silent> <leader>e :NvimTreeToggle<CR>
-  nnoremap <silent> <leader>fe :NvimTreeFindFile<CR>
+  nnoremap <silent> <leader>e :Neotree toggle<CR>
+  nnoremap <silent> <leader>fe :Neotree reveal<CR>
 endif
 
 if pac#loaded('telescope.nvim')

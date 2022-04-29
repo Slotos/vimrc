@@ -36,7 +36,9 @@ call minpac#add('nvim-lua/plenary.nvim')
 
 " File navigation
 call minpac#add('kyazdani42/nvim-web-devicons') " for file icons
-call minpac#add('kyazdani42/nvim-tree.lua')
+call minpac#add('MunifTanjim/nui.nvim')
+call minpac#add('nvim-neo-tree/neo-tree.nvim')
+call minpac#add('s1n7ax/nvim-window-picker')
 
 " Completion engine
 call minpac#add('hrsh7th/cmp-nvim-lsp')
