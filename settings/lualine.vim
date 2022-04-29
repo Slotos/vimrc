@@ -25,16 +25,12 @@ endfunction
 
 lua << LUA
 if vim.fn['pac#loaded']('lualine.nvim') then
-  local aerial_extension = vim.deepcopy(require 'lualine.extensions.symbols-outline')
-  aerial_extension.filetypes = { 'aerial' }
-
   local neoterm_extension = {
     sections = {
       lualine_a = { (function() return 'NeoTerm #' .. vim.b.neoterm_id end) },
       },
     filetypes = { 'neoterm' }
     }
-
 
   local lualine_config = {
     options = {
@@ -63,7 +59,7 @@ if vim.fn['pac#loaded']('lualine.nvim') then
       lualine_z = {}
       },
     tabline = {
-      -- TODO: Update tabs config/implementation with personal formatter
+      -- TODO: Update lualine tabs component with readonly, modified, and devicom capabilities
       -- lualine_a = {
       --   {'tabs', max_length = vim.o.columns, mode = 2,}
       --   },
