@@ -13,19 +13,34 @@ if vim.fn['pac#loaded']('nvim-cmp') then
 
   local options = {
     mapping = {
-      ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-      ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-      ['<Down>'] = {
+      ['<Tab>'] = cmp.mapping({
+        i = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        -- c = function()
+        --   if cmp.visible() then
+        --     cmp.confirm({select = true})
+        --     cmp.close()
+        --   end
+        --   cmp.complete()
+        -- end,
+        }),
+      ['<S-Tab>'] = cmp.mapping({
+        i = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        -- c = function() end,
+        }),
+      ['<Down>'] = cmp.mapping({
         i = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
         c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-        },
-      ['<Up>'] = {
+        }),
+      ['<Up>'] = cmp.mapping({
         i = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
         c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-        },
+        }),
       ['<C-d>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-e>'] = cmp.mapping.close(),
+      ['<C-e>'] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
       ['<CR>'] = cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Replace,
       }),
@@ -65,12 +80,12 @@ if vim.fn['pac#loaded']('nvim-cmp') then
 
   cmp.setup(options)
 
-  -- Waiting for https://github.com/neovim/neovim/issues/11439 fix
+  -- Need to figure out controls that incorporate vim defaults
   -- cmp.setup.cmdline('/', {
   --   sources = {
   --     { name = 'buffer' }
-  --     }
-  --   })
+  --   }
+  -- })
 
   -- cmp.setup.cmdline(':', {
   --   sources = cmp.config.sources({
