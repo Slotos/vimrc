@@ -47,7 +47,6 @@ execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/style.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/pac.vim')
 
 " LSP configuration and completion
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/LSP.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/nvim-cmp.vim')
 
 " plugin configurations
@@ -81,6 +80,7 @@ execute 'source' fnameescape($VIM_CONFIG_DIR . '/plugins/nicefold.vim')
 lua <<LUA
 require'settings/notify'
 require'settings/tree-explorer'
+require'settings/LSP'
 LUA
 
 colorscheme nord
