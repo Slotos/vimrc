@@ -53,7 +53,7 @@ call minpac#add('onsails/lspkind-nvim')
 
 " Status and tab lines
 call minpac#add('nvim-lualine/lualine.nvim')
-call minpac#add('j-hui/fidget.nvim')
+call minpac#add('rcarriga/nvim-notify')
 call minpac#add('alvarosevilla95/luatab.nvim')
 
 " LSP tricks

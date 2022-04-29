@@ -79,6 +79,10 @@ execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/neovide.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/plugins/hlsearch.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/plugins/nicefold.vim')
 
+lua <<LUA
+require'settings/notify'
+LUA
+
 colorscheme nord
 
 let b:local_override_file = fnameescape($HOME . '/.vimrc_local')
