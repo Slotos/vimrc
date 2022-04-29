@@ -6,10 +6,6 @@ if vim.fn['pac#loaded']('telescope.nvim') then
     telescope.load_extension('fzf')
   end
 
-  if vim.fn['pac#loaded']('telescope-lsp-handlers.nvim') then
-    telescope.load_extension('lsp_handlers')
-  end
-
   if vim.fn['pac#loaded']('trouble.nvim') then
     local trouble = require("trouble.providers.telescope")
 
