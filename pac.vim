@@ -119,6 +119,7 @@ call minpac#add('tpope/vim-fugitive')
 call minpac#add('shumphrey/fugitive-gitlab.vim')
 call minpac#add('idanarye/vim-merginal')
 call minpac#add('sindrets/diffview.nvim')
+call minpac#add('akinsho/git-conflict.nvim')
 
 " DB tools
 call minpac#add('tpope/vim-dadbod')

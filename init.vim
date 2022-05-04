@@ -81,6 +81,7 @@ require'settings/notify'
 require'settings/tree-explorer'
 require'settings/LSP'
 require'settings/telescope'
+require'settings/git_conflict'
 LUA
 
 colorscheme nord
