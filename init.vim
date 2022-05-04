@@ -56,7 +56,6 @@ execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/lualine.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/neoterm.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/vim-choosewin.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/hexokinase.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/telescope.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/vim-ruby.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/indentline.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/aerial.vim')
@@ -81,6 +80,7 @@ lua <<LUA
 require'settings/notify'
 require'settings/tree-explorer'
 require'settings/LSP'
+require'settings/telescope'
 LUA
 
 colorscheme nord

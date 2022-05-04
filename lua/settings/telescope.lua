@@ -1,4 +1,3 @@
-lua <<LUA
 if vim.fn['pac#loaded']('telescope.nvim') then
   local telescope = require('telescope')
 
@@ -14,9 +13,19 @@ if vim.fn['pac#loaded']('telescope.nvim') then
         mappings = {
           i = { ["<c-q>"] = trouble.smart_open_with_trouble },
           n = { ["<c-q>"] = trouble.smart_open_with_trouble },
-          },
         },
+      },
+      pickers = {
+        buffers = {
+          show_all_buffers = true,
+          sort_lastused = true,
+          mappings = {
+            i = {
+              ["<c-d>"] = "delete_buffer",
+            }
+          }
+        }
       }
+    }
   end
 end
-LUA
