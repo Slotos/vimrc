@@ -1,22 +1,51 @@
-vim.fn.sign_define("DiagnosticSignError", {text = "", texthl = "Error"})
-vim.fn.sign_define("DiagnosticSignWarning", {text = "", texthl = "Warnings"})
-vim.fn.sign_define("DiagnosticSignInformation", {text = "", texthl = "Operator"})
-vim.fn.sign_define("DiagnosticSignHint", {text = "", texthl = "String"})
+vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "Error" })
+vim.fn.sign_define("DiagnosticSignWarning", { text = "", texthl = "Warnings" })
+vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "Operator" })
+vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "String" })
 
 if vim.fn['pac#loaded']('nvim-lspconfig') then
   local lspconfig = require('lspconfig')
-  local attach_handlers = {}
+  local attach_handlers = {
+    function(client, bufnr)
+      local opts = { noremap = true, silent = true }
+      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+      vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+      vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+      vim.keymap.set('n', '<leader>la', vim.lsp.buf.add_workspace_folder, opts) -- mnemonic: LSP add
+      vim.keymap.set('n', '<leader>lr', vim.lsp.buf.remove_workspace_folder, opts) -- LSP remove
+      vim.keymap.set('n', '<leader>ll', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts) -- LSP list
+      vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
+      vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+      vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+      vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+      vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
+      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+      vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+      vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
+
+      if client.resolved_capabilities.document_formatting == true then
+        vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
+        vim.keymap.set('n', '<localleader>f', vim.lsp.buf.formatting, opts)
+      end
+
+      if client.resolved_capabilities.goto_definition == true then
+        vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
+      end
+    end
+  }
 
   -- vim.lsp.set_log_level("debug")
 
   if vim.fn['pac#loaded']('aerial.nvim') then
-    local aerial = require'aerial'
+    local aerial = require 'aerial'
 
     table.insert(attach_handlers, aerial.on_attach)
   end
 
   local on_attach = function(...)
-    local args = {...}
+    local args = { ... }
 
     for _, handler in pairs(attach_handlers) do
       handler(unpack(args))
@@ -58,7 +87,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
               },
               diagnostics = {
                 -- Get the language server to recognize the `vim` global
-                globals = {'vim'},
+                globals = { 'vim' },
               },
               workspace = {
                 -- Make the server aware of Neovim runtime files

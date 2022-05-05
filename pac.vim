@@ -29,7 +29,6 @@ call minpac#add('nvim-treesitter/nvim-treesitter', { 'do': 'packloadall! | TSUpd
 call minpac#add('nvim-treesitter/playground')
 call minpac#add('neovim/nvim-lspconfig')
 call minpac#add('williamboman/nvim-lsp-installer')
-call minpac#add('weilbith/nvim-lsp-smag')
 
 " Commonly used library
 call minpac#add('nvim-lua/plenary.nvim')
