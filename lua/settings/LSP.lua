@@ -7,7 +7,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
   local lspconfig = require('lspconfig')
   local attach_handlers = {
     function(client, bufnr)
-      local opts = { noremap = true, silent = true }
+      local opts = { noremap = true, silent = true, buffer = bufnr }
       vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
