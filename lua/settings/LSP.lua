@@ -25,12 +25,12 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
       vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 
-      if client.resolved_capabilities.document_formatting == true then
+      if client.server_capabilities.documentFormattingProvider == true then
         vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
-        vim.keymap.set('n', '<localleader>f', vim.lsp.buf.formatting, opts)
+        vim.keymap.set('n', '<localleader>f', function() vim.lsp.buf.format({ async = true }) end, opts)
       end
 
-      if client.resolved_capabilities.goto_definition == true then
+      if client.server_capabilities.definitionProvider == true then
         vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
       end
     end
