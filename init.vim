@@ -52,7 +52,6 @@ execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/nvim-cmp.vim')
 " plugin configurations
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/gitsigns.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/nvim-treesitter.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/lualine.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/neoterm.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/vim-choosewin.vim')
 execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/hexokinase.vim')
@@ -82,6 +81,7 @@ require'settings/tree-explorer'
 require'settings/LSP'
 require'settings/telescope'
 require'settings/git_conflict'
+require'settings/lualine'
 LUA
 
 colorscheme nord
