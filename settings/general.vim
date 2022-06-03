@@ -10,7 +10,6 @@ if has('vim_starting')
   scriptencoding UTF-8
 endif
 set mouse=a
-set laststatus=3
 set showtabline=2
 set statusline=-        " hide file name in statusline
 set fillchars+=vert:\|  " add a bar for vertical splits
@@ -82,10 +81,7 @@ endif
 " Vim Directories {{{
 " ---------------
 set undofile swapfile nobackup
-set directory=$VIM_DATA_DIR/swap/
-set undodir=$VIM_DATA_DIR/undo/
-set backupdir=$VIM_DATA_DIR/backup/
-set viewdir=$VIM_DATA_DIR/view/
+let &backupdir = stdpath('state') . '/backup//'
 set nospell spellfile=$VIM_PATH/spell/en.utf-8.add
 
 " History saving

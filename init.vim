@@ -1,13 +1,9 @@
 " Note: NVIM is always nocompatible
 
-let $VIM_CONFIG_DIR = fnamemodify(resolve(expand('<sfile>:p')), ':h')
-let $VIM_DATA_DIR =
-    \ expand(($XDG_CACHE_HOME ? $XDG_CACHE_HOME : '~/.cache').'/vim')
-
 " ensure vim config path is first in packpath
 " needed for minpac
-if &packpath !~# $VIM_CONFIG_DIR
-  set packpath^=$VIM_CONFIG_DIR
+if &packpath !~# stdpath('config')
+  set packpath^=stdpath('config')
 endif
 
 " Set augroup
@@ -28,6 +24,9 @@ let g:loaded_vimballPlugin = 1
 let g:loaded_zip = 1
 let g:loaded_zipPlugin = 1
 
+" Disable ruby mappings, they break tagfunc
+let g:no_ruby_maps = 1
+
 " Global Mappings "{{{
 " Use spacebar as leader and ; as secondary-leader
 " Required before loading plugins!
@@ -40,40 +39,40 @@ call minpac#init()
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 
 " general and early settings
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/general.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/style.vim')
+execute 'source' fnameescape(stdpath('config') . '/settings/general.vim')
+execute 'source' fnameescape(stdpath('config') . '/settings/style.vim')
 
 " plugins
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/pac.vim')
+execute 'source' fnameescape(stdpath('config') . '/pac.vim')
 
 " LSP configuration and completion
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/nvim-cmp.vim')
+execute 'source' fnameescape(stdpath('config') . '/settings/nvim-cmp.vim')
 
 " plugin configurations
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/gitsigns.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/nvim-treesitter.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/neoterm.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/vim-choosewin.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/hexokinase.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/vim-ruby.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/indentline.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/aerial.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/rainbow.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/echodoc.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/diffview.vim')
+execute 'source' fnameescape(stdpath('config') . '/settings/gitsigns.vim')
+execute 'source' fnameescape(stdpath('config') . '/settings/nvim-treesitter.vim')
+execute 'source' fnameescape(stdpath('config') . '/settings/neoterm.vim')
+execute 'source' fnameescape(stdpath('config') . '/settings/vim-choosewin.vim')
+execute 'source' fnameescape(stdpath('config') . '/settings/hexokinase.vim')
+execute 'source' fnameescape(stdpath('config') . '/settings/vim-ruby.vim')
+execute 'source' fnameescape(stdpath('config') . '/settings/indentline.vim')
+execute 'source' fnameescape(stdpath('config') . '/settings/aerial.vim')
+execute 'source' fnameescape(stdpath('config') . '/settings/rainbow.vim')
+execute 'source' fnameescape(stdpath('config') . '/settings/echodoc.vim')
+execute 'source' fnameescape(stdpath('config') . '/settings/diffview.vim')
 
 " Mappings
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/allkey.vim')
+execute 'source' fnameescape(stdpath('config') . '/settings/allkey.vim')
 
 " Generic configs
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/cursorline.vim')
+execute 'source' fnameescape(stdpath('config') . '/settings/cursorline.vim')
 
 " Neovide
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/settings/neovide.vim')
+execute 'source' fnameescape(stdpath('config') . '/settings/neovide.vim')
 
 " Custom plugins
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/plugins/hlsearch.vim')
-execute 'source' fnameescape($VIM_CONFIG_DIR . '/plugins/nicefold.vim')
+execute 'source' fnameescape(stdpath('config') . '/plugins/hlsearch.vim')
+execute 'source' fnameescape(stdpath('config') . '/plugins/nicefold.vim')
 
 lua <<LUA
 require'settings/notify'
