@@ -150,4 +150,6 @@ call minpac#add('antoinemadec/FixCursorHold.nvim')
 
 call minpac#add('rickhowe/diffchar.vim')
 
+call minpac#add('jbyuki/venn.nvim')
+
 call pac#reset_loaded()
