@@ -72,8 +72,7 @@ endif
 if pac#loaded('diffview.nvim')
   command! -nargs=? Greview call s:greview(<f-args>)
   function! s:greview(...)
-    let origin = trim(execute('Git merge-base -a HEAD ' . get(a:, 1, 'origin/master')))
-    execute 'DiffviewOpen ' . origin . '..HEAD'
+    execute 'DiffviewOpen ' . get(a:, 1, 'origin/main') . '...HEAD'
   endfunction
 endif
 
