@@ -70,12 +70,9 @@ call minpac#add('wadackel/vim-dogrun')
 call minpac#add('cocopon/iceberg.vim')
 call minpac#add('tyrannicaltoucan/vim-deep-space')
 call minpac#add('folke/tokyonight.nvim')
-call minpac#add('Slotos/calvera-dark.nvim')
-call minpac#add('Slotos/moonlight.nvim')
 call minpac#add('rose-pine/neovim', {'name': 'rose-pine'})
 call minpac#add('FrenzyExists/aquarium-vim')
 call minpac#add('rebelot/kanagawa.nvim')
-call minpac#add('katawful/kat.nvim')
 
 " Colorscheme patches
 call minpac#add('folke/lsp-colors.nvim')
@@ -145,8 +142,6 @@ call minpac#add('p00f/nvim-ts-rainbow')
 call minpac#add('terryma/vim-expand-region')
 
 call minpac#add('Shougo/echodoc.vim')
-
-call minpac#add('antoinemadec/FixCursorHold.nvim')
 
 call minpac#add('rickhowe/diffchar.vim')
 
