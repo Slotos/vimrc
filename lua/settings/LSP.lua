@@ -52,81 +52,89 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
     end
   end
 
-  if vim.fn['pac#loaded']('nvim-lsp-installer') then
-    local lsp_installer = require("nvim-lsp-installer")
-    local opts = {
-      on_attach = on_attach,
-    }
+  if vim.fn['pac#loaded']('mason.nvim') then
+    require("mason").setup()
 
-    lsp_installer.on_server_ready(function(server)
-      local server_opts = {}
+    if vim.fn['pac#loaded']('mason-lspconfig.nvim') then
+      local mason_lspconfig = require("mason-lspconfig")
 
-      if server.name == "solargraph" then
-        server_opts = {
-          flags = { debounce_text_changes = 150, },
-          settings = {
-            solargraph = {
-              diagnostics = true,
-              formatting = true,
+      mason_lspconfig.setup()
+
+      local opts = {
+        on_attach = on_attach,
+      }
+
+      mason_lspconfig.setup_handlers({
+        function(server_name)
+          local server_opts = {}
+
+          if server_name == "solargraph" then
+            server_opts = {
+              flags = { debounce_text_changes = 150, },
+              settings = {
+                solargraph = {
+                  diagnostics = true,
+                  formatting = true,
+                }
+              },
             }
-          },
-        }
-      elseif server.name == "sumneko_lua" then
-        local runtime_path = vim.split(package.path, ';')
-        table.insert(runtime_path, "lua/?.lua")
-        table.insert(runtime_path, "lua/?/init.lua")
+          elseif server_name == "sumneko_lua" then
+            local runtime_path = vim.split(package.path, ';')
+            table.insert(runtime_path, "lua/?.lua")
+            table.insert(runtime_path, "lua/?/init.lua")
 
-        server_opts = {
-          settings = {
-            Lua = {
-              runtime = {
-                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                version = 'LuaJIT',
-                -- Setup your lua path
-                path = runtime_path,
+            server_opts = {
+              settings = {
+                Lua = {
+                  runtime = {
+                    -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                    version = 'LuaJIT',
+                    -- Setup your lua path
+                    path = runtime_path,
+                  },
+                  diagnostics = {
+                    -- Get the language server to recognize the `vim` global
+                    globals = { 'vim' },
+                  },
+                  workspace = {
+                    -- Make the server aware of Neovim runtime files
+                    library = vim.api.nvim_get_runtime_file("", true),
+                  },
+                  -- Do not send telemetry data containing a randomized but unique identifier
+                  telemetry = {
+                    enable = false,
+                  },
+                },
               },
-              diagnostics = {
-                -- Get the language server to recognize the `vim` global
-                globals = { 'vim' },
-              },
-              workspace = {
-                -- Make the server aware of Neovim runtime files
-                library = vim.api.nvim_get_runtime_file("", true),
-              },
-              -- Do not send telemetry data containing a randomized but unique identifier
-              telemetry = {
-                enable = false,
-              },
-            },
-          },
-        }
-      end
+            }
+          end
 
-      local config = vim.tbl_deep_extend('force', server_opts, opts)
+          local config = vim.tbl_deep_extend('force', server_opts, opts)
 
-      lspconfig[server.name].setup(config)
-      -- Direct cpy from lspconfig own code with certain edit
-      -- When opening files, we want to attach to them even
-      -- if this code executes after the files get loaded
-      --
-      -- lspconfig only does this in case of reload,
-      -- expecting us to never load it in a callback,
-      -- which is not what we do here.
-      -- And it seems that sitting in a callback reliably
-      -- places this code after the file loading event
-      --
-      -- A way to work around this would be to load installed
-      -- servers, setup those immediately, keep the list
-      -- and skip each one in the list exactly once in this callback.
-      --
-      -- I think I prefer this version.
-      if config.autostart ~= false then
-        for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-          lspconfig[server.name].manager.try_add_wrapper(bufnr)
+          lspconfig[server_name].setup(config)
+
+          -- Direct copy from lspconfig own code with certain edit
+          -- When opening files, we want to attach to them even
+          -- if this code executes after the files get loaded
+          --
+          -- lspconfig only does this in case of reload,
+          -- expecting us to never load it in a callback,
+          -- which is not what we do here.
+          -- And it seems that sitting in a callback reliably
+          -- places this code after the file loading event
+          --
+          -- A way to work around this would be to load installed
+          -- servers, setup those immediately, keep the list
+          -- and skip each one in the list exactly once in this callback.
+          --
+          -- I think I prefer this version.
+          if config.autostart ~= false then
+            for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+              lspconfig[server_name].manager.try_add_wrapper(bufnr)
+            end
+          end
         end
-      end
-    end)
-
-    lsp_installer.setup({})
+      })
+    end
   end
 end
