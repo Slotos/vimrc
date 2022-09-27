@@ -79,6 +79,7 @@ call minpac#add('folke/lsp-colors.nvim')
 
 " Syntax dump
 call minpac#add('pedrohdz/vim-yaml-folds')
+call minpac#add('cuducos/yaml.nvim')
 call minpac#add('andymass/vim-matchup')
 
 " Open file:lineno
