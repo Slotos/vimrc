@@ -152,4 +152,6 @@ call minpac#add('rickhowe/diffchar.vim')
 
 call minpac#add('jbyuki/venn.nvim')
 
+call minpac#add('jbyuki/nabla.nvim')
+
 call pac#reset_loaded()

@@ -107,6 +107,11 @@ lua <<LUA
 LUA
 endif
 
+if pac#loaded('nabla.nvim')
+  nnoremap <silent> <localleader>; :lua require"nabla".enable_virt()<CR>
+  nnoremap <silent> <localleader>n :lua require"nabla".disable_virt()<CR>
+endif
+
 " TODO: Check for OSX
 " Browse command that opens arguments with system's `open`
 " Used by Fugitive's GBrowse
