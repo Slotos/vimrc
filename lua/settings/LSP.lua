@@ -30,6 +30,11 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
   -- vim.lsp.set_log_level("debug")
 
   local lspconfig = require('lspconfig')
+
+  if vim.fn['pac#loaded']('nvim-lightbulb') then
+    require('nvim-lightbulb').setup({autocmd = {enabled = true}})
+  end
+
   local attach_handlers = {
     function(client, bufnr)
       local opts = { noremap = true, silent = true, buffer = bufnr }
