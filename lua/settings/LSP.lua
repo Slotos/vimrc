@@ -3,6 +3,25 @@ vim.fn.sign_define("DiagnosticSignWarning", { text = "", texthl = "Warnings" 
 vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "Operator" })
 vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "String" })
 
+if vim.fn['pac#loaded']('lsp_lines.nvim') then
+  require("lsp_lines").setup()
+  vim.diagnostic.config({
+    virtual_text = false,
+  })
+
+  vim.keymap.set(
+    "",
+    "<Leader>ld",
+    function()
+      vim.diagnostic.config({
+        virtual_text = vim.diagnostic.config().virtual_lines,
+        virtual_lines = not vim.diagnostic.config().virtual_lines,
+      })
+    end,
+    { desc = "Toggle lsp_lines" }
+  )
+end
+
 if vim.fn['pac#loaded']('nvim-lspconfig') then
   local lspconfig = require('lspconfig')
   local attach_handlers = {

@@ -60,6 +60,7 @@ call minpac#add('alvarosevilla95/luatab.nvim')
 
 " LSP tricks
 call minpac#add('folke/trouble.nvim')
+call minpac#add('https://git.sr.ht/~whynothugo/lsp_lines.nvim')
 
 " Git signs
 call minpac#add('lewis6991/gitsigns.nvim')
