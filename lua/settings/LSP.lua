@@ -3,6 +3,10 @@ vim.fn.sign_define("DiagnosticSignWarning", { text = "", texthl = "Warnings" 
 vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "Operator" })
 vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "String" })
 
+if vim.fn['pac#loaded']('telescope-lsp-handlers.nvim') then
+  require'telescope-lsp-handlers'.setup()
+end
+
 if vim.fn['pac#loaded']('lsp_lines.nvim') then
   require("lsp_lines").setup()
   vim.diagnostic.config({
