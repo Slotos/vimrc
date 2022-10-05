@@ -27,6 +27,8 @@ if vim.fn['pac#loaded']('lsp_lines.nvim') then
 end
 
 if vim.fn['pac#loaded']('nvim-lspconfig') then
+  -- vim.lsp.set_log_level("debug")
+
   local lspconfig = require('lspconfig')
   local attach_handlers = {
     function(client, bufnr)
@@ -39,6 +41,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
       vim.keymap.set('n', '<leader>la', vim.lsp.buf.add_workspace_folder, opts) -- mnemonic: LSP add
       vim.keymap.set('n', '<leader>lr', vim.lsp.buf.remove_workspace_folder, opts) -- LSP remove
       vim.keymap.set('n', '<leader>ll', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, opts) -- LSP list
+      vim.keymap.set('n', '<leader>cl', vim.lsp.codelens.run, opts) -- Run codelens
       vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
       vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
       vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
@@ -56,10 +59,20 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
       if client.server_capabilities.definitionProvider == true then
         vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
       end
+
+      -- CodeLens
+      vim.api.nvim_create_augroup('CodeLens', { clear = true })
+      vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI', 'InsertLeave' },
+        {
+          group = 'CodeLens',
+          buffer = bufnr,
+          callback = vim.lsp.codelens.refresh,
+          desc = 'Refresh LSP code lens information',
+        }
+      )
+      vim.lsp.codelens.refresh() -- run it on attach without waiting for events
     end
   }
-
-  -- vim.lsp.set_log_level("debug")
 
   if vim.fn['pac#loaded']('aerial.nvim') then
     local aerial = require 'aerial'
