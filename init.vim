@@ -75,12 +75,13 @@ execute 'source' fnameescape(stdpath('config') . '/plugins/hlsearch.vim')
 execute 'source' fnameescape(stdpath('config') . '/plugins/nicefold.vim')
 
 lua <<LUA
-require'settings/notify'
-require'settings/tree-explorer'
-require'settings/LSP'
-require'settings/telescope'
-require'settings/git_conflict'
-require'settings/lualine'
+require'./settings/notify'
+require'./settings/tree-explorer'
+require'./settings/LSP'
+require'./settings/telescope'
+require'./settings/git_conflict'
+require'./settings/lualine'
+require'./settings/dap'
 LUA
 
 colorscheme nord
