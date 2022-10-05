@@ -142,6 +142,8 @@ call minpac#add('RRethy/nvim-treesitter-endwise') " when using treesitter
 
 call minpac#add('stevearc/aerial.nvim')
 
+call minpac#add('Djancyp/cheat-sheet')
+
 call minpac#add('lukas-reineke/indent-blankline.nvim')
 call minpac#add('p00f/nvim-ts-rainbow')
 call minpac#add('terryma/vim-expand-region')
