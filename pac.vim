@@ -133,6 +133,7 @@ call minpac#add('mattn/emmet-vim')
 
 call minpac#add('tpope/vim-rails')
 
+call minpac#add('weilbith/nvim-code-action-menu')
 call minpac#add('kosayoda/nvim-lightbulb')
 
 call minpac#add('slashmili/alchemist.vim')

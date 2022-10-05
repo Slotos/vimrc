@@ -50,7 +50,13 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
       vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, opts)
       vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
       vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-      vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+
+      if vim.fn['pac#loaded']('nvim-code-action-menu') then
+        vim.keymap.set('n', '<leader>ca', require('code_action_menu').open_code_action_menu, opts)
+      else
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+      end
+
       vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
