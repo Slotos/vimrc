@@ -18,14 +18,9 @@ if vim.fn['pac#loaded']('nvim-treesitter') then
     },
   }
 
-  vim.api.nvim_command('augroup RubyTreeSitterFold')
+  vim.api.nvim_command('augroup TreeSitterFolds')
   vim.api.nvim_command('au!')
-  vim.api.nvim_command('autocmd FileType ruby,eruby setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()')
-  vim.api.nvim_command('augroup END')
-
-  vim.api.nvim_command('augroup JsTreeSitterFold')
-  vim.api.nvim_command('au!')
-  vim.api.nvim_command('autocmd FileType javascript setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()')
+  vim.api.nvim_command('autocmd FileType ruby,eruby,javascript,lua,go,elixir setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()')
   vim.api.nvim_command('augroup END')
 
   vim.api.nvim_set_keymap('n', '<leader>h', ":TSHighlightCapturesUnderCursor<CR>", {silent=true})
