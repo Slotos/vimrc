@@ -72,16 +72,18 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
       end
 
       -- CodeLens
-      vim.api.nvim_create_augroup('CodeLens', { clear = true })
-      vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI', 'InsertLeave' },
-        {
-          group = 'CodeLens',
-          buffer = bufnr,
-          callback = vim.lsp.codelens.refresh,
-          desc = 'Refresh LSP code lens information',
-        }
-      )
-      vim.lsp.codelens.refresh() -- run it on attach without waiting for events
+      if client.server_capabilities.codeLensProvider ~= nil then
+        vim.api.nvim_create_augroup('CodeLens', { clear = true })
+        vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI', 'InsertLeave' },
+          {
+            group = 'CodeLens',
+            buffer = bufnr,
+            callback = vim.lsp.codelens.refresh,
+            desc = 'Refresh LSP code lens information',
+          }
+        )
+        vim.lsp.codelens.refresh() -- run it on attach without waiting for events
+      end
     end
   }
 
