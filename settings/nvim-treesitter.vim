@@ -41,11 +41,18 @@ if vim.fn['pac#loaded']('nvim-treesitter') then
     },
   }
 
-  vim.api.nvim_command('augroup TreeSitterFolds')
-  vim.api.nvim_command('au!')
-  vim.api.nvim_command('autocmd FileType ruby,eruby,javascript,lua,go,elixir setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()')
-  vim.api.nvim_command('augroup END')
+  vim.api.nvim_create_augroup('TreeSitterFolds', { clear = true })
+  vim.api.nvim_create_autocmd({ 'FileType ruby,eruby,javascript,lua,go,elixir,vim' },
+    {
+      group = 'TreeSitterFolds',
+      callback = function()
+        vim.opt_local.foldmethod = 'expr'
+        vim.opt_local.foldexpr = 'nvim_treesitter#foldexpr()'
+      end,
+      desc = 'Refresh LSP code lens information',
+    }
+  )
 
-  vim.api.nvim_set_keymap('n', '<leader>h', ":TSHighlightCapturesUnderCursor<CR>", {silent=true})
+  vim.api.nvim_set_keymap('n', '<leader>h', ":TSHighlightCapturesUnderCursor<CR>", { silent = true })
 end
 LUA
