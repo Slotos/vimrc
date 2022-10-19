@@ -5,7 +5,11 @@ if vim.fn['pac#loaded']('aerial.nvim') then
   require("aerial").setup({
     -- Priority list of preferred backends for aerial.
     -- This can be a filetype map (see :help aerial-filetype-map)
-    backends = { "lsp", "treesitter", "markdown" },
+    backends = {
+      -- This underscore key is the default
+      ['_']  = {"lsp", "treesitter", "markdown"},
+      ruby = {"treesitter", "lsp"},
+    },
 
     -- Set to false to remove the default keybindings for the aerial buffer
     default_bindings = true,
