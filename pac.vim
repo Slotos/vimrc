@@ -63,9 +63,6 @@ call minpac#add('alvarosevilla95/luatab.nvim')
 call minpac#add('folke/trouble.nvim')
 call minpac#add('https://git.sr.ht/~whynothugo/lsp_lines.nvim')
 
-" Git signs
-call minpac#add('lewis6991/gitsigns.nvim')
-
 " Colorschemes
 call minpac#add('shaunsingh/nord.nvim')
 call minpac#add('rmehri01/onenord.nvim')
@@ -122,6 +119,9 @@ call minpac#add('idanarye/vim-merginal')
 call minpac#add('sindrets/diffview.nvim')
 call minpac#add('akinsho/git-conflict.nvim')
 call minpac#add('junegunn/gv.vim')
+
+" Git signs
+call minpac#add('lewis6991/gitsigns.nvim')
 
 " DB tools
 call minpac#add('tpope/vim-dadbod')
