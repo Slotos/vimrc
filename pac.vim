@@ -92,6 +92,9 @@ call minpac#add('nvim-telescope/telescope-fzf-native.nvim', { 'do': {-> system('
 call minpac#add('stevearc/dressing.nvim')
 call minpac#add('Slotos/telescope-lsp-handlers.nvim')
 
+" Silliness personified
+call minpac#add('krivahtoo/silicon.nvim', { 'do': {-> system('./install.sh') } })
+
 " Terminals and REPLs interactions
 call minpac#add('kassio/neoterm')
 
