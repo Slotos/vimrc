@@ -72,6 +72,10 @@ if vim.fn['pac#loaded']('nvim-cmp') then
     table.insert(options["sources"], { name = 'latex_symbols' })
   end
 
+  if vim.fn['pac#loaded']('cmp-emoji') then
+    table.insert(options["sources"], { name = 'emoji' })
+  end
+
   if vim.fn['pac#loaded']('lspkind-nvim') then
     options["formatting"] = {
       format = require'lspkind'.cmp_format({with_text = false, maxwidth = 50})
