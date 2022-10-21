@@ -73,6 +73,7 @@ call minpac#add('folke/tokyonight.nvim')
 call minpac#add('rose-pine/neovim', { 'name': 'rose-pine' })
 call minpac#add('FrenzyExists/aquarium-vim')
 call minpac#add('rebelot/kanagawa.nvim')
+call minpac#add('catppuccin/nvim', { 'name': 'catppuccin' })
 
 " Colorscheme patches
 call minpac#add('folke/lsp-colors.nvim')
