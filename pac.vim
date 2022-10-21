@@ -169,4 +169,6 @@ call minpac#add('jbyuki/venn.nvim')
 
 call minpac#add('jbyuki/nabla.nvim')
 
+call minpac#add('AndrewRadev/bufferize.vim')
+
 call pac#reset_loaded()
