@@ -82,6 +82,7 @@ require'./settings/telescope'
 require'./settings/git_conflict'
 require'./settings/lualine'
 require'./settings/dap'
+require'./settings/colorschemes'
 LUA
 
 colorscheme nord

@@ -70,7 +70,7 @@ call minpac#add('wadackel/vim-dogrun')
 call minpac#add('cocopon/iceberg.vim')
 call minpac#add('tyrannicaltoucan/vim-deep-space')
 call minpac#add('folke/tokyonight.nvim')
-call minpac#add('rose-pine/neovim', {'name': 'rose-pine'})
+call minpac#add('rose-pine/neovim', { 'name': 'rose-pine' })
 call minpac#add('FrenzyExists/aquarium-vim')
 call minpac#add('rebelot/kanagawa.nvim')
 
