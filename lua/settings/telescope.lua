@@ -2,7 +2,11 @@ if vim.fn['pac#loaded']('telescope.nvim') then
   local telescope = require('telescope')
   local config = {
     defaults = {
-      mappings = {},
+      mappings = {
+        i = {
+          ["<Esc>"] = require('telescope.actions').close
+        }
+      },
       prompt_prefix = "   ",
       entry_prefix = "  ",
       selection_caret = "  ",
