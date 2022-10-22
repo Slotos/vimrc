@@ -90,6 +90,7 @@ lua <<LUA
   dofile(this_file_path .. '/lua/settings/lualine.lua')
   dofile(this_file_path .. '/lua/settings/dap.lua')
   dofile(this_file_path .. '/lua/settings/colorschemes.lua')
+  dofile(this_file_path .. '/lua/settings/treesitter-context.lua')
 LUA
 
 colorscheme nord
