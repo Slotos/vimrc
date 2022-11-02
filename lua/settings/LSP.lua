@@ -103,16 +103,13 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
 
       mason_lspconfig.setup()
 
-      local opts = {
-        on_attach = on_attach,
-      }
 
       mason_lspconfig.setup_handlers({
         function(server_name)
-          local server_opts = {}
+          local server_config = {}
 
           if server_name == "solargraph" then
-            server_opts = {
+            server_config = {
               flags = { debounce_text_changes = 150, },
               settings = {
                 solargraph = {
@@ -126,14 +123,14 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
             table.insert(runtime_path, "lua/?.lua")
             table.insert(runtime_path, "lua/?/init.lua")
 
-            server_opts = {
+            server_config = {
               settings = {
                 Lua = {
                   runtime = {
                     -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
                     version = 'LuaJIT',
                     -- Setup your lua path
-                    path = runtime_path,
+                    -- path = runtime_path,
                   },
                   diagnostics = {
                     -- Get the language server to recognize the `vim` global
@@ -152,7 +149,14 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
             }
           end
 
-          local config = vim.tbl_deep_extend('force', server_opts, opts)
+          -- Load default lspconfig config
+          local default_config = {}
+          local success, defaults = pcall(require, 'lspconfig.server_configurations.' .. server_name)
+          if success then
+            default_config = defaults.default_config
+          end
+
+          local config = vim.tbl_deep_extend('force', default_config, server_config, { on_attach = on_attach })
 
           lspconfig[server_name].setup(config)
 
