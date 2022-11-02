@@ -11,6 +11,11 @@ if vim.fn['pac#loaded']('nvim-treesitter-context') then
       -- appear in the context window.
       ruby = {
         'block',
+        'elsif',
+        'module',
+      },
+      html = {
+        'element',
       },
     },
   }
