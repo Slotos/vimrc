@@ -146,6 +146,7 @@ call minpac#add('mfussenegger/nvim-dap')
 call minpac#add('rcarriga/nvim-dap-ui')
 call minpac#add('leoluz/nvim-dap-go')
 call minpac#add('suketa/nvim-dap-ruby')
+call minpac#add('theHamsta/nvim-dap-virtual-text')
 
 call minpac#add('weilbith/nvim-code-action-menu')
 call minpac#add('kosayoda/nvim-lightbulb')

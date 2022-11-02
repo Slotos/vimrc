@@ -1,7 +1,6 @@
 if vim.fn['pac#loaded']('nvim-dap') then
   local dap = require('dap')
 
-  local opts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set('n', '<F5>', dap.continue)
   vim.keymap.set('n', '<F10>', dap.step_over)
   vim.keymap.set('n', '<F11>', dap.step_into)
@@ -36,4 +35,43 @@ if vim.fn['pac#loaded']('nvim-dap') then
   if vim.fn['pac#loaded']('nvim-dap-ruby') then
     require('dap-ruby').setup()
   end
+
+  dap.adapters.codelldb = {
+    type = 'server',
+    port = "${port}",
+    executable = {
+      -- CHANGE THIS to your path!
+      command = 'codelldb',
+      args = {"--port", "${port}"},
+    }
+  }
+
+  dap.adapters.cppdbg = {
+    id = 'cppdbg',
+    type = 'executable',
+    command = 'OpenDebugAD7',
+  }
+
+  dap.configurations.cpp = {
+    {
+      name = "Launch file (CPP tools)",
+      type = "cppdbg",
+      request = "launch",
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      end,
+      cwd = '${workspaceFolder}',
+      stopAtEntry = true,
+    },
+    {
+      name = "Launch file (LLDB)",
+      type = "codelldb",
+      request = "launch",
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      end,
+      cwd = '${workspaceFolder}',
+      stopOnEntry = true,
+    },
+  }
 end
