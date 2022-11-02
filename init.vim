@@ -82,7 +82,7 @@ lua <<LUA
     ':h'
   )
 
-  dofile(this_file_path .. '/lua/settings/notify.lua')
+  dofile(this_file_path .. '/lua/settings/notifier.lua')
   dofile(this_file_path .. '/lua/settings/tree-explorer.lua')
   dofile(this_file_path .. '/lua/settings/LSP.lua')
   dofile(this_file_path .. '/lua/settings/telescope.lua')
