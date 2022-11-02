@@ -30,12 +30,16 @@ if vim.fn['pac#loaded']('telescope.nvim') then
 
   if vim.fn['pac#loaded']('trouble.nvim') then
     local trouble = require("trouble.providers.telescope")
-    vim.tbl_extend(
+    config = vim.tbl_deep_extend(
       'force',
-      config.defaults.mappings,
+      config,
       {
-        i = { ["<c-q>"] = trouble.smart_open_with_trouble },
-        n = { ["<c-q>"] = trouble.smart_open_with_trouble },
+        defaults = {
+          mappings = {
+            i = { ["<c-q>"] = trouble.smart_open_with_trouble },
+            n = { ["<c-q>"] = trouble.smart_open_with_trouble },
+          }
+        }
       }
     )
   end
