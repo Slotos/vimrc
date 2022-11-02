@@ -28,6 +28,7 @@ endfunction
 call minpac#add('nvim-treesitter/nvim-treesitter', { 'do': 'packloadall! | TSUpdate' })
 call minpac#add('nvim-treesitter/playground')
 call minpac#add('nvim-treesitter/nvim-treesitter-context')
+call minpac#add('stevearc/aerial.nvim')
 
 " LSP
 call minpac#add('neovim/nvim-lspconfig')
@@ -157,8 +158,6 @@ call minpac#add('tpope/vim-commentary')
 call minpac#add('JoosepAlviste/nvim-ts-context-commentstring')
 call minpac#add('tpope/vim-endwise') " when using syntax
 call minpac#add('RRethy/nvim-treesitter-endwise') " when using treesitter
-
-call minpac#add('stevearc/aerial.nvim')
 
 call minpac#add('Djancyp/cheat-sheet')
 

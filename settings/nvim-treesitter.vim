@@ -42,14 +42,15 @@ if vim.fn['pac#loaded']('nvim-treesitter') then
   }
 
   vim.api.nvim_create_augroup('TreeSitterFolds', { clear = true })
-  vim.api.nvim_create_autocmd({ 'FileType ruby,eruby,javascript,lua,go,elixir,vim' },
+  vim.api.nvim_create_autocmd({ 'FileType' },
     {
+      pattern = 'ruby,eruby,javascript,lua,go,elixir,vim',
       group = 'TreeSitterFolds',
       callback = function()
         vim.opt_local.foldmethod = 'expr'
         vim.opt_local.foldexpr = 'nvim_treesitter#foldexpr()'
       end,
-      desc = 'Refresh LSP code lens information',
+      desc = 'Set tree-sitter folding for chosen filetypes',
     }
   )
 

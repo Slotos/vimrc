@@ -87,12 +87,6 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
     end
   }
 
-  if vim.fn['pac#loaded']('aerial.nvim') then
-    local aerial = require 'aerial'
-
-    table.insert(attach_handlers, aerial.on_attach)
-  end
-
   local on_attach = function(...)
     local args = { ... }
 
