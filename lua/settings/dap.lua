@@ -36,6 +36,19 @@ if vim.fn['pac#loaded']('nvim-dap') then
     require('dap-ruby').setup()
   end
 
+  local function get_arguments()
+    local co = coroutine.running()
+    if co then
+      return coroutine.create(function()
+        local args = vim.split(vim.fn.input('Args: ') or "", " ")
+        coroutine.resume(co, args)
+      end)
+    else
+      local args = vim.split(vim.fn.input('Args: ') or "", " ")
+      return args
+    end
+  end
+
   dap.adapters.codelldb = {
     type = 'server',
     port = "${port}",
@@ -64,6 +77,17 @@ if vim.fn['pac#loaded']('nvim-dap') then
       stopAtEntry = true,
     },
     {
+      name = "Launch file with arguments (CPP tools)",
+      type = "cppdbg",
+      request = "launch",
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      end,
+      cwd = '${workspaceFolder}',
+      stopAtEntry = true,
+      args = get_arguments,
+    },
+    {
       name = "Launch file (LLDB)",
       type = "codelldb",
       request = "launch",
@@ -72,6 +96,17 @@ if vim.fn['pac#loaded']('nvim-dap') then
       end,
       cwd = '${workspaceFolder}',
       stopOnEntry = true,
+    },
+    {
+      name = "Launch file with arguments (LLDB)",
+      type = "codelldb",
+      request = "launch",
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      end,
+      cwd = '${workspaceFolder}',
+      stopOnEntry = true,
+      args = get_arguments,
     },
   }
 end
