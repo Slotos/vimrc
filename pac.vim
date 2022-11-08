@@ -98,7 +98,7 @@ call minpac#add('stevearc/dressing.nvim')
 call minpac#add('Slotos/telescope-lsp-handlers.nvim')
 
 " Silliness personified
-call minpac#add('krivahtoo/silicon.nvim', { 'do': {-> system('./install.sh') } })
+call minpac#add('narutoxy/silicon.lua')
 
 " Terminals and REPLs interactions
 call minpac#add('kassio/neoterm')
