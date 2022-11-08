@@ -1,6 +1,3 @@
-" insert keymap like emacs
-inoremap <expr><C-e> pumvisible() ? "\<C-e>" : "\<End>"
-
 " Write buffer (save)
 noremap <silent> <nowait> <Leader>w :w<CR>
 

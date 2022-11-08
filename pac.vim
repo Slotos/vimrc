@@ -34,6 +34,8 @@ call minpac#add('stevearc/aerial.nvim')
 call minpac#add('neovim/nvim-lspconfig')
 call minpac#add('williamboman/mason.nvim')
 call minpac#add('williamboman/mason-lspconfig.nvim')
+call minpac#add('weilbith/nvim-code-action-menu')
+call minpac#add('kosayoda/nvim-lightbulb')
 
 " Commonly used library
 call minpac#add('nvim-lua/plenary.nvim')
@@ -60,8 +62,9 @@ call minpac#add('onsails/lspkind-nvim')
 
 " Status and tab lines
 call minpac#add('nvim-lualine/lualine.nvim')
-call minpac#add('vigoux/notifier.nvim')
 call minpac#add('alvarosevilla95/luatab.nvim')
+
+call minpac#add('vigoux/notifier.nvim')
 
 " LSP tricks
 call minpac#add('folke/trouble.nvim')
@@ -91,7 +94,6 @@ call minpac#add('andymass/vim-matchup')
 call minpac#add('wsdjeg/vim-fetch')
 
 " FZF alternative
-call minpac#add('nvim-lua/popup.nvim')
 call minpac#add('nvim-telescope/telescope.nvim')
 call minpac#add('nvim-telescope/telescope-fzf-native.nvim', { 'do': {-> system('make') } })
 call minpac#add('stevearc/dressing.nvim')
@@ -103,14 +105,11 @@ call minpac#add('narutoxy/silicon.lua')
 " Terminals and REPLs interactions
 call minpac#add('kassio/neoterm')
 
-" Handy window selector
-call minpac#add('t9md/vim-choosewin')
-
 " Alignment hacker
 call minpac#add('godlygeek/tabular')
 
 " Search visual selections
-call minpac#add('nelstrom/vim-visual-star-search')
+call minpac#add('bronson/vim-visual-star-search')
 
 call minpac#add('mbbill/undotree')
 
@@ -127,8 +126,6 @@ call minpac#add('idanarye/vim-merginal')
 call minpac#add('sindrets/diffview.nvim')
 call minpac#add('akinsho/git-conflict.nvim')
 call minpac#add('junegunn/gv.vim')
-
-" Git signs
 call minpac#add('lewis6991/gitsigns.nvim')
 
 " DB tools
@@ -149,9 +146,6 @@ call minpac#add('leoluz/nvim-dap-go')
 call minpac#add('suketa/nvim-dap-ruby')
 call minpac#add('theHamsta/nvim-dap-virtual-text')
 
-call minpac#add('weilbith/nvim-code-action-menu')
-call minpac#add('kosayoda/nvim-lightbulb')
-
 call minpac#add('slashmili/alchemist.vim')
 
 call minpac#add('tpope/vim-commentary')
@@ -164,8 +158,6 @@ call minpac#add('Djancyp/cheat-sheet')
 call minpac#add('lukas-reineke/indent-blankline.nvim')
 call minpac#add('p00f/nvim-ts-rainbow')
 call minpac#add('terryma/vim-expand-region')
-
-call minpac#add('Shougo/echodoc.vim')
 
 call minpac#add('rickhowe/diffchar.vim')
 
