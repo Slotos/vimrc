@@ -38,15 +38,15 @@ if vim.fn['pac#loaded']('neo-tree.nvim') then
       mappings = {
         ["<2-leftmouse>"] = "open_with_window_picker",
         ["<cr>"] = "open_with_window_picker",
-        ["<c-x>"] = "split_with_window_picker",
-        ["<c-v>"] = "vsplit_with_window_picker",
-        ["<c-t>"] = "open_tabnew",
+        ["<C-x>"] = "split_with_window_picker",
+        ["<C-v>"] = "vsplit_with_window_picker",
+        ["<C-t>"] = "open_tabnew",
       },
     },
     filesystem = {
       window = {
         mappings = {
-          ["<c-x>"] = "split_with_window_picker",
+          ["<C-x>"] = "split_with_window_picker",
         }
       }
     }
