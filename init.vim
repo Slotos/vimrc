@@ -82,16 +82,22 @@ lua <<LUA
     ':h'
   )
 
-  dofile(this_file_path .. '/lua/settings/notifier.lua')
-  dofile(this_file_path .. '/lua/settings/tree-explorer.lua')
-  dofile(this_file_path .. '/lua/settings/LSP.lua')
-  dofile(this_file_path .. '/lua/settings/telescope.lua')
-  dofile(this_file_path .. '/lua/settings/git_conflict.lua')
-  dofile(this_file_path .. '/lua/settings/lualine.lua')
-  dofile(this_file_path .. '/lua/settings/dap.lua')
-  dofile(this_file_path .. '/lua/settings/colorschemes.lua')
-  dofile(this_file_path .. '/lua/settings/treesitter-context.lua')
-  dofile(this_file_path .. '/lua/settings/silicon.lua')
+  -- wrap execution into anonymous function
+  -- in order to avoid polluting global namespace
+  --- semicolon ensures this is not interpreted as
+  --- a call on a return value of the above code
+  ;(function()
+    dofile(this_file_path .. '/lua/settings/notifier.lua')
+    dofile(this_file_path .. '/lua/settings/tree-explorer.lua')
+    dofile(this_file_path .. '/lua/settings/LSP.lua')
+    dofile(this_file_path .. '/lua/settings/telescope.lua')
+    dofile(this_file_path .. '/lua/settings/git_conflict.lua')
+    dofile(this_file_path .. '/lua/settings/lualine.lua')
+    dofile(this_file_path .. '/lua/settings/dap.lua')
+    dofile(this_file_path .. '/lua/settings/colorschemes.lua')
+    dofile(this_file_path .. '/lua/settings/treesitter-context.lua')
+    dofile(this_file_path .. '/lua/settings/silicon.lua')
+  end)()
 LUA
 
 colorscheme nord
