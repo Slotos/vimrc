@@ -78,7 +78,11 @@ if vim.fn['pac#loaded']('nvim-cmp') then
 
   if vim.fn['pac#loaded']('lspkind-nvim') then
     options["formatting"] = {
-      format = require'lspkind'.cmp_format({with_text = false, maxwidth = 50})
+      format = require'lspkind'.cmp_format({
+        mode = 'symbol',
+        maxwidth = 50,
+        ellipsis_char = '…',
+      })
     }
   end
 
