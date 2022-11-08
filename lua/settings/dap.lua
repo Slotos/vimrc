@@ -1,4 +1,8 @@
 if vim.fn['pac#loaded']('nvim-dap') then
+  if vim.fn['pac#loaded']('nvim-dap-virtual-text') then
+    require('nvim-dap-virtual-text').setup({})
+  end
+
   local dap = require('dap')
 
   vim.keymap.set('n', '<F5>', dap.continue)
