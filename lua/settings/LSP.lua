@@ -143,7 +143,39 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
             }
           elseif server_name == "clangd" then
             if vim.fn['pac#loaded']('clangd_extensions.nvim') then
-              server_config = require('clangd_extensions').prepare()
+              server_config = require('clangd_extensions').prepare({
+                extensions = {
+                  ast = {
+                    role_icons = {
+                      type = "",
+                      declaration = "",
+                      expression = "",
+                      specifier = "",
+                      statement = "",
+                      ["template argument"] = "",
+                    },
+
+                    kind_icons = {
+                      Compound = "",
+                      Recovery = "",
+                      TranslationUnit = "",
+                      PackExpansion = "",
+                      TemplateTypeParm = "",
+                      TemplateTemplateParm = "",
+                      TemplateParamObject = "",
+                    },
+                    highlights = {
+                      detail = "Comment",
+                    },
+                  },
+                  memory_usage = {
+                    border = "none",
+                  },
+                  symbol_info = {
+                    border = "none",
+                  },
+                },
+              })
             end
           end
 
