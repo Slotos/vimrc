@@ -141,6 +141,10 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
                 },
               },
             }
+          elseif server_name == "clangd" then
+            if vim.fn['pac#loaded']('clangd_extensions.nvim') then
+              server_config = require('clangd_extensions').prepare()
+            end
           end
 
           -- Load default lspconfig config
