@@ -4,7 +4,7 @@ vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "Operat
 vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "String" })
 
 if vim.fn['pac#loaded']('telescope-lsp-handlers.nvim') then
-  require'telescope-lsp-handlers'.setup()
+  require 'telescope-lsp-handlers'.setup()
 end
 
 if vim.fn['pac#loaded']('lsp_lines.nvim') then
@@ -32,11 +32,14 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
   local lspconfig = require('lspconfig')
 
   if vim.fn['pac#loaded']('nvim-lightbulb') then
-    require('nvim-lightbulb').setup({autocmd = {enabled = true}})
+    require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
   end
 
-  local attach_handlers = {
-    function(client, bufnr)
+  vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(args)
+      local bufnr = args.buf
+      local client = vim.lsp.get_client_by_id(args.data.client_id)
+
       local opts = { noremap = true, silent = true, buffer = bufnr }
       vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
@@ -85,15 +88,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
         vim.lsp.codelens.refresh() -- run it on attach without waiting for events
       end
     end
-  }
-
-  local on_attach = function(...)
-    local args = { ... }
-
-    for _, handler in pairs(attach_handlers) do
-      handler(unpack(args))
-    end
-  end
+  })
 
   if vim.fn['pac#loaded']('mason.nvim') then
     require("mason").setup()
@@ -102,7 +97,6 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
       local mason_lspconfig = require("mason-lspconfig")
 
       mason_lspconfig.setup()
-
 
       mason_lspconfig.setup_handlers({
         function(server_name)
@@ -156,7 +150,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
             default_config = defaults.default_config
           end
 
-          local config = vim.tbl_deep_extend('force', default_config, server_config, { on_attach = on_attach })
+          local config = vim.tbl_deep_extend('force', default_config, server_config)
 
           lspconfig[server_name].setup(config)
 
