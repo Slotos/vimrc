@@ -9,7 +9,7 @@ if vim.fn['pac#loaded']('telescope.nvim') then
       },
       prompt_prefix = "   ",
       entry_prefix = "  ",
-      selection_caret = "  ",
+      selection_caret = " ",
     },
     pickers = {
       buffers = {

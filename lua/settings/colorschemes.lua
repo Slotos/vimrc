@@ -5,6 +5,8 @@ if vim.fn['pac#loaded']('rose-pine') then
       TelescopeBorder = { fg = "overlay", bg = "overlay" },
       TelescopeNormal = { fg = "subtle", bg = "overlay" },
       TelescopeSelection = { fg = "text", bg = "highlight_med" },
+      TelescopeSelectionCaret = { fg = "text", bg = "highlight_med" },
+      TelescopeMultiSelection = { fg = "text", bg = "highlight_high" },
 
       TelescopeTitle = { fg = "base", bg = "love" },
       TelescopePromptTitle = { fg = "base", bg = "pine" },
@@ -27,6 +29,8 @@ if vim.fn['pac#loaded']('catppuccin') then
         TelescopeMatching = { fg = cp.peach },
         TelescopeNormal = { bg = cp.surface0 },
         TelescopeSelection = { fg = cp.text, bg = cp.surface1 },
+        TelescopeSelectionCaret = { fg = cp.text, bg = cp.surface1 },
+        TelescopeMultiSelection = { fg = cp.text, bg = cp.surface2 },
 
         TelescopeTitle = { fg = cp.crust, bg = cp.green },
         TelescopePreviewTitle = { fg = cp.crust, bg = cp.red },
