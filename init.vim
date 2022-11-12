@@ -57,8 +57,6 @@ execute 'source' fnameescape(stdpath('config') . '/settings/hexokinase.vim')
 execute 'source' fnameescape(stdpath('config') . '/settings/vim-ruby.vim')
 execute 'source' fnameescape(stdpath('config') . '/settings/indentline.vim')
 execute 'source' fnameescape(stdpath('config') . '/settings/aerial.vim')
-execute 'source' fnameescape(stdpath('config') . '/settings/rainbow.vim')
-execute 'source' fnameescape(stdpath('config') . '/settings/echodoc.vim')
 execute 'source' fnameescape(stdpath('config') . '/settings/diffview.vim')
 
 " Mappings
@@ -99,8 +97,6 @@ lua <<LUA
     dofile(this_file_path .. '/lua/settings/silicon.lua')
   end)()
 LUA
-
-colorscheme nord
 
 let b:local_override_file = fnameescape($HOME . '/.vimrc_local')
 if filereadable(b:local_override_file)

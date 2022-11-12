@@ -11,7 +11,7 @@ if vim.fn['pac#loaded']('nvim-treesitter') then
       enable = true,
     },
     indent = {
-      enable = true
+      enable = true,
     },
     endwise = {
       enable = true,
@@ -38,6 +38,10 @@ if vim.fn['pac#loaded']('nvim-treesitter') then
       enable = true,
       use_virtual_text = true,
       lint_events = {"BufWrite", "CursorHold"},
+    },
+    rainbow = {
+      enable = true,
+      extended_mode = true,
     },
   }
 

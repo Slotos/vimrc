@@ -72,15 +72,7 @@ call minpac#add('folke/trouble.nvim')
 call minpac#add('https://git.sr.ht/~whynothugo/lsp_lines.nvim')
 
 " Colorschemes
-call minpac#add('shaunsingh/nord.nvim')
-call minpac#add('rmehri01/onenord.nvim')
-call minpac#add('wadackel/vim-dogrun')
-call minpac#add('cocopon/iceberg.vim')
-call minpac#add('tyrannicaltoucan/vim-deep-space')
-call minpac#add('folke/tokyonight.nvim')
 call minpac#add('rose-pine/neovim', { 'name': 'rose-pine' })
-call minpac#add('FrenzyExists/aquarium-vim')
-call minpac#add('rebelot/kanagawa.nvim')
 call minpac#add('catppuccin/nvim', { 'name': 'catppuccin' })
 
 " Colorscheme patches
@@ -153,11 +145,11 @@ call minpac#add('tpope/vim-commentary')
 call minpac#add('JoosepAlviste/nvim-ts-context-commentstring')
 call minpac#add('tpope/vim-endwise') " when using syntax
 call minpac#add('RRethy/nvim-treesitter-endwise') " when using treesitter
+call minpac#add('https://git.sr.ht/~p00f/nvim-ts-rainbow')
 
 call minpac#add('Djancyp/cheat-sheet')
 
 call minpac#add('lukas-reineke/indent-blankline.nvim')
-call minpac#add('p00f/nvim-ts-rainbow')
 call minpac#add('terryma/vim-expand-region')
 
 call minpac#add('rickhowe/diffchar.vim')
