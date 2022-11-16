@@ -35,7 +35,9 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
     require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
   end
 
+  vim.api.nvim_create_augroup('LspWatchers', { clear = true })
   vim.api.nvim_create_autocmd('LspAttach', {
+    group = 'LspWatchers',
     callback = function(args)
       local bufnr = args.buf
       local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -87,7 +89,8 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
         )
         vim.lsp.codelens.refresh() -- run it on attach without waiting for events
       end
-    end
+    end,
+    desc = 'Set up buffer local mappings, lens etc on LSP attach',
   })
 
   if vim.fn['pac#loaded']('mason.nvim') then
