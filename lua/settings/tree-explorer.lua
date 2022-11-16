@@ -25,6 +25,7 @@ if vim.fn['pac#loaded']('neo-tree.nvim') then
           buftype = { 'terminal' },
         },
       },
+      use_winbar = 'always',
       other_win_hl_color = '#e35e4f',
     })
   end
