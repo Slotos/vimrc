@@ -4,7 +4,107 @@ vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "Operat
 vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "String" })
 
 if vim.fn['pac#loaded']('telescope-lsp-handlers.nvim') then
-  require 'telescope-lsp-handlers'.setup()
+  require 'telescope-lsp-handlers'.setup({
+    declaration = {
+      disabled = false,
+      picker = {
+        prompt_title = 'LSP Declarations',
+        entry = {
+          trim_text = true,
+          fname_width = 50,
+        },
+      },
+      no_results_message = 'Declaration not found',
+    },
+    definition = {
+      disabled = false,
+      picker = {
+        prompt_title = 'LSP Definitions',
+        entry = {
+          trim_text = true,
+          fname_width = 50,
+        },
+      },
+      no_results_message = 'Definition not found',
+    },
+    implementation = {
+      disabled = false,
+      picker = {
+        prompt_title = 'LSP Implementations',
+        entry = {
+          trim_text = true,
+          fname_width = 50,
+        },
+      },
+      no_results_message = 'Implementation not found',
+    },
+    type_definition = {
+      disabled = false,
+      picker = {
+        prompt_title = 'LSP Type Definitions',
+        entry = {
+          trim_text = true,
+          fname_width = 50,
+        },
+      },
+      no_results_message = 'Type definition not found',
+    },
+    reference = {
+      disabled = false,
+      picker = {
+        prompt_title = 'LSP References',
+        entry = {
+          trim_text = true,
+          fname_width = 50,
+        },
+      },
+      no_results_message = 'No references found'
+    },
+    document_symbol = {
+      disabled = false,
+      picker = {
+        prompt_title = 'LSP Document Symbols',
+        entry = {
+          trim_text = true,
+          fname_width = 50,
+        },
+      },
+      no_results_message = 'No symbols found',
+    },
+    workspace_symbol = {
+      disabled = false,
+      picker = {
+        prompt_title = 'LSP Workspace Symbols',
+        entry = {
+          trim_text = true,
+          fname_width = 50,
+        },
+      },
+      no_results_message = 'No symbols found',
+    },
+    incoming_calls = {
+      disabled = false,
+      picker = {
+        prompt_title = 'LSP Incoming Calls',
+        entry = {
+          trim_text = true,
+          fname_width = 50,
+        },
+      },
+      no_results_message = 'No calls found',
+    },
+    outgoing_calls = {
+      disabled = false,
+      picker = {
+        prompt_title = 'LSP Outgoing Calls',
+        entry = {
+          trim_text = true,
+          fname_width = 50,
+        },
+      },
+      no_results_message = 'No calls found',
+    },
+  })
 end
 
 if vim.fn['pac#loaded']('lsp_lines.nvim') then
