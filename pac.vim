@@ -138,6 +138,7 @@ call minpac#add('rcarriga/nvim-dap-ui')
 call minpac#add('leoluz/nvim-dap-go')
 call minpac#add('suketa/nvim-dap-ruby')
 call minpac#add('theHamsta/nvim-dap-virtual-text')
+call minpac#add('jbyuki/one-small-step-for-vimkind')
 
 call minpac#add('slashmili/alchemist.vim')
 
