@@ -37,6 +37,7 @@ call minpac#add('williamboman/mason-lspconfig.nvim')
 call minpac#add('weilbith/nvim-code-action-menu')
 call minpac#add('kosayoda/nvim-lightbulb')
 call minpac#add('https://git.sr.ht/~p00f/clangd_extensions.nvim')
+call minpac#add('simrat39/rust-tools.nvim')
 
 " Commonly used library
 call minpac#add('nvim-lua/plenary.nvim')

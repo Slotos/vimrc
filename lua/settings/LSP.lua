@@ -203,117 +203,105 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
 
       mason_lspconfig.setup_handlers({
         function(server_name)
-          local server_config = {}
-
-          if server_name == "solargraph" then
-            server_config = {
-              flags = { debounce_text_changes = 150, },
-              settings = {
-                solargraph = {
-                  diagnostics = true,
-                  formatting = true,
-                }
-              },
-            }
-          elseif server_name == "sumneko_lua" then
-            local runtime_path = vim.split(package.path, ';')
-            table.insert(runtime_path, "lua/?.lua")
-            table.insert(runtime_path, "lua/?/init.lua")
-
-            server_config = {
-              settings = {
-                Lua = {
-                  runtime = {
-                    -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                    version = 'LuaJIT',
-                    -- Setup your lua path
-                    -- path = runtime_path,
-                  },
-                  diagnostics = {
-                    -- Get the language server to recognize the `vim` global
-                    globals = { 'vim' },
-                  },
-                  workspace = {
-                    -- Make the server aware of Neovim runtime files
-                    library = vim.api.nvim_get_runtime_file("", true),
-                  },
-                  -- Do not send telemetry data containing a randomized but unique identifier
-                  telemetry = {
-                    enable = false,
+          lspconfig[server_name].setup({})
+        end,
+        ["rust_analyzer"] = function()
+          if vim.fn['pac#loaded']('rust-tools.nvim') then
+            require("rust-tools").setup {
+              dap = {
+                adapter = {
+                  type = "server",
+                  port = "${port}",
+                  host = "127.0.0.1",
+                  executable = {
+                    command = 'codelldb',
+                    args = { "--port", "${port}" },
                   },
                 },
               },
             }
-          elseif server_name == "clangd" then
-            if vim.fn['pac#loaded']('clangd_extensions.nvim') then
-              server_config = require('clangd_extensions').prepare({
-                extensions = {
-                  ast = {
-                    role_icons = {
-                      type = "",
-                      declaration = "",
-                      expression = "",
-                      specifier = "",
-                      statement = "",
-                      ["template argument"] = "",
-                    },
+          end
+        end,
+        ["clangd"] = function()
+          if vim.fn['pac#loaded']('clangd_extensions.nvim') then
+            require('clangd_extensions').setup({
+              extensions = {
+                ast = {
+                  role_icons = {
+                    type = "",
+                    declaration = "",
+                    expression = "",
+                    specifier = "",
+                    statement = "",
+                    ["template argument"] = "",
+                  },
 
-                    kind_icons = {
-                      Compound = "",
-                      Recovery = "",
-                      TranslationUnit = "",
-                      PackExpansion = "",
-                      TemplateTypeParm = "",
-                      TemplateTemplateParm = "",
-                      TemplateParamObject = "",
-                    },
-                    highlights = {
-                      detail = "Comment",
-                    },
+                  kind_icons = {
+                    Compound = "",
+                    Recovery = "",
+                    TranslationUnit = "",
+                    PackExpansion = "",
+                    TemplateTypeParm = "",
+                    TemplateTemplateParm = "",
+                    TemplateParamObject = "",
                   },
-                  memory_usage = {
-                    border = "none",
-                  },
-                  symbol_info = {
-                    border = "none",
+                  highlights = {
+                    detail = "Comment",
                   },
                 },
-              })
-            end
+                memory_usage = {
+                  border = "none",
+                },
+                symbol_info = {
+                  border = "none",
+                },
+              },
+            })
+          else
+            lspconfig.clangd.setup({})
           end
+        end,
+        ["sumneko_lua"] = function()
+          local runtime_path = vim.split(package.path, ';')
+          table.insert(runtime_path, "lua/?.lua")
+          table.insert(runtime_path, "lua/?/init.lua")
 
-          -- Load default lspconfig config
-          local default_config = {}
-          local success, defaults = pcall(require, 'lspconfig.server_configurations.' .. server_name)
-          if success then
-            default_config = defaults.default_config
-          end
-
-          local config = vim.tbl_deep_extend('force', default_config, server_config)
-
-          lspconfig[server_name].setup(config)
-
-          -- Direct copy from lspconfig own code with certain edit
-          -- When opening files, we want to attach to them even
-          -- if this code executes after the files get loaded
-          --
-          -- lspconfig only does this in case of reload,
-          -- expecting us to never load it in a callback,
-          -- which is not what we do here.
-          -- And it seems that sitting in a callback reliably
-          -- places this code after the file loading event
-          --
-          -- A way to work around this would be to load installed
-          -- servers, setup those immediately, keep the list
-          -- and skip each one in the list exactly once in this callback.
-          --
-          -- I think I prefer this version.
-          if config.autostart ~= false then
-            for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-              lspconfig[server_name].manager.try_add_wrapper(bufnr)
-            end
-          end
-        end
+          lspconfig.sumneko_lua.setup {
+            settings = {
+              Lua = {
+                runtime = {
+                  -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                  version = 'LuaJIT',
+                  -- Setup your lua path
+                  -- path = runtime_path,
+                },
+                diagnostics = {
+                  -- Get the language server to recognize the `vim` global
+                  globals = { 'vim' },
+                },
+                workspace = {
+                  -- Make the server aware of Neovim runtime files
+                  library = vim.api.nvim_get_runtime_file("", true),
+                },
+                -- Do not send telemetry data containing a randomized but unique identifier
+                telemetry = {
+                  enable = false,
+                },
+              },
+            },
+          }
+        end,
+        ["solargraph"] = function()
+          lspconfig.solargraph.setup {
+            flags = { debounce_text_changes = 150, },
+            settings = {
+              solargraph = {
+                diagnostics = true,
+                formatting = true,
+              }
+            },
+          }
+        end,
       })
     end
   end
