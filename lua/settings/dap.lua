@@ -63,6 +63,30 @@ if vim.fn['pac#loaded']('nvim-dap') then
     }
   }
 
+  dap.configurations.rust = {
+    {
+      name = "Launch file (LLDB)",
+      type = "codelldb",
+      request = "launch",
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      end,
+      cwd = '${workspaceFolder}',
+      stopOnEntry = true,
+    },
+    {
+      name = "Launch file with arguments (LLDB)",
+      type = "codelldb",
+      request = "launch",
+      program = function()
+        return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+      end,
+      cwd = '${workspaceFolder}',
+      stopOnEntry = true,
+      args = get_arguments,
+    },
+  }
+
   dap.adapters.cppdbg = {
     id = 'cppdbg',
     type = 'executable',
@@ -114,6 +138,10 @@ if vim.fn['pac#loaded']('nvim-dap') then
     },
   }
 
+  dap.adapters.nlua = function(callback, config)
+    callback({ type = 'server', host = config.host or "127.0.0.1", port = config.port or 8086 })
+  end
+
   dap.configurations.lua = {
     {
       type = 'nlua',
@@ -121,8 +149,4 @@ if vim.fn['pac#loaded']('nvim-dap') then
       name = "Attach to running Neovim instance",
     }
   }
-
-  dap.adapters.nlua = function(callback, config)
-    callback({ type = 'server', host = config.host or "127.0.0.1", port = config.port or 8086 })
-  end
 end
