@@ -5,7 +5,7 @@ if vim.fn['pac#loaded']('rose-pine') then
       TelescopeBorder = { fg = "overlay", bg = "overlay" },
       TelescopeNormal = { fg = "subtle", bg = "overlay" },
       TelescopeSelection = { fg = "text", bg = "highlight_med" },
-      TelescopeSelectionCaret = { fg = "text", bg = "highlight_med" },
+      TelescopeSelectionCaret = { fg = "love", bg = "highlight_med" },
       TelescopeMultiSelection = { fg = "text", bg = "highlight_high" },
 
       TelescopeTitle = { fg = "base", bg = "love" },
@@ -14,22 +14,23 @@ if vim.fn['pac#loaded']('rose-pine') then
 
       TelescopePromptNormal = { fg = "text", bg = "surface" },
       TelescopePromptBorder = { fg = "surface", bg = "surface" },
+
+      NotifierTitle = { fg = "gold", bg = "overlay" },
     },
   })
 end
 
 if vim.fn['pac#loaded']('catppuccin') then
   (function()
-    local telescopeBorderless = function (flavor)
+    local telescopeBorderless = function(flavor)
       local cp = require("catppuccin.palettes").get_palette(flavor)
 
       return {
         TelescopeBorder = { fg = cp.surface0, bg = cp.surface0 },
-        TelescopeSelectionCaret = { fg = cp.flamingo },
+        TelescopeSelectionCaret = { fg = cp.flamingo, bg = cp.surface1 },
         TelescopeMatching = { fg = cp.peach },
         TelescopeNormal = { bg = cp.surface0 },
         TelescopeSelection = { fg = cp.text, bg = cp.surface1 },
-        TelescopeSelectionCaret = { fg = cp.text, bg = cp.surface1 },
         TelescopeMultiSelection = { fg = cp.text, bg = cp.surface2 },
 
         TelescopeTitle = { fg = cp.crust, bg = cp.green },
@@ -37,7 +38,7 @@ if vim.fn['pac#loaded']('catppuccin') then
         TelescopePromptTitle = { fg = cp.crust, bg = cp.mauve },
 
         TelescopePromptNormal = { fg = cp.flamingo, bg = cp.crust },
-        TelescopePromptBorder = { fg = cp.crust, bg = cp.crust},
+        TelescopePromptBorder = { fg = cp.crust, bg = cp.crust },
       }
     end
 
