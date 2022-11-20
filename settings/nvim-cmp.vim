@@ -60,6 +60,10 @@ if vim.fn['pac#loaded']('nvim-cmp') then
     table.insert(options["sources"], { name = 'nvim_lsp' })
   end
 
+  if vim.fn['pac#loaded']('cmp-nvim-lsp-signature-help') then
+    table.insert(options["sources"], { name = 'nvim_lsp_signature_help' })
+  end
+
   if vim.fn['pac#loaded']('cmp-buffer') then
     table.insert(options["sources"], { name = 'buffer' })
   end

@@ -49,6 +49,7 @@ call minpac#add('s1n7ax/nvim-window-picker')
 
 " Completion engine
 call minpac#add('hrsh7th/cmp-nvim-lsp')
+call minpac#add('hrsh7th/cmp-nvim-lsp-signature-help')
 call minpac#add('hrsh7th/cmp-buffer')
 call minpac#add('hrsh7th/cmp-path')
 call minpac#add('ray-x/cmp-treesitter')
