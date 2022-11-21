@@ -36,6 +36,9 @@ call minpac#add('williamboman/mason.nvim')
 call minpac#add('williamboman/mason-lspconfig.nvim')
 call minpac#add('weilbith/nvim-code-action-menu')
 call minpac#add('kosayoda/nvim-lightbulb')
+call minpac#add('onsails/lspkind-nvim')
+call minpac#add('folke/trouble.nvim')
+call minpac#add('https://git.sr.ht/~whynothugo/lsp_lines.nvim')
 call minpac#add('https://git.sr.ht/~p00f/clangd_extensions.nvim')
 call minpac#add('simrat39/rust-tools.nvim')
 call minpac#add('jose-elias-alvarez/null-ls.nvim')
@@ -62,17 +65,12 @@ call minpac#add('hrsh7th/nvim-cmp')
 call minpac#add('hrsh7th/vim-vsnip')
 call minpac#add('hrsh7th/vim-vsnip-integ')
 
-call minpac#add('onsails/lspkind-nvim')
-
 " Status and tab lines
 call minpac#add('nvim-lualine/lualine.nvim')
 call minpac#add('alvarosevilla95/luatab.nvim')
 
+" Notification library
 call minpac#add('vigoux/notifier.nvim')
-
-" LSP tricks
-call minpac#add('folke/trouble.nvim')
-call minpac#add('https://git.sr.ht/~whynothugo/lsp_lines.nvim')
 
 " Colorschemes
 call minpac#add('rose-pine/neovim', { 'name': 'rose-pine' })
@@ -163,5 +161,7 @@ call minpac#add('jbyuki/venn.nvim')
 call minpac#add('jbyuki/nabla.nvim')
 
 call minpac#add('AndrewRadev/bufferize.vim')
+
+call minpac#add('ThePrimeagen/refactoring.nvim')
 
 call pac#reset_loaded()
