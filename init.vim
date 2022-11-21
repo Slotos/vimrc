@@ -70,7 +70,6 @@ execute 'source' fnameescape(stdpath('config') . '/settings/neovide.vim')
 
 " Custom plugins
 execute 'source' fnameescape(stdpath('config') . '/plugins/hlsearch.vim')
-execute 'source' fnameescape(stdpath('config') . '/plugins/nicefold.vim')
 
 lua <<LUA
   local this_file_path = vim.fn.fnamemodify(
