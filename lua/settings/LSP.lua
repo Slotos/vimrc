@@ -220,6 +220,8 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
                 },
               },
             }
+          else
+            lspconfig.rust_analyzer.setup({})
           end
         end,
         ["clangd"] = function()
