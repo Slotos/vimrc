@@ -164,4 +164,6 @@ call minpac#add('AndrewRadev/bufferize.vim')
 
 call minpac#add('ThePrimeagen/refactoring.nvim')
 
+call minpac#add('anuvyklack/pretty-fold.nvim')
+
 call pac#reset_loaded()

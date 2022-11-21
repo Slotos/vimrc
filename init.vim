@@ -95,6 +95,7 @@ lua <<LUA
     dofile(this_file_path .. '/lua/settings/colorschemes.lua')
     dofile(this_file_path .. '/lua/settings/treesitter-context.lua')
     dofile(this_file_path .. '/lua/settings/silicon.lua')
+    dofile(this_file_path .. '/lua/settings/folding.lua')
   end)()
 LUA
 
