@@ -223,8 +223,14 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
           end
         end,
         ["clangd"] = function()
+          local capabilities = vim.lsp.protocol.make_client_capabilities()
+          capabilities.offsetEncoding = { "utf-16" } -- see https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
+
           if vim.fn['pac#loaded']('clangd_extensions.nvim') then
             require('clangd_extensions').setup({
+              server = {
+                capabilities = capabilities,
+              },
               extensions = {
                 ast = {
                   role_icons = {
@@ -258,7 +264,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
               },
             })
           else
-            lspconfig.clangd.setup({})
+            lspconfig.clangd.setup({ capabilities = capabilities })
           end
         end,
         ["sumneko_lua"] = function()
