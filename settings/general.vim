@@ -11,9 +11,7 @@ if has('vim_starting')
 endif
 set mouse=a
 set showtabline=2
-set statusline=-        " hide file name in statusline
-set fillchars+=vert:\|  " add a bar for vertical splits
-set fillchars=eob:\           " hide ~
+set fillchars+=eob:\  " hide ~
 if has('mac')
   let g:clipboard = {
         \   'name': 'macOS-clipboard',
