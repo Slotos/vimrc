@@ -130,6 +130,10 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
   -- vim.lsp.set_log_level("debug")
 
   local lspconfig = require('lspconfig')
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  if vim.fn['pac#loaded']('cmp-nvim-lsp') then
+    capabilities = require('cmp_nvim_lsp').default_capabilities()
+  end
 
   if vim.fn['pac#loaded']('nvim-lightbulb') then
     require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
@@ -203,7 +207,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
 
       mason_lspconfig.setup_handlers({
         function(server_name)
-          lspconfig[server_name].setup({})
+          lspconfig[server_name].setup({ capabilities = capabilities })
         end,
         ["rust_analyzer"] = function()
           if vim.fn['pac#loaded']('rust-tools.nvim') then
@@ -221,11 +225,10 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
               },
             }
           else
-            lspconfig.rust_analyzer.setup({})
+            lspconfig.rust_analyzer.setup({ capabilities = capabilities })
           end
         end,
         ["clangd"] = function()
-          local capabilities = vim.lsp.protocol.make_client_capabilities()
           capabilities.offsetEncoding = { "utf-16" } -- see https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
 
           if vim.fn['pac#loaded']('clangd_extensions.nvim') then
@@ -275,6 +278,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
           table.insert(runtime_path, "lua/?/init.lua")
 
           lspconfig.sumneko_lua.setup {
+            capabilities = capabilities,
             settings = {
               Lua = {
                 runtime = {
@@ -301,6 +305,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
         end,
         ["solargraph"] = function()
           lspconfig.solargraph.setup {
+            capabilities = capabilities,
             flags = { debounce_text_changes = 150, },
             settings = {
               solargraph = {
