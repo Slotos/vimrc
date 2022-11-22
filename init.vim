@@ -35,7 +35,7 @@ let g:maplocalleader=';'
 
 " Initialize minpac
 packadd minpac
-call minpac#init()
+call minpac#init({ 'jobs': -1, 'progress_open': 'tab', 'status_auto': v:true })
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 
 " general and early settings
