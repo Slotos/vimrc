@@ -2,9 +2,9 @@ lua << LUA
 if vim.fn['pac#loaded']('gitsigns.nvim') then
   require('gitsigns').setup({
     signcolumn = true,
-    word_diff  = true,
+    word_diff  = false,
     numhl      = true,
-    linehl     = false,
+    linehl     = true,
     attach_to_untracked = true,
     current_line_blame = true,
     current_line_blame_opts = {
