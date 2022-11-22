@@ -3,10 +3,14 @@ if vim.fn['pac#loaded']('nvim-cmp') then
   -- Set completeopt to have a better completion experience
   vim.o.completeopt="menu,menuone,noselect"
 
-  vim.api.nvim_command("augroup nvim-cmp")
-  vim.api.nvim_command("au!")
-  vim.api.nvim_command("autocmd FileType sql,mysql,plsql lua require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })")
-  vim.api.nvim_command("augroup END")
+  vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'sql,mysql,plsql',
+    group = vim.api.nvim_create_augroup('CmpDadBod', { clear = true }),
+    callback = function()
+      require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
+    end,
+    desc = 'Set up vim-dadbod completion source for sql buffers',
+  })
 
   -- Setup nvim-cmp.
   local cmp = require'cmp'
@@ -46,6 +50,9 @@ if vim.fn['pac#loaded']('nvim-cmp') then
       }),
     },
     sources = {},
+    experimental = {
+      ghost_text = true,
+    },
   }
 
   if vim.fn['pac#loaded']('vim-vsnip') then
