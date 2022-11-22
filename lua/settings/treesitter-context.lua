@@ -13,6 +13,7 @@ if vim.fn['pac#loaded']('nvim-treesitter-context') then
         'block',
         'elsif',
         'module',
+        'when',
       },
       lua = {
         'elseif_statement',
