@@ -29,6 +29,7 @@ call minpac#add('nvim-treesitter/nvim-treesitter', { 'do': 'packloadall! | TSUpd
 call minpac#add('nvim-treesitter/playground')
 call minpac#add('nvim-treesitter/nvim-treesitter-context')
 call minpac#add('stevearc/aerial.nvim')
+call minpac#add('nvim-treesitter/nvim-treesitter-textobjects')
 
 " LSP
 call minpac#add('neovim/nvim-lspconfig')

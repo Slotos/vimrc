@@ -50,7 +50,6 @@ execute 'source' fnameescape(stdpath('config') . '/settings/nvim-cmp.vim')
 
 " plugin configurations
 execute 'source' fnameescape(stdpath('config') . '/settings/gitsigns.vim')
-execute 'source' fnameescape(stdpath('config') . '/settings/nvim-treesitter.vim')
 execute 'source' fnameescape(stdpath('config') . '/settings/neoterm.vim')
 execute 'source' fnameescape(stdpath('config') . '/settings/hexokinase.vim')
 execute 'source' fnameescape(stdpath('config') . '/settings/vim-ruby.vim')
@@ -91,7 +90,7 @@ lua <<LUA
     dofile(this_file_path .. '/lua/settings/lualine.lua')
     dofile(this_file_path .. '/lua/settings/dap.lua')
     dofile(this_file_path .. '/lua/settings/colorschemes.lua')
-    dofile(this_file_path .. '/lua/settings/treesitter-context.lua')
+    dofile(this_file_path .. '/lua/settings/treesitter.lua')
     dofile(this_file_path .. '/lua/settings/silicon.lua')
     dofile(this_file_path .. '/lua/settings/folding.lua')
   end)()
