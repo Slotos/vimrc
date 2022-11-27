@@ -132,8 +132,6 @@ call minpac#add('tpope/vim-unimpaired')
 
 call minpac#add('mattn/emmet-vim')
 
-call minpac#add('tpope/vim-rails')
-
 " Debug Adapter Protocol
 call minpac#add('mfussenegger/nvim-dap')
 call minpac#add('rcarriga/nvim-dap-ui')
