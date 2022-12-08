@@ -327,6 +327,9 @@ if vim.fn['pac#loaded']('null-ls.nvim') then
     null_ls.builtins.code_actions.gitsigns,
     null_ls.builtins.code_actions.proselint,
     null_ls.builtins.diagnostics.proselint,
+    null_ls.builtins.formatting.shellharden,
+    null_ls.builtins.diagnostics.codespell,
+    null_ls.builtins.formatting.codespell,
   }
 
   if vim.fn['pac#loaded']('refactoring.nvim') then
