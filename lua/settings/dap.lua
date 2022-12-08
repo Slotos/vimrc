@@ -137,6 +137,7 @@ if vim.fn['pac#loaded']('nvim-dap') then
       args = get_arguments,
     },
   }
+  dap.configurations.c = dap.configurations.cpp
 
   dap.adapters.nlua = function(callback, config)
     callback({ type = 'server', host = config.host or "127.0.0.1", port = config.port or 8086 })
