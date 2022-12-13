@@ -61,6 +61,7 @@ call minpac#add('hrsh7th/cmp-path')
 call minpac#add('ray-x/cmp-treesitter')
 call minpac#add('kdheepak/cmp-latex-symbols')
 call minpac#add('hrsh7th/cmp-emoji')
+call minpac#add('chrisgrieser/cmp-nerdfont')
 call minpac#add('hrsh7th/cmp-cmdline')
 call minpac#add('hrsh7th/nvim-cmp')
 call minpac#add('hrsh7th/vim-vsnip')
@@ -83,6 +84,8 @@ call minpac#add('folke/lsp-colors.nvim')
 " Syntax dump
 call minpac#add('pedrohdz/vim-yaml-folds')
 call minpac#add('cuducos/yaml.nvim')
+
+" matchit replacement
 call minpac#add('andymass/vim-matchup')
 
 " Open file:lineno
@@ -93,9 +96,6 @@ call minpac#add('nvim-telescope/telescope.nvim')
 call minpac#add('nvim-telescope/telescope-fzf-native.nvim', { 'do': {-> system('make') } })
 call minpac#add('stevearc/dressing.nvim')
 call minpac#add('Slotos/telescope-lsp-handlers.nvim')
-
-" Silliness personified
-call minpac#add('narutoxy/silicon.lua')
 
 " Terminals and REPLs interactions
 call minpac#add('kassio/neoterm')
@@ -108,7 +108,6 @@ call minpac#add('bronson/vim-visual-star-search')
 
 call minpac#add('mbbill/undotree')
 
-call minpac#add('vim-scripts/camelcasemotion')
 call minpac#add('itchyny/vim-qfedit')
 call minpac#add('chrisbra/NrrwRgn')
 
@@ -147,8 +146,6 @@ call minpac#add('JoosepAlviste/nvim-ts-context-commentstring')
 call minpac#add('tpope/vim-endwise') " when using syntax
 call minpac#add('RRethy/nvim-treesitter-endwise') " when using treesitter
 call minpac#add('https://git.sr.ht/~p00f/nvim-ts-rainbow')
-
-call minpac#add('Djancyp/cheat-sheet')
 
 call minpac#add('lukas-reineke/indent-blankline.nvim')
 call minpac#add('terryma/vim-expand-region')
