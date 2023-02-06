@@ -20,7 +20,7 @@ if vim.fn['pac#loaded']('telescope.nvim') then
             ["<c-d>"] = "delete_buffer",
           }
         }
-      }
+      },
     },
   }
 
