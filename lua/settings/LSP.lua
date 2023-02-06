@@ -335,6 +335,7 @@ if vim.fn['pac#loaded']('null-ls.nvim') then
     null_ls.builtins.formatting.shellharden,
     null_ls.builtins.diagnostics.codespell,
     null_ls.builtins.formatting.codespell,
+    null_ls.builtins.formatting.prettierd,
   }
 
   if vim.fn['pac#loaded']('refactoring.nvim') then
