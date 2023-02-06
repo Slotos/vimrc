@@ -4,7 +4,7 @@ if vim.fn['pac#loaded']('indent-blankline.nvim') then
     enabled = false, -- it can slow down startup, but toggling afterwards is fast
 
     space_char_blankline = " ",
-    -- use_treesitter = true,
+    use_treesitter = true,
     show_current_context = true,
     show_current_context_start = true,
 
