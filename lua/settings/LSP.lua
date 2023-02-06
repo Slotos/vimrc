@@ -135,10 +135,6 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
     capabilities = require('cmp_nvim_lsp').default_capabilities()
   end
 
-  if vim.fn['pac#loaded']('nvim-lightbulb') then
-    require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
-  end
-
   vim.api.nvim_create_augroup('LspWatchers', { clear = true })
   vim.api.nvim_create_autocmd('LspAttach', {
     group = 'LspWatchers',
@@ -180,14 +176,23 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
         vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
       end
 
+      vim.api.nvim_create_augroup('CodeLensOrAction', { clear = true })
+      -- CodeAction
+      vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' },
+        {
+          group = 'CodeLensOrAction',
+          buffer = bufnr,
+          callback = function() vim.schedule(require('nvim-lightbulb').update_lightbulb) end,
+          desc = 'Refresh LSP code lens information',
+        }
+      )
       -- CodeLens
       if client.server_capabilities.codeLensProvider ~= nil then
-        vim.api.nvim_create_augroup('CodeLens', { clear = true })
         vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI', 'InsertLeave' },
           {
-            group = 'CodeLens',
+            group = 'CodeLensOrAction',
             buffer = bufnr,
-            callback = vim.lsp.codelens.refresh,
+            callback = function() vim.schedule(vim.lsp.codelens.refresh) end,
             desc = 'Refresh LSP code lens information',
           }
         )
