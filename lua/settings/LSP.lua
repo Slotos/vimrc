@@ -277,12 +277,12 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
             lspconfig.clangd.setup({ capabilities = capabilities })
           end
         end,
-        ["sumneko_lua"] = function()
+        ["lua_ls"] = function()
           local runtime_path = vim.split(package.path, ';')
           table.insert(runtime_path, "lua/?.lua")
           table.insert(runtime_path, "lua/?/init.lua")
 
-          lspconfig.sumneko_lua.setup {
+          lspconfig.lua_ls.setup {
             capabilities = capabilities,
             settings = {
               Lua = {
