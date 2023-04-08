@@ -2,7 +2,7 @@ if vim.fn['pac#loaded']('neo-tree.nvim') then
   if vim.fn['pac#loaded']('nvim-window-picker') then
     require'window-picker'.setup({
       autoselect_one = true,
-      include_current = false,
+      include_current_win = false,
       filter_rules = {
         -- filter using buffer options
         bo = {
