@@ -103,11 +103,11 @@ if vim.fn['pac#loaded']('nvim-treesitter') then
   vim.api.nvim_create_augroup('TreeSitterFolds', { clear = true })
   vim.api.nvim_create_autocmd({ 'FileType' },
     {
-      pattern = 'ruby,eruby,javascript,lua,go,elixir,vim',
+      pattern = 'ruby,eruby,javascript,lua,go,elixir,vim,typescript,markdown,typescriptreact',
       group = 'TreeSitterFolds',
       callback = function()
-        vim.opt_local.foldmethod = 'expr'
-        vim.opt_local.foldexpr = 'nvim_treesitter#foldexpr()'
+        vim.wo.foldmethod = 'expr'
+        vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
       end,
       desc = 'Set tree-sitter folding for chosen filetypes',
     }
