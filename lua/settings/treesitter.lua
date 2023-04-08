@@ -5,6 +5,7 @@ if vim.fn['pac#loaded']('nvim-treesitter') then
     },
     matchup = {
       enable = true,
+      include_match_words = false,
     },
     context_commentstring = {
       enable = true,
