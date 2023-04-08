@@ -33,10 +33,10 @@ endif
 set history=2000
 set number
 set timeout ttimeout
-set cmdheight=2         " Height of the command line
+set cmdheight=2      " Height of the command line
 set timeoutlen=500
 set ttimeoutlen=10
-set updatetime=100
+set updatetime=1000  " influences CursorHold timeout (code lens etc)
 set undofile
 set relativenumber
 set backspace=2
