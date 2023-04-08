@@ -134,11 +134,18 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
   if vim.fn['pac#loaded']('cmp-nvim-lsp') then
     capabilities = require('cmp_nvim_lsp').default_capabilities()
   end
+  local open_code_action_menu = vim.fn['pac#loaded']('nvim-code-action-menu') and require('code_action_menu').open_code_action_menu or vim.lsp.buf.code_action
+  local nvim_lightbulb_installed = vim.fn['pac#loaded']('nvim-lightbulb')
+  local lsp_inlayhints_installed = vim.fn['pac#loaded']('lsp-inlayhints.nvim')
 
   vim.api.nvim_create_augroup('LspWatchers', { clear = true })
   vim.api.nvim_create_autocmd('LspAttach', {
     group = 'LspWatchers',
     callback = function(args)
+      if not (args.data and args.data.client_id) then
+        return
+      end
+
       local bufnr = args.buf
       local client = vim.lsp.get_client_by_id(args.data.client_id)
 
@@ -156,11 +163,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
       vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
       vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
 
-      if vim.fn['pac#loaded']('nvim-code-action-menu') then
-        vim.keymap.set('n', '<leader>ca', require('code_action_menu').open_code_action_menu, opts)
-      else
-        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-      end
+      vim.keymap.set('n', '<leader>ca', open_code_action_menu, opts)
 
       vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
       vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
@@ -178,14 +181,16 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
 
       vim.api.nvim_create_augroup('CodeLensOrAction', { clear = true })
       -- CodeAction
-      vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' },
-        {
-          group = 'CodeLensOrAction',
-          buffer = bufnr,
-          callback = function() vim.schedule(require('nvim-lightbulb').update_lightbulb) end,
-          desc = 'Refresh LSP code lens information',
-        }
-      )
+      if nvim_lightbulb_installed then
+        vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' },
+          {
+            group = 'CodeLensOrAction',
+            buffer = bufnr,
+            callback = function() vim.schedule(require('nvim-lightbulb').update_lightbulb) end,
+            desc = 'Refresh LSP code action lightbulb',
+          }
+        )
+      end
       -- CodeLens
       if client.server_capabilities.codeLensProvider ~= nil then
         vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI', 'InsertLeave' },
@@ -197,6 +202,10 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
           }
         )
         vim.lsp.codelens.refresh() -- run it on attach without waiting for events
+      end
+      -- Inlay hints
+      if lsp_inlayhints_installed then
+        require("lsp-inlayhints").on_attach(client, bufnr)
       end
     end,
     desc = 'Set up buffer local mappings, lens etc on LSP attach',
@@ -216,7 +225,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
         end,
         ["rust_analyzer"] = function()
           if vim.fn['pac#loaded']('rust-tools.nvim') then
-            require("rust-tools").setup {
+            local config = {
               dap = {
                 adapter = {
                   type = "server",
@@ -229,6 +238,15 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
                 },
               },
             }
+
+            if lsp_inlayhints_installed then
+              config.tools = {
+                inlay_hints = {
+                  auto = false
+                }
+              }
+            end
+            require("rust-tools").setup(config)
           else
             lspconfig.rust_analyzer.setup({ capabilities = capabilities })
           end
@@ -330,8 +348,6 @@ if vim.fn['pac#loaded']('null-ls.nvim') then
 
   local sources = {
     null_ls.builtins.code_actions.gitsigns,
-    null_ls.builtins.code_actions.proselint,
-    null_ls.builtins.diagnostics.proselint,
     null_ls.builtins.formatting.shellharden,
     null_ls.builtins.diagnostics.codespell,
     null_ls.builtins.formatting.codespell,
