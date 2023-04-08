@@ -137,6 +137,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
   local open_code_action_menu = vim.fn['pac#loaded']('nvim-code-action-menu') and require('code_action_menu').open_code_action_menu or vim.lsp.buf.code_action
   local nvim_lightbulb_installed = vim.fn['pac#loaded']('nvim-lightbulb')
   local lsp_inlayhints_installed = vim.fn['pac#loaded']('lsp-inlayhints.nvim')
+  if lsp_inlayhints_installed then require('lsp-inlayhints').setup() end
 
   vim.api.nvim_create_augroup('LspWatchers', { clear = true })
   vim.api.nvim_create_autocmd('LspAttach', {
