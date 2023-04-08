@@ -106,6 +106,10 @@ if vim.fn['pac#loaded']('nvim-cmp') then
     table.insert(options["sources"], { name = 'nerdfont' })
   end
 
+  if vim.fn['pac#loaded']('cmp-emmet-vim') then
+    table.insert(options["sources"], { name = 'emmet_vim' })
+  end
+
   if vim.fn['pac#loaded']('lspkind-nvim') then
     options["formatting"] = {
       format = require'lspkind'.cmp_format({

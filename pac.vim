@@ -66,6 +66,8 @@ call minpac#add('hrsh7th/cmp-cmdline')
 call minpac#add('hrsh7th/nvim-cmp')
 call minpac#add('hrsh7th/vim-vsnip')
 call minpac#add('hrsh7th/vim-vsnip-integ')
+call minpac#add('mattn/emmet-vim')
+call minpac#add('dcampos/cmp-emmet-vim')
 
 " Status and tab lines
 call minpac#add('nvim-lualine/lualine.nvim')
@@ -128,8 +130,6 @@ call minpac#add('kristijanhusak/vim-dadbod-ui')
 call minpac#add('kristijanhusak/vim-dadbod-completion')
 
 call minpac#add('tpope/vim-unimpaired')
-
-call minpac#add('mattn/emmet-vim')
 
 " Debug Adapter Protocol
 call minpac#add('mfussenegger/nvim-dap')
