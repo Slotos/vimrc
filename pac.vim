@@ -1,15 +1,5 @@
 scriptencoding utf-8
 
-" wrapper function, implementing `for: filetype` option
-function! pac#add_for(repo, ...) abort
-    let l:opts = get(a:000, 0, {})
-    if has_key(l:opts, 'for')
-        let l:name = substitute(a:repo, '^.*/', '', '')
-        let l:ft = type(l:opts.for) == type([]) ? join(l:opts.for, ',') : l:opts.for
-        execut printf('autocmd FileType %s packadd %s', l:ft, l:name)
-    endif
-endfunction
-
 function! pac#reset_loaded()
   let g:pac#installed_pacs = keys(filter(copy(g:minpac#pluglist), {-> isdirectory(v:val.dir . '/.git')}))
 endfunction
