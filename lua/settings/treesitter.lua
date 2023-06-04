@@ -96,7 +96,6 @@ if vim.fn['pac#loaded']('nvim-treesitter') then
     },
     autotag = {
       enable = true,
-      filetypes = { "html", "xml", "eruby", "embedded_template", "javascript" },
     },
   }
 
