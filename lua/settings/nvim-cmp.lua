@@ -1,4 +1,3 @@
-lua << LUA
 if vim.fn['pac#loaded']('nvim-cmp') then
   local has_words_before = function()
     unpack = unpack or table.unpack
@@ -11,19 +10,19 @@ if vim.fn['pac#loaded']('nvim-cmp') then
   end
 
   -- Set completeopt to have a better completion experience
-  vim.o.completeopt="menu,menuone,noselect"
+  vim.o.completeopt = "menu,menuone,noselect"
 
   vim.api.nvim_create_autocmd('FileType', {
     pattern = 'sql,mysql,plsql',
     group = vim.api.nvim_create_augroup('CmpDadBod', { clear = true }),
     callback = function()
-      require('cmp').setup.buffer({ sources = {{ name = 'vim-dadbod-completion' }} })
+      require('cmp').setup.buffer({ sources = { { name = 'vim-dadbod-completion' } } })
     end,
     desc = 'Set up vim-dadbod completion source for sql buffers',
   })
 
   -- Setup nvim-cmp.
-  local cmp = require'cmp'
+  local cmp = require 'cmp'
 
   local options = {
     mapping = {
@@ -37,7 +36,7 @@ if vim.fn['pac#loaded']('nvim-cmp') then
         else
           fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
         end
-      end, { "i", "s" }),
+      end),
 
       ["<S-Tab>"] = cmp.mapping(function()
         if cmp.visible() then
@@ -45,21 +44,18 @@ if vim.fn['pac#loaded']('nvim-cmp') then
         elseif vim.fn["vsnip#jumpable"](-1) == 1 then
           feedkey("<Plug>(vsnip-jump-prev)", "")
         end
-      end, { "i", "s" }),
+      end),
       ['<Down>'] = cmp.mapping({
         i = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
         c = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-        }),
+      }),
       ['<Up>'] = cmp.mapping({
         i = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
         c = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-        }),
+      }),
       ['<C-d>'] = cmp.mapping.scroll_docs(-4),
       ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-e>'] = cmp.mapping({
-        i = cmp.mapping.abort(),
-        c = cmp.mapping.close(),
-      }),
+      ['<C-e>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Replace,
       }),
@@ -68,6 +64,10 @@ if vim.fn['pac#loaded']('nvim-cmp') then
     experimental = {
       ghost_text = true,
     },
+    preselect = cmp.PreselectMode.None,
+    completion = {
+      autocomplete = false,
+    }
   }
 
   if vim.fn['pac#loaded']('vim-vsnip') then
@@ -112,7 +112,7 @@ if vim.fn['pac#loaded']('nvim-cmp') then
 
   if vim.fn['pac#loaded']('lspkind-nvim') then
     options["formatting"] = {
-      format = require'lspkind'.cmp_format({
+      format = require 'lspkind'.cmp_format({
         mode = 'symbol',
         maxwidth = 50,
         ellipsis_char = '…',
@@ -122,19 +122,29 @@ if vim.fn['pac#loaded']('nvim-cmp') then
 
   cmp.setup(options)
 
-  -- Need to figure out controls that incorporate vim defaults
-  -- cmp.setup.cmdline('/', {
-  --   sources = {
-  --     { name = 'buffer' }
-  --   }
-  -- })
+  -- `/` cmdline setup.
+  cmp.setup.cmdline('/', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    },
+    completion = {
+      autocomplete = false,
+    }
+  })
 
-  -- cmp.setup.cmdline(':', {
-  --   sources = cmp.config.sources({
-  --     { name = 'path' }
-  --   }, {
-  --     { name = 'cmdline' }
-  --   })
-  -- })
+  -- `:` cmdline setup.
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources(
+      {
+        { name = 'path' }
+      }, {
+        { name = 'cmdline' }
+      }
+    ),
+    completion = {
+      autocomplete = false,
+    }
+  })
 end
-LUA

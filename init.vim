@@ -45,9 +45,6 @@ execute 'source' fnameescape(stdpath('config') . '/settings/style.vim')
 " plugins
 execute 'source' fnameescape(stdpath('config') . '/pac.vim')
 
-" LSP configuration and completion
-execute 'source' fnameescape(stdpath('config') . '/settings/nvim-cmp.vim')
-
 " plugin configurations
 execute 'source' fnameescape(stdpath('config') . '/settings/gitsigns.vim')
 execute 'source' fnameescape(stdpath('config') . '/settings/neoterm.vim')
@@ -93,6 +90,8 @@ lua <<LUA
     dofile(this_file_path .. '/lua/settings/treesitter.lua')
     dofile(this_file_path .. '/lua/settings/silicon.lua')
     dofile(this_file_path .. '/lua/settings/folding.lua')
+    -- LSP configuration and completion
+    dofile(this_file_path .. '/lua/settings/nvim-cmp.lua')
   end)()
 LUA
 
