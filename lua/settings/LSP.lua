@@ -335,7 +335,27 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
               solargraph = {
                 diagnostics = true,
                 formatting = true,
+                useBundler = false,
               }
+            },
+          }
+        end,
+        ["gopls"] = function()
+          lspconfig.gopls.setup {
+            capabilities = capabilities,
+            settings = {
+              gopls = {
+                hints = {
+                  assignVariableTypes = true,
+                  compositeLiteralFields = true,
+                  compositeLiteralTypes = true,
+                  constantValues = true,
+                  functionTypeParameters = true,
+                  parameterNames = true,
+                  rangeVariableTypes = true,
+                },
+                semanticTokens = true,
+              },
             },
           }
         end,
