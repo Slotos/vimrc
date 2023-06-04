@@ -90,6 +90,7 @@ lua <<LUA
     dofile(this_file_path .. '/lua/settings/treesitter.lua')
     dofile(this_file_path .. '/lua/settings/silicon.lua')
     dofile(this_file_path .. '/lua/settings/folding.lua')
+    dofile(this_file_path .. '/lua/settings/neoai.lua')
     -- LSP configuration and completion
     dofile(this_file_path .. '/lua/settings/nvim-cmp.lua')
   end)()

@@ -156,4 +156,7 @@ call minpac#add('anuvyklack/pretty-fold.nvim')
 
 call minpac#add('weizheheng/ror.nvim')
 
+" OpenAI interop
+call minpac#add('Bryley/neoai.nvim')
+
 call pac#reset_loaded()
