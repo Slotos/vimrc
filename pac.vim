@@ -102,6 +102,7 @@ call minpac#add('bronson/vim-visual-star-search')
 call minpac#add('mbbill/undotree')
 
 call minpac#add('itchyny/vim-qfedit')
+
 call minpac#add('chrisbra/NrrwRgn')
 
 call minpac#add('rrethy/vim-hexokinase', { 'do': {-> system('make hexokinase') } })
@@ -152,5 +153,7 @@ call minpac#add('AndrewRadev/bufferize.vim')
 call minpac#add('ThePrimeagen/refactoring.nvim')
 
 call minpac#add('anuvyklack/pretty-fold.nvim')
+
+call minpac#add('weizheheng/ror.nvim')
 
 call pac#reset_loaded()
