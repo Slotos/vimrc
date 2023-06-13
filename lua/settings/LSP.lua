@@ -329,17 +329,15 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
           }
         end,
         ["solargraph"] = function()
-          lspconfig.solargraph.setup {
-            capabilities = capabilities,
-            flags = { debounce_text_changes = 150, },
-            settings = {
-              solargraph = {
-                diagnostics = true,
-                formatting = true,
-                useBundler = false,
-              }
-            },
-          }
+          -- Ignore, we're setting it up separately
+          -- Mason approach doesn't work all that well with ruby version managers
+          -- it ends up running solargraph through whatever ruby version
+          -- that was active at the moment of installation, resulting
+          -- in a whiny, incomplete, if at all working LSP
+          --
+          -- Yeah, interpreted languages are a mess.
+          -- Installation through `gem` binary should work better
+          -- coc-solargraph is a decent illustration of it
         end,
         ["gopls"] = function()
           lspconfig.gopls.setup {
@@ -363,6 +361,18 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
       })
     end
   end
+
+  lspconfig.solargraph.setup {
+    capabilities = capabilities,
+    flags = { debounce_text_changes = 150, },
+    settings = {
+      solargraph = {
+        diagnostics = true,
+        formatting = true,
+        useBundler = false,
+      }
+    },
+  }
 end
 
 if vim.fn['pac#loaded']('null-ls.nvim') then
