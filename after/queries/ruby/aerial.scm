@@ -21,7 +21,7 @@
 
 ;; Ideally, this would be a nested query under the above, but (_)* still doesn't work in neovim
 (call method: (identifier) @method @name
-      (#any-of? @method "resources" "get" "post" "patch" "put" "delete" "root" "collection" "member")
+      (#any-of? @method "resources" "resource" "get" "post" "patch" "put" "delete" "root" "collection" "member")
       arguments: (argument_list
                    [(string
                       (string_content) @name)
