@@ -66,7 +66,8 @@ call minpac#add('nvim-lualine/lualine.nvim')
 call minpac#add('alvarosevilla95/luatab.nvim')
 
 " Notification library
-call minpac#add('vigoux/notifier.nvim')
+call minpac#add('rcarriga/nvim-notify')
+call minpac#add('mrded/nvim-lsp-notify')
 
 " Colorschemes
 call minpac#add('rose-pine/neovim', { 'name': 'rose-pine' })
