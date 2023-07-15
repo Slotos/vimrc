@@ -172,10 +172,11 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
       vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
       vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 
-      if client.server_capabilities.documentFormattingProvider == true then
-        vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
-        vim.keymap.set('n', '<localleader>f', function() vim.lsp.buf.format({ async = true }) end, opts)
-      end
+      -- Commented out static capability check.
+      -- if client.server_capabilities.documentFormattingProvider == true then
+      vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
+      vim.keymap.set('n', '<localleader>f', function() vim.lsp.buf.format({ async = true }) end, opts)
+      -- end
 
       if client.server_capabilities.definitionProvider == true then
         vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
@@ -370,7 +371,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
         diagnostics = true,
         formatting = true,
         useBundler = false,
-      }
+      },
     },
   }
 end
