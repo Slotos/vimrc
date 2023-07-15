@@ -374,28 +374,3 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
     },
   }
 end
-
-if vim.fn['pac#loaded']('null-ls.nvim') then
-  local null_ls = require("null-ls")
-
-  local sources = {
-    null_ls.builtins.code_actions.gitsigns,
-    null_ls.builtins.formatting.shellharden,
-    null_ls.builtins.diagnostics.codespell,
-    null_ls.builtins.formatting.codespell,
-    null_ls.builtins.formatting.prettierd,
-  }
-
-  if vim.fn['pac#loaded']('refactoring.nvim') then
-    table.insert(
-      sources,
-      null_ls.builtins.code_actions.refactoring.with({
-        filetypes = { "go", "javascript", "lua", "python", "typescript", "ruby", "c", "cpp" }
-      })
-    )
-  end
-
-  null_ls.setup({
-    sources = sources,
-  })
-end

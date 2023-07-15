@@ -81,6 +81,7 @@ lua <<LUA
   ;(function()
     dofile(this_file_path .. '/lua/settings/notifier.lua')
     dofile(this_file_path .. '/lua/settings/tree-explorer.lua')
+    -- LSP configuration and completion
     dofile(this_file_path .. '/lua/settings/LSP.lua')
     dofile(this_file_path .. '/lua/settings/telescope.lua')
     dofile(this_file_path .. '/lua/settings/git_conflict.lua')
@@ -91,8 +92,8 @@ lua <<LUA
     dofile(this_file_path .. '/lua/settings/silicon.lua')
     dofile(this_file_path .. '/lua/settings/folding.lua')
     dofile(this_file_path .. '/lua/settings/neoai.lua')
-    -- LSP configuration and completion
     dofile(this_file_path .. '/lua/settings/nvim-cmp.lua')
+    dofile(this_file_path .. '/lua/settings/refactoring.lua')
   end)()
 LUA
 

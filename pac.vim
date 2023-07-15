@@ -32,8 +32,9 @@ call minpac#add('folke/trouble.nvim')
 call minpac#add('https://git.sr.ht/~whynothugo/lsp_lines.nvim')
 call minpac#add('https://git.sr.ht/~p00f/clangd_extensions.nvim')
 call minpac#add('simrat39/rust-tools.nvim')
-call minpac#add('jose-elias-alvarez/null-ls.nvim')
 call minpac#add('https://github.com/lvimuser/lsp-inlayhints.nvim')
+" Configure efmls (null-ls is being archived)
+" See https://github.com/creativenull/efmls-configs-nvim
 
 " Commonly used library
 call minpac#add('nvim-lua/plenary.nvim')
