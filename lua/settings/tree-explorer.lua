@@ -1,14 +1,21 @@
 if vim.fn['pac#loaded']('neo-tree.nvim') then
   if vim.fn['pac#loaded']('nvim-window-picker') then
     require'window-picker'.setup({
-      autoselect_one = true,
-      include_current_win = false,
+      -- hint = 'statusline-winbar',
+      hint = 'floating-big-letter',
+      picker_config = {
+        statusline_winbar_picker = {
+          use_winbar = "always",
+        },
+      },
       filter_rules = {
+        include_current_win = false,
+        autoselect_one = true,
         -- filter using buffer options
         bo = {
           -- if the file type is one of following, the window will be ignored
           filetype = {
-            'neo-tree',
+            "neo-tree",
             "neo-tree-popup",
             "notify",
             "quickfix",
@@ -19,14 +26,13 @@ if vim.fn['pac#loaded']('neo-tree.nvim') then
             "dapui_watches",
             "dapui_console",
             "dap-repl",
+            "fugitive",
           },
 
           -- if the buffer type is one of following, the window will be ignored
           buftype = { 'terminal' },
         },
       },
-      use_winbar = 'always',
-      other_win_hl_color = '#e35e4f',
     })
   end
 
