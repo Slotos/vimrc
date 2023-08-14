@@ -16,6 +16,8 @@ if vim.fn['pac#loaded']('rose-pine') then
       TelescopePromptBorder = { fg = "surface", bg = "surface" },
 
       NotifierTitle = { fg = "gold", bg = "overlay" },
+
+      ['@heredoc_content'] = { underdotted = true },
     },
   })
 end
