@@ -136,8 +136,6 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
   end
   local open_code_action_menu = vim.fn['pac#loaded']('nvim-code-action-menu') and require('code_action_menu').open_code_action_menu or vim.lsp.buf.code_action
   local nvim_lightbulb_installed = vim.fn['pac#loaded']('nvim-lightbulb')
-  local lsp_inlayhints_installed = vim.fn['pac#loaded']('lsp-inlayhints.nvim')
-  if lsp_inlayhints_installed then require('lsp-inlayhints').setup() end
 
   vim.api.nvim_create_augroup('LspWatchers', { clear = true })
   vim.api.nvim_create_autocmd('LspAttach', {
@@ -178,9 +176,16 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
       vim.keymap.set('n', '<localleader>f', function() vim.lsp.buf.format({ async = true }) end, opts)
       -- end
 
+      -- Enable LSP definition tagfunc
       if client.server_capabilities.definitionProvider == true then
         vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
       end
+
+      -- Enable inlay hints
+      if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint(bufnr, true)
+      end
+
 
       vim.api.nvim_create_augroup('CodeLensOrAction', { clear = true })
       -- CodeAction
@@ -205,10 +210,6 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
           }
         )
         vim.lsp.codelens.refresh() -- run it on attach without waiting for events
-      end
-      -- Inlay hints
-      if lsp_inlayhints_installed then
-        require("lsp-inlayhints").on_attach(client, bufnr)
       end
     end,
     desc = 'Set up buffer local mappings, lens etc on LSP attach',
@@ -242,13 +243,6 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
               },
             }
 
-            if lsp_inlayhints_installed then
-              config.tools = {
-                inlay_hints = {
-                  auto = false
-                }
-              }
-            end
             require("rust-tools").setup(config)
           else
             lspconfig.rust_analyzer.setup({ capabilities = capabilities })
@@ -282,21 +276,12 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
                     TemplateTemplateParm = "",
                     TemplateParamObject = "",
                   },
-                  highlights = {
-                    detail = "Comment",
-                  },
-                },
-                memory_usage = {
-                  border = "none",
-                },
-                symbol_info = {
-                  border = "none",
                 },
               },
             })
-          else
-            lspconfig.clangd.setup({ capabilities = capabilities })
           end
+
+          lspconfig.clangd.setup({ capabilities = capabilities })
         end,
         ["lua_ls"] = function()
           local runtime_path = vim.split(package.path, ';')
