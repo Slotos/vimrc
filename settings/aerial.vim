@@ -9,6 +9,7 @@ if vim.fn['pac#loaded']('aerial.nvim') then
       -- This underscore key is the default
       ['_']  = {"lsp", "treesitter", "markdown", "man"},
       ruby = {"treesitter", "lsp"},
+      html = {"treesitter", "lsp"},
     },
 
     -- A list of all symbols to display. Set to false to display all symbols.
@@ -24,6 +25,7 @@ if vim.fn['pac#loaded']('aerial.nvim') then
       "Interface",
       "Method",
       "Struct",
+      "Field"
     },
   })
 
