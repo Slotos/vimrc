@@ -132,8 +132,6 @@ call minpac#add('suketa/nvim-dap-ruby')
 call minpac#add('theHamsta/nvim-dap-virtual-text')
 call minpac#add('jbyuki/one-small-step-for-vimkind')
 
-call minpac#add('slashmili/alchemist.vim')
-
 call minpac#add('tpope/vim-commentary')
 call minpac#add('JoosepAlviste/nvim-ts-context-commentstring')
 call minpac#add('tpope/vim-endwise') " when using syntax
