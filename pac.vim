@@ -151,7 +151,9 @@ call minpac#add('ThePrimeagen/refactoring.nvim')
 
 call minpac#add('anuvyklack/pretty-fold.nvim')
 
-call minpac#add('weizheheng/ror.nvim')
+" Test wrappers
+call minpac#add('nvim-neotest/neotest')
+call minpac#add('olimorris/neotest-rspec')
 
 " OpenAI interop
 call minpac#add('Bryley/neoai.nvim')

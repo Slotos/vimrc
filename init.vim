@@ -94,6 +94,7 @@ lua <<LUA
     dofile(this_file_path .. '/lua/settings/nvim-cmp.lua')
     dofile(this_file_path .. '/lua/settings/refactoring.lua')
     dofile(this_file_path .. '/lua/settings/ror.lua')
+    dofile(this_file_path .. '/lua/settings/neotest.lua')
   end)()
 LUA
 
