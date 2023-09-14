@@ -132,7 +132,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
   local lspconfig = require('lspconfig')
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   if vim.fn['pac#loaded']('cmp-nvim-lsp') then
-    capabilities = require('cmp_nvim_lsp').default_capabilities()
+    capabilities = vim.tbl_deep_extend("force", capabilities, require('cmp_nvim_lsp').default_capabilities())
   end
   local open_code_action_menu = vim.fn['pac#loaded']('nvim-code-action-menu') and require('code_action_menu').open_code_action_menu or vim.lsp.buf.code_action
   local nvim_lightbulb_installed = vim.fn['pac#loaded']('nvim-lightbulb')
