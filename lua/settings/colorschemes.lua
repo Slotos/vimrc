@@ -44,6 +44,8 @@ if vim.fn['pac#loaded']('rose-pine') then
               NeotestUnknown = { fg = "text" },
               NeotestWatching = { fg = "gold" },
             },
+            dim_nc_background = true,
+            dark_variant = 'moon',
           })
 
           vim.api.nvim_clear_autocmds({ group = rose_pine_setup_group })
