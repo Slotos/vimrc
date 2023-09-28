@@ -1,4 +1,3 @@
-lua <<LUA
 if vim.fn['pac#loaded']('aerial.nvim') then
   local aerial = require'aerial'
 
@@ -43,4 +42,3 @@ if vim.fn['pac#loaded']('aerial.nvim') then
     vim.api.nvim_set_keymap('n', '<localleader>[', '<cmd>Telescope aerial<CR>', {})
   end
 end
-LUA
