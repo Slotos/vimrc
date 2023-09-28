@@ -27,6 +27,7 @@ if vim.fn['pac#loaded']('neo-tree.nvim') then
             "dapui_console",
             "dap-repl",
             "fugitive",
+            "neotest-summary",
           },
 
           -- if the buffer type is one of following, the window will be ignored
