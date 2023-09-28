@@ -30,19 +30,9 @@ if pac#loaded('undotree')
   nnoremap <silent> <localleader>u :UndotreeToggle<CR>
 endif
 
-if pac#loaded('vim-choosewin')
-  nmap -         <Plug>(choosewin)
-  nmap <Leader>- :<C-u>ChooseWinSwapStay<CR>
-endif
-
 if pac#loaded('vim-expand-region')
   xmap v <Plug>(expand_region_expand)
   xmap V <Plug>(expand_region_shrink)
-endif
-
-if pac#loaded('vim-localorie')
-  nnoremap <silent> <leader>yt :call localorie#translate()<CR>
-  nnoremap <silent> <leader>ye :echo localorie#expand_key()<CR>
 endif
 
 if pac#loaded('vim-dadbod-ui')
