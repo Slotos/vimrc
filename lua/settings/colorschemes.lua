@@ -1,9 +1,8 @@
-local color_scheme_setup_group = vim.api.nvim_create_augroup('ColorSchemeSetup', { clear = true })
-
 if vim.fn['pac#loaded']('rose-pine') then
+  local rose_pine_setup_group = vim.api.nvim_create_augroup('RosePineSetup', { clear = true })
   vim.api.nvim_create_autocmd({ 'ColorSchemePre' },
     {
-      group = color_scheme_setup_group,
+      group = rose_pine_setup_group,
       callback = function(event)
         if string.find(event.match, "rose%-pine") == 1 then
           require('rose-pine').setup({
@@ -46,6 +45,8 @@ if vim.fn['pac#loaded']('rose-pine') then
               NeotestWatching = { fg = "gold" },
             },
           })
+
+          vim.api.nvim_clear_autocmds({ group = rose_pine_setup_group })
         end
       end,
       desc = 'Setup rose-pine',
@@ -54,31 +55,32 @@ if vim.fn['pac#loaded']('rose-pine') then
 end
 
 if vim.fn['pac#loaded']('catppuccin') then
+  local catppuccin_setup_group = vim.api.nvim_create_augroup('CatppuccinSetup', { clear = true })
   vim.api.nvim_create_autocmd({ 'ColorSchemePre' },
     {
-      group = color_scheme_setup_group,
+      group = catppuccin_setup_group,
       callback = function(event)
-        local telescopeBorderless = function(flavor)
-          local cp = require("catppuccin.palettes").get_palette(flavor)
-
-          return {
-            TelescopeBorder = { fg = cp.surface0, bg = cp.surface0 },
-            TelescopeSelectionCaret = { fg = cp.flamingo, bg = cp.surface1 },
-            TelescopeMatching = { fg = cp.peach },
-            TelescopeNormal = { bg = cp.surface0 },
-            TelescopeSelection = { fg = cp.text, bg = cp.surface1 },
-            TelescopeMultiSelection = { fg = cp.text, bg = cp.surface2 },
-
-            TelescopeTitle = { fg = cp.crust, bg = cp.green },
-            TelescopePreviewTitle = { fg = cp.crust, bg = cp.red },
-            TelescopePromptTitle = { fg = cp.crust, bg = cp.mauve },
-
-            TelescopePromptNormal = { fg = cp.flamingo, bg = cp.crust },
-            TelescopePromptBorder = { fg = cp.crust, bg = cp.crust },
-          }
-        end
-
         if string.find(event.match, "catppuccin") == 1 then
+          local telescopeBorderless = function(flavor)
+            local cp = require("catppuccin.palettes").get_palette(flavor)
+
+            return {
+              TelescopeBorder = { fg = cp.surface0, bg = cp.surface0 },
+              TelescopeSelectionCaret = { fg = cp.flamingo, bg = cp.surface1 },
+              TelescopeMatching = { fg = cp.peach },
+              TelescopeNormal = { bg = cp.surface0 },
+              TelescopeSelection = { fg = cp.text, bg = cp.surface1 },
+              TelescopeMultiSelection = { fg = cp.text, bg = cp.surface2 },
+
+              TelescopeTitle = { fg = cp.crust, bg = cp.green },
+              TelescopePreviewTitle = { fg = cp.crust, bg = cp.red },
+              TelescopePromptTitle = { fg = cp.crust, bg = cp.mauve },
+
+              TelescopePromptNormal = { fg = cp.flamingo, bg = cp.crust },
+              TelescopePromptBorder = { fg = cp.crust, bg = cp.crust },
+            }
+          end
+
           require("catppuccin").setup {
             background = { -- :h background
               light = "latte",
@@ -95,9 +97,11 @@ if vim.fn['pac#loaded']('catppuccin') then
               mocha = telescopeBorderless('mocha'),
             },
           }
+
+          vim.api.nvim_clear_autocmds({ group = catppuccin_setup_group })
         end
       end,
-      desc = 'Setup rose-pine',
+      desc = 'Setup catppuccin',
     }
   )
 end
