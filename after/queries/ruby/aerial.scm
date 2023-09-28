@@ -7,7 +7,7 @@
                    [(string
                       (string_content) @name)
                     (simple_symbol) @name
-                    ])?
+                    ])
       (#set! "kind" "Module")
       ) @type
 
@@ -20,7 +20,7 @@
       ) @type
 
 ;; Ideally, this would be a nested query under the above, but (_)* still doesn't work in neovim
-(call method: (identifier) @method @name
+(call method: (identifier) @method
       (#any-of? @method "resources" "resource" "get" "post" "patch" "put" "delete" "root" "collection" "member")
       arguments: (argument_list
                    [(string
