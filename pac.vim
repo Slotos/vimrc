@@ -59,8 +59,7 @@ call minpac#add('mattn/emmet-vim')
 call minpac#add('dcampos/cmp-emmet-vim')
 
 " Status and tab lines
-call minpac#add('nvim-lualine/lualine.nvim')
-call minpac#add('alvarosevilla95/luatab.nvim')
+call minpac#add('Slotos/lualine.nvim', {'branch': 'tabs-highlight-formatting'})
 
 " Notification library
 call minpac#add('rcarriga/nvim-notify')
