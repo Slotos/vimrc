@@ -165,11 +165,6 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
       vim.keymap.set('n', '<leader>ca', open_code_action_menu, opts)
       vim.keymap.set('v', '<leader>ca', open_code_action_menu, opts)
 
-      vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
-      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-      vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-      vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
-
       -- Commented out static capability check.
       -- if client.server_capabilities.documentFormattingProvider == true then
       vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
@@ -360,3 +355,9 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
     },
   }
 end
+
+-- LSP is not the only thing setting diagnostics, just the primary one
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
