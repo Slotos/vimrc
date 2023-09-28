@@ -20,10 +20,6 @@ nmap <C-w>] :vertical resize +3<CR>
 " Remove spaces at the end of lines
 nnoremap <silent> ,<Space> :<C-u>silent! keeppatterns %substitute/\s\+$//e<CR>
 
-if pac#loaded('indent-blankline.nvim')
-  nnoremap <silent> <localleader>i :IndentBlanklineToggle<CR>
-endif
-
 if pac#loaded('neo-tree.nvim')
   " Explorer
   nnoremap <silent> <leader>e :Neotree toggle<CR>

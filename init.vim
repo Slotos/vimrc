@@ -50,7 +50,6 @@ execute 'source' fnameescape(stdpath('config') . '/settings/gitsigns.vim')
 execute 'source' fnameescape(stdpath('config') . '/settings/neoterm.vim')
 execute 'source' fnameescape(stdpath('config') . '/settings/hexokinase.vim')
 execute 'source' fnameescape(stdpath('config') . '/settings/vim-ruby.vim')
-execute 'source' fnameescape(stdpath('config') . '/settings/indentline.vim')
 execute 'source' fnameescape(stdpath('config') . '/settings/aerial.vim')
 execute 'source' fnameescape(stdpath('config') . '/settings/diffview.vim')
 
@@ -95,6 +94,7 @@ lua <<LUA
     dofile(this_file_path .. '/lua/settings/refactoring.lua')
     dofile(this_file_path .. '/lua/settings/ror.lua')
     dofile(this_file_path .. '/lua/settings/neotest.lua')
+    dofile(this_file_path .. '/lua/settings/indentline.lua')
   end)()
 LUA
 
