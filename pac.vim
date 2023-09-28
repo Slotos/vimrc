@@ -120,6 +120,9 @@ call minpac#add('kristijanhusak/vim-dadbod-completion')
 
 call minpac#add('tpope/vim-unimpaired')
 
+" Relnumber shenanigans
+call minpac#add('jeffkreeftmeijer/vim-numbertoggle')
+
 " Debug Adapter Protocol
 call minpac#add('mfussenegger/nvim-dap')
 call minpac#add('rcarriga/nvim-dap-ui')
