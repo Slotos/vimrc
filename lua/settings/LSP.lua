@@ -151,7 +151,6 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
       local opts = { noremap = true, silent = true, buffer = bufnr }
       vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
       vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-      vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
       vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
       vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
       vim.keymap.set('n', '<leader>la', vim.lsp.buf.add_workspace_folder, opts) -- mnemonic: LSP add
@@ -166,21 +165,12 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
       vim.keymap.set('v', '<leader>ca', open_code_action_menu, opts)
 
       -- Commented out static capability check.
-      -- if client.server_capabilities.documentFormattingProvider == true then
-      vim.api.nvim_buf_set_option(bufnr, "formatexpr", "v:lua.vim.lsp.formatexpr()")
       vim.keymap.set('n', '<localleader>f', function() vim.lsp.buf.format({ async = true }) end, opts)
-      -- end
-
-      -- Enable LSP definition tagfunc
-      if client.server_capabilities.definitionProvider == true then
-        vim.api.nvim_buf_set_option(bufnr, "tagfunc", "v:lua.vim.lsp.tagfunc")
-      end
 
       -- Enable inlay hints
       if client.server_capabilities.inlayHintProvider then
         vim.lsp.inlay_hint(bufnr, true)
       end
-
 
       vim.api.nvim_create_augroup('CodeLensOrAction', { clear = true })
       -- CodeAction
