@@ -95,6 +95,7 @@ lua <<LUA
     dofile(this_file_path .. '/lua/settings/neotest.lua')
     dofile(this_file_path .. '/lua/settings/indentline.lua')
     dofile(this_file_path .. '/lua/settings/aerial.lua')
+    dofile(this_file_path .. '/lua/settings/translate.lua')
   end)()
 LUA
 
