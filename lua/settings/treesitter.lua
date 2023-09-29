@@ -163,7 +163,9 @@ vim.keymap.set(
         if args.buf == bufnr or args.buf == lookup_bufnr then return end
 
         vim.api.nvim_del_augroup_by_id(augroup)
-        pcall(vim.api.nvim_win_close, winnr, true)
+        vim.schedule(function()
+          pcall(vim.api.nvim_win_close, winnr, true)
+        end)
       end,
     })
 
@@ -172,7 +174,9 @@ vim.keymap.set(
       buffer = lookup_bufnr,
       callback = function()
         vim.api.nvim_del_augroup_by_id(augroup)
-        pcall(vim.api.nvim_win_close, winnr, true)
+        vim.schedule(function()
+          pcall(vim.api.nvim_win_close, winnr, true)
+        end)
       end,
     })
   end,
