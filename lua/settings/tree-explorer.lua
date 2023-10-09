@@ -39,28 +39,15 @@ if vim.fn['pac#loaded']('neo-tree.nvim') then
 
   vim.g.neo_tree_remove_legacy_commands = 1
 
-  local default_neo_tree_config = require'neo-tree.defaults'
-  local neo_tree_config = {
+  require("neo-tree").setup({
     close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
     window = {
       mappings = {
         ["<2-leftmouse>"] = "open_with_window_picker",
         ["<cr>"] = "open_with_window_picker",
-        ["<C-x>"] = "split_with_window_picker",
-        ["<C-v>"] = "vsplit_with_window_picker",
-        ["<C-t>"] = "open_tabnew",
+        ["S"] = "split_with_window_picker",
+        ["s"] = "vsplit_with_window_picker",
       },
     },
-    filesystem = {
-      window = {
-        mappings = {
-          ["<C-x>"] = "split_with_window_picker",
-        }
-      }
-    }
-  }
-
-  require("neo-tree").setup(
-    vim.tbl_deep_extend('force', default_neo_tree_config, neo_tree_config)
-  )
+  })
 end
