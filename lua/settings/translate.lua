@@ -10,7 +10,11 @@ if vim.fn['pac#loaded']('translate.nvim') then
         "-command=deepl_free",
       }
 
-      if vim.api.nvim_buf_get_option(0, 'modifiable') then table.insert(opts, "--output=insert") end
+      if vim.api.nvim_buf_get_option(0, 'modifiable') then
+        table.insert(opts, "-output=insert")
+      else
+        table.insert(opts, "-output=floating")
+      end
 
       vim.cmd.Translate(unpack(opts))
     end,
