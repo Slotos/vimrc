@@ -106,3 +106,51 @@ if vim.fn['pac#loaded']('catppuccin') then
     }
   )
 end
+
+if vim.env.TERM == 'xterm-kitty' then
+  local kitty_colors_group = vim.api.nvim_create_augroup('KittyRainbow', { clear = true })
+
+  local create_kitty_callbacks = function()
+    vim.api.nvim_create_autocmd({ 'ColorScheme' },
+      {
+        group = kitty_colors_group,
+        pattern = "catppuccin*",
+        callback = function(event)
+          vim.uv.spawn("kitty", { args = { "+kitten", "themes", "Catppuccin-" .. require('catppuccin').flavour } })
+        end,
+        desc = 'Sync kitty to vim for catppuccin',
+      }
+    )
+
+    vim.api.nvim_create_autocmd({ 'ColorScheme' },
+      {
+        group = kitty_colors_group,
+        pattern = "rose-pine*",
+        callback = function(event)
+          local theme_name = "Rosé Pine"
+
+          if vim.o.background == "light" then
+            theme_name = theme_name .. " Dawn"
+          elseif string.lower(require('rose-pine.config').options.dark_variant) == 'moon' then
+            theme_name = theme_name .. " Moon"
+          end
+
+          vim.uv.spawn("kitty", { args = { "+kitten", "themes", theme_name } })
+        end,
+        desc = 'Sync kitty to vim for rose-pine',
+      }
+    )
+  end
+
+  if vim.v.vim_did_enter == 1 then
+    create_kitty_callbacks()
+  else
+    vim.api.nvim_create_autocmd({ 'ColorScheme' },
+      {
+        group = kitty_colors_group,
+        once = true,
+        callback = create_kitty_callbacks
+      }
+    )
+  end
+end
