@@ -76,7 +76,7 @@ call minpac#add('folke/lsp-colors.nvim')
 call minpac#add('pedrohdz/vim-yaml-folds')
 call minpac#add('cuducos/yaml.nvim')
 
-" matchit replacement
+" matchit/matchup replacement
 call minpac#add('andymass/vim-matchup')
 
 " Open file:lineno
