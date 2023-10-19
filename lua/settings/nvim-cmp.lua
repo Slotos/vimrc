@@ -28,7 +28,7 @@ if vim.fn['pac#loaded']('nvim-cmp') then
     mapping = {
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
-          cmp.select_next_item()
+          cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
         elseif vim.fn["vsnip#available"](1) == 1 then
           feedkey("<Plug>(vsnip-expand-or-jump)", "")
         elseif has_words_before() then
@@ -40,7 +40,7 @@ if vim.fn['pac#loaded']('nvim-cmp') then
 
       ["<S-Tab>"] = cmp.mapping(function()
         if cmp.visible() then
-          cmp.select_prev_item()
+          cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
         elseif vim.fn["vsnip#jumpable"](-1) == 1 then
           feedkey("<Plug>(vsnip-jump-prev)", "")
         end
@@ -108,6 +108,15 @@ if vim.fn['pac#loaded']('nvim-cmp') then
 
   if vim.fn['pac#loaded']('cmp-emmet-vim') then
     table.insert(options["sources"], { name = 'emmet_vim' })
+  end
+
+  if vim.fn['pac#loaded']('cmp-omni') then
+    table.insert(options["sources"], {
+      name = 'omni',
+      option = {
+        disable_omnifuncs = { 'v:lua.vim.lsp.omnifunc' }
+      }
+    })
   end
 
   if vim.fn['pac#loaded']('lspkind-nvim') then

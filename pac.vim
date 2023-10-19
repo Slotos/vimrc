@@ -57,6 +57,7 @@ call minpac#add('hrsh7th/vim-vsnip')
 call minpac#add('hrsh7th/vim-vsnip-integ')
 call minpac#add('mattn/emmet-vim')
 call minpac#add('dcampos/cmp-emmet-vim')
+call minpac#add('hrsh7th/cmp-omni')
 
 " Status and tab lines
 call minpac#add('Slotos/lualine.nvim', {'branch': 'tabs-highlight-formatting'})
