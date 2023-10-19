@@ -111,7 +111,6 @@ vim.keymap.set(
     for _, chunk in ipairs(inspected) do
       local text, highlight = unpack(chunk)
       local text_len = string.len(text)
-      vim.print(text)
 
       if text == "\n" then
         max_width = math.max(width, max_width)
@@ -127,7 +126,6 @@ vim.keymap.set(
 
         local new_col = col + text_len
 
-        vim.print({col, new_col})
         vim.api.nvim_buf_set_text(bufnr, row, col, row, col, { text })
 
         if highlight then
@@ -146,7 +144,6 @@ vim.keymap.set(
     })
 
     if winnr == 0 then return end
-    vim.print(winnr)
 
     -- Ensure we close the window when moving around
     local augroup = vim.api.nvim_create_augroup('preview_window_' .. winnr, {
@@ -195,9 +192,6 @@ if vim.fn['pac#loaded']('nvim-treesitter') then
   end
 
   require'nvim-treesitter.configs'.setup {
-    -- highlight = {
-    --   enable = true,
-    -- },
     indent = {
       enable = true,
     },
