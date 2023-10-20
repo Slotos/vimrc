@@ -234,8 +234,6 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
           end
         end,
         ["clangd"] = function()
-          capabilities.offsetEncoding = { "utf-16" } -- see https://github.com/jose-elias-alvarez/null-ls.nvim/issues/428
-
           if vim.fn['pac#loaded']('clangd_extensions.nvim') then
             require('clangd_extensions').setup({
               server = {
