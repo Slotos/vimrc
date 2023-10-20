@@ -160,4 +160,7 @@ call minpac#add('olimorris/neotest-rspec')
 
 call minpac#add('antoinemadec/FixCursorHold.nvim')
 
+" QoL
+call minpac#add('folke/which-key.nvim')
+
 call pac#reset_loaded()

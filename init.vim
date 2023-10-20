@@ -96,6 +96,7 @@ lua <<LUA
     dofile(this_file_path .. '/lua/settings/indentline.lua')
     dofile(this_file_path .. '/lua/settings/aerial.lua')
     dofile(this_file_path .. '/lua/settings/translate.lua')
+    dofile(this_file_path .. '/lua/settings/which-key.lua')
   end)()
 LUA
 
