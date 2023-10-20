@@ -29,3 +29,63 @@
                     ])?
       (#set! "kind" "Method")
       ) @type
+
+(body_statement
+  (call
+    method: (identifier) @id
+    (#any-of? @id "attr_reader" "attr_writer" "attr_accessor")
+    arguments: (argument_list
+                 (
+                  (_) @type @name
+                  (#gsub! @name "^:(.*)" "%1")
+                  (#set! "kind" "Method")
+                  )
+                 )
+    )
+  )
+
+(body_statement
+  (call
+    method: (identifier) @scope_node
+    (#any-of? @scope_node "private" "protected")
+    arguments: (argument_list
+                 (call
+                   method: (identifier) @id
+                   (#any-of? @id "attr_reader" "attr_writer" "attr_accessor")
+                   arguments: (argument_list
+                                (
+                                 (_) @type @name
+                                 (#gsub! @name "^:(.*)" "%1")
+                                 (#set! "kind" "Method")
+                                 (#set! "scope" "private")
+                                 )
+                                )
+                   )
+                 )
+    )
+  )
+
+(body_statement
+  (call
+    method: (identifier) @scope_node
+    (#eq? @scope_node "public")
+    arguments: (argument_list
+                 (call
+                   method: (identifier) @id
+                   (#any-of? @id "attr_reader" "attr_writer" "attr_accessor")
+                   arguments: (argument_list
+                                (
+                                 (_) @type @name
+                                 (#gsub! @name "^:(.*)" "%1")
+                                 (#set! "kind" "Method")
+                                 )
+                                )
+                   )
+                 )
+    )
+  )
+
+(assignment
+  left: (constant) @name
+  (#set! "kind" "Constant")
+) @type
