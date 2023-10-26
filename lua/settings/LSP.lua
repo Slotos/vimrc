@@ -200,6 +200,11 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
     desc = 'Set up buffer local mappings, lens etc on LSP attach',
   })
 
+  local basic_lsp_config = {
+    capabilities = capabilities,
+    flags = { debounce_text_changes = 150, },
+  }
+
   if vim.fn['pac#loaded']('mason.nvim') then
     require("mason").setup()
 
@@ -210,7 +215,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
 
       mason_lspconfig.setup_handlers({
         function(server_name)
-          lspconfig[server_name].setup({ capabilities = capabilities })
+          lspconfig[server_name].setup(basic_lsp_config)
         end,
         ["rust_analyzer"] = function()
           if vim.fn['pac#loaded']('rust-tools.nvim') then
@@ -230,110 +235,111 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
 
             require("rust-tools").setup(config)
           else
-            lspconfig.rust_analyzer.setup({ capabilities = capabilities })
+            lspconfig.rust_analyzer.setup(basic_lsp_config)
           end
         end,
         ["clangd"] = function()
           if vim.fn['pac#loaded']('clangd_extensions.nvim') then
             require('clangd_extensions').setup({
-              server = {
-                capabilities = capabilities,
-              },
-              extensions = {
-                ast = {
-                  role_icons = {
-                    type = "",
-                    declaration = "",
-                    expression = "",
-                    specifier = "",
-                    statement = "",
-                    ["template argument"] = "",
-                  },
+              ast = {
+                role_icons = {
+                  type = "",
+                  declaration = "",
+                  expression = "",
+                  specifier = "",
+                  statement = "",
+                  ["template argument"] = "",
+                },
 
-                  kind_icons = {
-                    Compound = "",
-                    Recovery = "",
-                    TranslationUnit = "",
-                    PackExpansion = "",
-                    TemplateTypeParm = "",
-                    TemplateTemplateParm = "",
-                    TemplateParamObject = "",
-                  },
+                kind_icons = {
+                  Compound = "",
+                  Recovery = "",
+                  TranslationUnit = "",
+                  PackExpansion = "",
+                  TemplateTypeParm = "",
+                  TemplateTemplateParm = "",
+                  TemplateParamObject = "",
+                },
+
+                highlights = {
+                  detail = "Comment",
                 },
               },
             })
           end
 
-          lspconfig.clangd.setup({ capabilities = capabilities })
+          lspconfig.clangd.setup(basic_lsp_config)
         end,
         ["lua_ls"] = function()
           local runtime_path = vim.split(package.path, ';')
           table.insert(runtime_path, "lua/?.lua")
           table.insert(runtime_path, "lua/?/init.lua")
 
-          lspconfig.lua_ls.setup {
-            capabilities = capabilities,
-            settings = {
-              Lua = {
-                runtime = {
-                  -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                  version = 'LuaJIT',
-                  -- Setup your lua path
-                  -- path = runtime_path,
-                },
-                diagnostics = {
-                  -- Get the language server to recognize the `vim` global
-                  globals = { 'vim' },
-                },
-                workspace = {
-                  -- Make the server aware of Neovim runtime files
-                  library = vim.api.nvim_get_runtime_file("", true),
-                },
-                -- Do not send telemetry data containing a randomized but unique identifier
-                telemetry = {
-                  enable = false,
+          lspconfig.lua_ls.setup(
+            vim.tbl_extend("force", basic_lsp_config, {
+              settings = {
+                Lua = {
+                  runtime = {
+                    -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+                    version = 'LuaJIT',
+                    -- Setup your lua path
+                    -- path = runtime_path,
+                  },
+                  diagnostics = {
+                    -- Get the language server to recognize the `vim` global
+                    globals = { 'vim' },
+                  },
+                  workspace = {
+                    -- Make the server aware of Neovim runtime files
+                    library = vim.api.nvim_get_runtime_file("", true),
+                  },
+                  -- Do not send telemetry data containing a randomized but unique identifier
+                  telemetry = {
+                    enable = false,
+                  },
                 },
               },
-            },
-          }
+            })
+          )
+        end,
+        ["solargraph"] = function()
+          lspconfig.solargraph.setup(
+            vim.tbl_extend("force", basic_lsp_config, {
+              settings = {
+                solargraph = {
+                  diagnostics = true,
+                  formatting = true,
+                  useBundler = false,
+                }
+              },
+            })
+          )
         end,
         ["gopls"] = function()
-          lspconfig.gopls.setup {
-            capabilities = capabilities,
-            settings = {
-              gopls = {
-                hints = {
-                  assignVariableTypes = true,
-                  compositeLiteralFields = true,
-                  compositeLiteralTypes = true,
-                  constantValues = true,
-                  functionTypeParameters = true,
-                  parameterNames = true,
-                  rangeVariableTypes = true,
+          lspconfig.gopls.setup(
+            vim.tbl_extend("force", basic_lsp_config, {
+              settings = {
+                gopls = {
+                  hints = {
+                    assignVariableTypes = true,
+                    compositeLiteralFields = true,
+                    compositeLiteralTypes = true,
+                    constantValues = true,
+                    functionTypeParameters = true,
+                    parameterNames = true,
+                    rangeVariableTypes = true,
+                  },
+                  semanticTokens = true,
                 },
-                semanticTokens = true,
               },
-            },
-          }
+            })
+          )
         end,
       })
     end
   end
 
-  -- lspconfig.solargraph.setup {
-  --   capabilities = capabilities,
-  --   flags = { debounce_text_changes = 150, },
-  --   settings = {
-  --     solargraph = {
-  --       diagnostics = true,
-  --       formatting = true,
-  --       useBundler = false,
-  --     },
-  --   },
-  -- }
-  lspconfig.ruby_ls.setup{
-    capabilities = capabilities,
-  }
+  lspconfig.ruby_ls.setup(basic_lsp_config)
 end
 
 -- LSP is not the only thing setting diagnostics, just the primary one
