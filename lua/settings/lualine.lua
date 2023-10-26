@@ -20,7 +20,7 @@ function ShortName()
   )
 end
 
-local getDevIcon = (function (...) return nil end)
+local getDevIcon = (function () return nil end)
 if vim.fn['pac#loaded']('nvim-web-devicons') then
   local devicons = require'nvim-web-devicons'
   getDevIcon = function(filename, filetype, extension)
@@ -45,6 +45,42 @@ if vim.fn['pac#loaded']('nvim-web-devicons') then
 end
 
 if vim.fn['pac#loaded']('lualine.nvim') then
+  local lsp_progress = {}
+
+  local concat_lsp_progress = function()
+    local out = {}
+    for _, v in pairs(lsp_progress) do
+      out[#out+1] = string.gsub(v, "%%", "%%%%")
+    end
+    return table.concat(out, "; ") or ""
+  end
+
+  vim.api.nvim_create_autocmd('LspProgress', {
+    callback = function(args)
+      -- {
+      --   client_id = 1,
+      --   result = {
+      --     token = "indexing-progress",
+      --     value = {
+      --       kind = "begin",
+      --       message = "0% completed",
+      --       percentage = 0,
+      --       title = "Ruby LSP: indexing files"
+      --     }
+      --   }
+      local data = args.data
+      local client = vim.lsp.get_client_by_id(data.client_id)
+      if not client then return end
+
+      if data.result.value.kind == "end" then
+        lsp_progress[data.client_id] = nil
+      else
+        lsp_progress[data.client_id] = string.format("%s: %s", client.name, data.result.value.message or data.result.value.title)
+      end
+      require("lualine").refresh()
+    end,
+  })
+
   local lualine_highlight = require'lualine.highlight'
 
   local neoterm_extension = {
@@ -68,7 +104,7 @@ if vim.fn['pac#loaded']('lualine.nvim') then
       lualine_a = { 'mode' },
       lualine_b = { 'branch', 'diff', 'diagnostics' },
       lualine_c = { ShortName, vim.fn['pac#loaded']('aerial.nvim') and 'aerial' or CurrentFunction },
-      lualine_x = { 'encoding', 'fileformat', 'filetype' },
+      lualine_x = { concat_lsp_progress, 'encoding', 'fileformat', 'filetype' },
       lualine_y = { 'progress' },
       lualine_z = { 'location' }
     },

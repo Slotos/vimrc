@@ -64,11 +64,11 @@ call minpac#add('Slotos/lualine.nvim', {'branch': 'tabs-highlight-formatting'})
 
 " Notification library
 call minpac#add('rcarriga/nvim-notify')
-call minpac#add('mrded/nvim-lsp-notify')
 
 " Colorschemes
 call minpac#add('rose-pine/neovim', { 'name': 'rose-pine' })
 call minpac#add('catppuccin/nvim', { 'name': 'catppuccin' })
+call minpac#add('Mofiqul/adwaita.nvim')
 
 " Colorscheme patches
 call minpac#add('folke/lsp-colors.nvim')
