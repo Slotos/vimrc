@@ -72,6 +72,9 @@ lua <<LUA
     ':h'
   )
 
+  -- Save for future use
+  vim.g.config_utils = dofile(this_file_path .. '/lua/ponies/utils.lua')
+
   -- wrap execution into anonymous function
   -- in order to avoid polluting global namespace
   --- semicolon ensures this is not interpreted as

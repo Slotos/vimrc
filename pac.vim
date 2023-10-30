@@ -29,7 +29,7 @@ call minpac#add('onsails/lspkind-nvim')
 call minpac#add('folke/trouble.nvim')
 call minpac#add('https://git.sr.ht/~whynothugo/lsp_lines.nvim')
 call minpac#add('https://git.sr.ht/~p00f/clangd_extensions.nvim')
-call minpac#add('simrat39/rust-tools.nvim')
+call minpac#add('mrcjkb/rustaceanvim')
 " Configure efmls (null-ls is being archived)
 " See https://github.com/creativenull/efmls-configs-nvim
 
