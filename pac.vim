@@ -22,7 +22,6 @@ call minpac#add('stevearc/aerial.nvim')
 " LSP
 call minpac#add('neovim/nvim-lspconfig')
 call minpac#add('williamboman/mason.nvim')
-call minpac#add('williamboman/mason-lspconfig.nvim')
 call minpac#add('weilbith/nvim-code-action-menu')
 call minpac#add('kosayoda/nvim-lightbulb')
 call minpac#add('onsails/lspkind-nvim')
