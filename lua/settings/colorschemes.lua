@@ -1,3 +1,5 @@
+local uv = vim.uv or vim.loop
+
 if vim.fn['pac#loaded']('rose-pine') then
   local rose_pine_setup_group = vim.api.nvim_create_augroup('RosePineSetup', { clear = true })
   vim.api.nvim_create_autocmd({ 'ColorSchemePre' },
@@ -116,7 +118,7 @@ if vim.env.TERM == 'xterm-kitty' then
         group = kitty_colors_group,
         pattern = "catppuccin*",
         callback = function(event)
-          vim.uv.spawn("kitty", { args = { "+kitten", "themes", "Catppuccin-" .. require('catppuccin').flavour } })
+          uv.spawn("kitty", { args = { "+kitten", "themes", "Catppuccin-" .. require('catppuccin').flavour } })
         end,
         desc = 'Sync kitty to vim for catppuccin',
       }
@@ -135,7 +137,7 @@ if vim.env.TERM == 'xterm-kitty' then
             theme_name = theme_name .. " Moon"
           end
 
-          vim.uv.spawn("kitty", { args = { "+kitten", "themes", theme_name } })
+          uv.spawn("kitty", { args = { "+kitten", "themes", theme_name } })
         end,
         desc = 'Sync kitty to vim for rose-pine',
       }

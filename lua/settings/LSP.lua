@@ -169,7 +169,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
       vim.keymap.set('n', '<localleader>f', function() vim.lsp.buf.format({ async = true }) end, vim.tbl_extend("force", keymap_opts, {desc = "Format buffer with LSP"}))
 
       -- Enable inlay hints
-      if client.server_capabilities.inlayHintProvider then
+      if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
         vim.lsp.inlay_hint(bufnr, true)
       end
 

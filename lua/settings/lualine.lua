@@ -55,31 +55,36 @@ if vim.fn['pac#loaded']('lualine.nvim') then
     return table.concat(out, "; ") or ""
   end
 
-  vim.api.nvim_create_autocmd('LspProgress', {
-    callback = function(args)
-      -- {
-      --   client_id = 1,
-      --   result = {
-      --     token = "indexing-progress",
-      --     value = {
-      --       kind = "begin",
-      --       message = "0% completed",
-      --       percentage = 0,
-      --       title = "Ruby LSP: indexing files"
-      --     }
-      --   }
-      local data = args.data
-      local client = vim.lsp.get_client_by_id(data.client_id)
-      if not client then return end
+  -- Prior to this event, handling of progress messages is messy
+  -- I use neovim-nightly, this is here to not explode my configuration when
+  -- I run tests on plugins using neovim stable
+  if vim.fn.exists('##LspProgress') == 1 then
+    vim.api.nvim_create_autocmd('LspProgress', {
+      callback = function(args)
+        -- {
+        --   client_id = 1,
+        --   result = {
+        --     token = "indexing-progress",
+        --     value = {
+        --       kind = "begin",
+        --       message = "0% completed",
+        --       percentage = 0,
+        --       title = "Ruby LSP: indexing files"
+        --     }
+        --   }
+        local data = args.data
+        local client = vim.lsp.get_client_by_id(data.client_id)
+        if not client then return end
 
-      if data.result.value.kind == "end" then
-        lsp_progress[data.client_id] = nil
-      else
-        lsp_progress[data.client_id] = string.format("%s: %s", client.name, data.result.value.message or data.result.value.title)
-      end
-      require("lualine").refresh()
-    end,
-  })
+        if data.result.value.kind == "end" then
+          lsp_progress[data.client_id] = nil
+        else
+          lsp_progress[data.client_id] = string.format("%s: %s", client.name, data.result.value.message or data.result.value.title)
+        end
+        require("lualine").refresh()
+      end,
+    })
+  end
 
   local lualine_highlight = require'lualine.highlight'
 
