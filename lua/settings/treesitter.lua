@@ -199,9 +199,6 @@ if vim.fn['pac#loaded']('nvim-treesitter') then
       enable = true,
       include_match_words = false,
     },
-    endwise = {
-      enable = true,
-    },
   }
 
   vim.api.nvim_create_autocmd({ 'FileType' },
