@@ -61,9 +61,6 @@ execute 'source' fnameescape(stdpath('config') . '/settings/cursorline.vim')
 " Neovide
 execute 'source' fnameescape(stdpath('config') . '/settings/neovide.vim')
 
-" Custom plugins
-execute 'source' fnameescape(stdpath('config') . '/plugins/hlsearch.vim')
-
 lua <<LUA
   local this_file_path = vim.fn.fnamemodify(
     vim.fn.resolve(
