@@ -186,11 +186,19 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function() pcall(vim.treesitter.start) end,
 })
 
-if vim.fn['pac#loaded']('nvim-treesitter') then
-  if vim.fn['pac#loaded']('nvim-ts-context-commentstring') then
-    require('ts_context_commentstring').setup {}
-  end
+vim.api.nvim_create_autocmd({ 'FileType' },
+  {
+    pattern = 'ruby,eruby,javascript,lua,go,elixir,vim,typescript,markdown,typescriptreact',
+    group = treesitter_grp,
+    callback = function()
+      vim.wo.foldmethod = 'expr'
+      vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    end,
+    desc = 'Set tree-sitter folding for chosen filetypes',
+  }
+)
 
+if vim.fn['pac#loaded']('nvim-treesitter') then
   require'nvim-treesitter.configs'.setup {
     indent = {
       enable = true,
@@ -200,17 +208,4 @@ if vim.fn['pac#loaded']('nvim-treesitter') then
       include_match_words = false,
     },
   }
-
-  vim.api.nvim_create_autocmd({ 'FileType' },
-    {
-      pattern = 'ruby,eruby,javascript,lua,go,elixir,vim,typescript,markdown,typescriptreact',
-      group = treesitter_grp,
-      callback = function()
-        vim.wo.foldmethod = 'expr'
-        vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-        -- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-      end,
-      desc = 'Set tree-sitter folding for chosen filetypes',
-    }
-  )
 end
