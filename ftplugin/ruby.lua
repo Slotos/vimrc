@@ -6,3 +6,6 @@ if utils then utils.setup_filetype_lsp('ruby') end
 -- I managed to track it down to `has('ruby')` call, which seems to do something similar to `ruby -e 'require "neovim"'`
 -- I don't really care for vim-ruby, tree-sitter so far is sufficient
 vim.b.did_ftplugin = 1
+
+vim.bo.comments='b:#'
+vim.bo.commentstring='# %s'
