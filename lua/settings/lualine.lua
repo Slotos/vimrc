@@ -1,3 +1,5 @@
+local throttle = vim.g.local_throttle()
+
 function CurrentFunction()
   return ''
 end
@@ -59,6 +61,20 @@ if vim.fn['pac#loaded']('lualine.nvim') then
   -- I use neovim-nightly, this is here to not explode my configuration when
   -- I run tests on plugins using neovim stable
   if vim.fn.exists('##LspProgress') == 1 then
+    -- We're never stopping this timer
+    local throttled_lualine_refresh, _ = throttle.throttle_leading(require("lualine").refresh, 300)
+    local client_cleaners = {}
+    local debounce_clear = function(client_id)
+      if not client_cleaners[client_id] then
+        client_cleaners[client_id] = throttle.debounce(function()
+          lsp_progress[client_id] = nil
+          throttled_lualine_refresh()
+        end, 2000)
+      end
+
+      return client_cleaners[client_id]()
+    end
+
     vim.api.nvim_create_autocmd('LspProgress', {
       callback = function(args)
         -- {
@@ -76,12 +92,13 @@ if vim.fn['pac#loaded']('lualine.nvim') then
         local client = vim.lsp.get_client_by_id(data.client_id)
         if not client then return end
 
-        if data.result.value.kind == "end" then
-          lsp_progress[data.client_id] = nil
-        else
-          lsp_progress[data.client_id] = string.format("%s: %s", client.name, data.result.value.message or data.result.value.title)
-        end
-        require("lualine").refresh()
+        -- gopls is a nasty citizen - emits a "begin" progress event on workspace loading error, with no "end"
+        -- other offenders might exist too
+        -- Incidentally, this is a decent "end" handler, so 🤷
+        debounce_clear(data.client_id)
+
+        lsp_progress[data.client_id] = string.format("%s: %s", client.name, data.result.value.message or data.result.value.title)
+        throttled_lualine_refresh()
       end,
     })
   end
