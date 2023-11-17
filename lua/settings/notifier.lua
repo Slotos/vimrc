@@ -3,16 +3,10 @@ if vim.fn['pac#loaded']('notifier.nvim') then
 end
 
 if vim.fn['pac#loaded']('nvim-notify') then
-  vim.schedule(function()
-    local notify = require("notify")
-    notify.setup({
-      -- render = "compact",
-      background_colour = "NormalNC"
-    })
-    vim.notify = notify
-
-    if vim.fn['pac#loaded']('nvim-lsp-notify') then
-      require('lsp-notify').setup({})
-    end
-  end)
+  local notify = require("notify")
+  notify.setup({
+    -- render = "compact",
+    background_colour = "NormalNC"
+  })
+  vim.notify = notify
 end
