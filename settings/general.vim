@@ -73,7 +73,7 @@ set grepprg=rg\ --vimgrep\ $*
 set wildignore+=*.so,*~,*/.git/*,*/.svn/*,*/.DS_Store,*/tmp/*
 
 if has('conceal')
-  set conceallevel=3 concealcursor=nv
+  set conceallevel=2 concealcursor=nv
 endif
 
 " Vim Directories {{{
@@ -113,7 +113,6 @@ augroup END
 
 if has('folding')
   set foldenable
-  set foldmethod=syntax
   set foldlevelstart=99
 endif
 
