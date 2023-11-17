@@ -170,7 +170,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
 
       -- Enable inlay hints
       if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-        vim.lsp.inlay_hint(bufnr, true)
+        vim.lsp.inlay_hint.enable(bufnr, true)
       end
 
       vim.api.nvim_create_augroup('CodeLensOrAction', { clear = true })
