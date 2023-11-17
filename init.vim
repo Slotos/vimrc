@@ -72,8 +72,22 @@ lua <<LUA
     ':h'
   )
 
-  -- Save for future use
-  vim.g.config_utils = dofile(this_file_path .. '/lua/ponies/utils.lua')
+  local load_local_module = function(name)
+    local module, loader
+    loader = function()
+      module = dofile(string.format("%s/local_lua/%s.lua", this_file_path, name))
+      loader = function()
+        return module
+      end
+      return module
+    end
+    return loader
+  end
+
+  -- Save for local reuse
+  vim.g.local_lsp_utils = load_local_module('lsp_utils')
+  vim.g.local_throttle = load_local_module('throttle')
+  vim.g.local_time = load_local_module('time')
 
   -- wrap execution into anonymous function
   -- in order to avoid polluting global namespace
