@@ -18,6 +18,7 @@ endfunction
 call minpac#add('nvim-treesitter/nvim-treesitter', { 'do': 'packloadall! | TSUpdate' })
 call minpac#add('nvim-treesitter/nvim-treesitter-context')
 call minpac#add('stevearc/aerial.nvim')
+call minpac#add('folke/twilight.nvim') " Tree-sitter powered context highlighting
 
 " LSP
 call minpac#add('neovim/nvim-lspconfig')
