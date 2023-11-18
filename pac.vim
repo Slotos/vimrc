@@ -15,7 +15,7 @@ function! pac#loaded(name)
 endfunction
 
 " Tree-sitter
-call minpac#add('nvim-treesitter/nvim-treesitter', { 'do': 'packloadall! | TSUpdate' })
+call minpac#add('nvim-treesitter/nvim-treesitter', { 'branch': 'main', 'do': 'packloadall! | TSUpdate' })
 call minpac#add('nvim-treesitter/nvim-treesitter-context')
 call minpac#add('stevearc/aerial.nvim')
 call minpac#add('folke/twilight.nvim') " Tree-sitter powered context highlighting
@@ -78,7 +78,7 @@ call minpac#add('pedrohdz/vim-yaml-folds')
 call minpac#add('cuducos/yaml.nvim')
 
 " matchit/matchup replacement
-call minpac#add('andymass/vim-matchup')
+call minpac#add('Slotos/vim-matchup', {'branch': 'extract_nvim_ts_deprecations'})
 
 " Open file:lineno
 call minpac#add('wsdjeg/vim-fetch')
