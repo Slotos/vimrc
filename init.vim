@@ -71,13 +71,17 @@ lua <<LUA
 
   local load_local_module = function(name)
     local module, loader
+
     loader = function()
-      module = dofile(string.format("%s/local_lua/%s.lua", this_file_path, name))
-      loader = function()
+      if module then
         return module
       end
+
+      module = dofile(string.format("%s/local_lua/%s.lua", this_file_path, name))
+
       return module
     end
+
     return loader
   end
 

@@ -25,7 +25,12 @@ end
 local getDevIcon = (function () return nil end)
 if vim.fn['pac#loaded']('nvim-web-devicons') then
   local devicons = require'nvim-web-devicons'
-  getDevIcon = function(filename, filetype, extension)
+  getDevIcon = function(bufnr)
+    local filename = vim.fn.expand(string.format('#%s:t', bufnr))
+    local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
+    local buftype = vim.api.nvim_buf_get_option(bufnr, 'buftype')
+    local extension = vim.fn.expand(string.format('#%s:3', bufnr))
+
     local icon, color
     local devhl = filetype
 
@@ -160,10 +165,7 @@ if vim.fn['pac#loaded']('lualine.nvim') then
             -- devicon (extremely hacky, and definitely slow, but with lualine
             --          not exposing handy highlight caching functions, I'll need
             --          to deal with caching myself, but I'm lazy and this too shall pass)
-            local filename = vim.fn.expand('#'..buf_handle..':t')
-            local filetype = vim.api.nvim_buf_get_option(buf_handle, 'filetype')
-            local extension = vim.fn.expand('#'..buf_handle..':e')
-            local devicon, fg, devhl = getDevIcon(filename, filetype, extension)
+            local devicon, fg, devhl = getDevIcon(buf_handle)
             if devicon then
               local h = require'color_helpers'
               local tab_hlgroup = lualine_highlight.component_format_highlight(context.highlights[(context.current and 'active' or 'inactive')])

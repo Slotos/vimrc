@@ -71,8 +71,11 @@ local fthandlers = {
             globals = { "vim" },
           },
           workspace = {
+            checkThirdParty = false,
             -- Make the server aware of Neovim runtime files
-            library = vim.api.nvim_get_runtime_file("", true),
+            library = {
+              vim.api.nvim_get_runtime_file("lua", true),
+            }
           },
           -- Do not send telemetry data containing a randomized but unique identifier
           telemetry = {
@@ -142,7 +145,7 @@ M.run_lsp = function(lsp_name, opts, bufnr)
   end
 
   if not set_up_servers[lsp_name] then
-    vim.defer_fn(function()
+    vim.schedule(function()
       local langserver, options = lsp_config(lsp_name, opts or {})
 
       local cmd = langserver
@@ -155,7 +158,7 @@ M.run_lsp = function(lsp_name, opts, bufnr)
         langserver.setup(options)
         langserver.manager:try_add(bufnr)
       end
-    end, 100)
+    end)
   end
 end
 

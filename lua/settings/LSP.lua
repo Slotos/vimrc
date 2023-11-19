@@ -1,4 +1,6 @@
-local keymap_opts = { noremap = true, silent = true, buffer = bufnr }
+local keymap_opts = function(bufnr)
+  return { noremap = true, silent = true, buffer = bufnr }
+end
 
 vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "Error" })
 vim.fn.sign_define("DiagnosticSignWarning", { text = "", texthl = "Warnings" })
@@ -150,23 +152,23 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
       local bufnr = args.buf
       local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, keymap_opts)
-      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, keymap_opts)
-      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, keymap_opts)
-      vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, keymap_opts)
-      vim.keymap.set('n', '<leader>la', vim.lsp.buf.add_workspace_folder, keymap_opts) -- mnemonic: LSP add
-      vim.keymap.set('n', '<leader>lr', vim.lsp.buf.remove_workspace_folder, keymap_opts) -- LSP remove
-      vim.keymap.set('n', '<leader>ll', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, keymap_opts) -- LSP list
-      vim.keymap.set('n', '<leader>cl', vim.lsp.codelens.run, keymap_opts) -- Run codelens
-      vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, keymap_opts)
-      vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, keymap_opts)
-      vim.keymap.set('n', 'gr', vim.lsp.buf.references, keymap_opts)
+      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, keymap_opts(bufnr))
+      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, keymap_opts(bufnr))
+      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, keymap_opts(bufnr))
+      vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, keymap_opts(bufnr))
+      vim.keymap.set('n', '<leader>la', vim.lsp.buf.add_workspace_folder, keymap_opts(bufnr)) -- mnemonic: LSP add
+      vim.keymap.set('n', '<leader>lr', vim.lsp.buf.remove_workspace_folder, keymap_opts(bufnr)) -- LSP remove
+      vim.keymap.set('n', '<leader>ll', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, keymap_opts(bufnr)) -- LSP list
+      vim.keymap.set('n', '<leader>cl', vim.lsp.codelens.run, keymap_opts(bufnr)) -- Run codelens
+      vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, keymap_opts(bufnr))
+      vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, keymap_opts(bufnr))
+      vim.keymap.set('n', 'gr', vim.lsp.buf.references, keymap_opts(bufnr))
 
-      vim.keymap.set('n', '<leader>ca', open_code_action_menu, keymap_opts)
-      vim.keymap.set('v', '<leader>ca', open_code_action_menu, keymap_opts)
+      vim.keymap.set('n', '<leader>ca', open_code_action_menu, keymap_opts(bufnr))
+      vim.keymap.set('v', '<leader>ca', open_code_action_menu, keymap_opts(bufnr))
 
       -- Commented out static capability check.
-      vim.keymap.set('n', '<localleader>f', function() vim.lsp.buf.format({ async = true }) end, vim.tbl_extend("force", keymap_opts, {desc = "Format buffer with LSP"}))
+      vim.keymap.set('n', '<localleader>f', function() vim.lsp.buf.format({ async = true }) end, vim.tbl_extend("force", keymap_opts(bufnr), {desc = "Format buffer with LSP"}))
 
       -- Enable inlay hints
       if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
@@ -206,7 +208,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
 end
 
 -- LSP is not the only thing setting diagnostics, just the primary one
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, keymap_opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, keymap_opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, keymap_opts)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, keymap_opts)
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, keymap_opts())
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, keymap_opts())
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, keymap_opts())
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, keymap_opts())
