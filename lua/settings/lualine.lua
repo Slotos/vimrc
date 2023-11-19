@@ -29,7 +29,7 @@ if vim.fn['pac#loaded']('nvim-web-devicons') then
     local filename = vim.fn.expand(string.format('#%s:t', bufnr))
     local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
     local buftype = vim.api.nvim_buf_get_option(bufnr, 'buftype')
-    local extension = vim.fn.expand(string.format('#%s:3', bufnr))
+    local extension = vim.fn.expand(string.format('#%s:e', bufnr))
 
     local icon, color
     local devhl = filetype
