@@ -190,7 +190,8 @@ if vim.fn['pac#loaded']('nvim-dap') then
 
   -- Taken from nvim-dap-ruby and updated for piped communication (I don't wanna fight for ports)
   dap.adapters.ruby = function(callback, config)
-    local script
+    local script, pipe, executable, args
+
     if type(config.script) == "function" then
       script = config.script()
     else

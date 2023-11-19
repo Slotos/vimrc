@@ -332,7 +332,7 @@ end
 
 ---converts #rrggbb fomated color to cterm ('0'-'255') color
 ---@param hex_color string
----@return string
+---@return string|nil
 function M.rgb2cterm(hex_color)
   local function get_color_distance(color1, color2)
     -- returns how much color2 deviates from color1
@@ -347,7 +347,7 @@ function M.rgb2cterm(hex_color)
   local b = tonumber(hex_color:sub(6, 7), 16)
 
   -- check which cterm color is closest to hex colors in terms of rgb values
-  local closest_cterm_color = 0
+  local closest_cterm_color = "0"
   local min_distance = 10000
   for _, color in ipairs(color_table) do
     local current_distance = get_color_distance(color[2], { r, g, b })
@@ -361,7 +361,7 @@ end
 
 ---converts cterm(0-255) to #rrggbb
 ---@param color number
----@return string
+---@return string|nil
 function M.cterm2rgb(color)
   if not color then return 'NONE' end
   local color_data = color_table[color + 1]
