@@ -140,26 +140,25 @@ M.run_lsp = function(lsp_name, opts, bufnr)
   if not bufnr or bufnr == 0 then
     bufnr = vim.api.nvim_get_current_buf()
   end
-  if not vim.api.nvim_buf_is_valid(bufnr) then
-    return
-  end
 
-  if not set_up_servers[lsp_name] then
-    vim.schedule(function()
-      local langserver, options = lsp_config(lsp_name, opts or {})
+  vim.schedule(function()
+    if set_up_servers[lsp_name] or not vim.api.nvim_buf_is_valid(bufnr) then
+      return
+    end
 
-      local cmd = langserver
-        and langserver.document_config
-        and langserver.document_config.default_config
-        and langserver.document_config.default_config.cmd[1]
+    local langserver, options = lsp_config(lsp_name, opts or {})
 
-      if cmd and vim.fn.executable(cmd) == 1 then
-        set_up_servers[lsp_name] = true
-        langserver.setup(options)
-        langserver.manager:try_add(bufnr)
-      end
-    end)
-  end
+    local cmd = langserver
+    and langserver.document_config
+    and langserver.document_config.default_config
+    and langserver.document_config.default_config.cmd[1]
+
+    if cmd and vim.fn.executable(cmd) == 1 then
+      set_up_servers[lsp_name] = true
+      langserver.setup(options)
+      langserver.manager:try_add(bufnr)
+    end
+  end)
 end
 
 return M
