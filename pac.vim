@@ -73,10 +73,6 @@ call minpac#add('Mofiqul/adwaita.nvim')
 " Colorscheme patches
 call minpac#add('folke/lsp-colors.nvim')
 
-" Syntax dump
-call minpac#add('pedrohdz/vim-yaml-folds')
-call minpac#add('cuducos/yaml.nvim')
-
 " matchit/matchup replacement
 call minpac#add('Slotos/vim-matchup', {'branch': 'extract_nvim_ts_deprecations'})
 
