@@ -83,7 +83,6 @@ call minpac#add('wsdjeg/vim-fetch')
 call minpac#add('nvim-telescope/telescope.nvim')
 call minpac#add('nvim-telescope/telescope-fzf-native.nvim', { 'do': {-> system('make') } })
 call minpac#add('stevearc/dressing.nvim')
-call minpac#add('Slotos/telescope-lsp-handlers.nvim')
 
 " Terminals and REPLs interactions
 call minpac#add('kassio/neoterm')
