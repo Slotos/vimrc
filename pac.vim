@@ -17,7 +17,7 @@ endfunction
 " Tree-sitter
 call minpac#add('nvim-treesitter/nvim-treesitter', { 'branch': 'main', 'do': 'packloadall! | TSUpdate' })
 call minpac#add('nvim-treesitter/nvim-treesitter-context')
-call minpac#add('stevearc/aerial.nvim')
+call minpac#add('Slotos/aerial.nvim', { 'branch': 'be-a-plugin' })
 call minpac#add('folke/twilight.nvim') " Tree-sitter powered context highlighting
 
 " LSP
