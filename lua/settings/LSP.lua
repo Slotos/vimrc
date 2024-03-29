@@ -138,7 +138,7 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
   if vim.fn['pac#loaded']('cmp-nvim-lsp') then
     capabilities = vim.tbl_deep_extend("force", capabilities, require('cmp_nvim_lsp').default_capabilities()) or capabilities
   end
-  local open_code_action_menu = vim.fn['pac#loaded']('nvim-code-action-menu') and require('code_action_menu').open_code_action_menu or vim.lsp.buf.code_action
+  local open_code_action_menu = vim.fn['pac#loaded']('actions-preview.nvim') and require("actions-preview").code_actions or vim.lsp.buf.code_action
   local nvim_lightbulb_installed = vim.fn['pac#loaded']('nvim-lightbulb')
 
   vim.api.nvim_create_augroup('LspWatchers', { clear = true })
