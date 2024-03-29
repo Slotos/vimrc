@@ -125,9 +125,9 @@ call minpac#add('leoluz/nvim-dap-go')
 call minpac#add('theHamsta/nvim-dap-virtual-text')
 call minpac#add('jbyuki/one-small-step-for-vimkind')
 
-call minpac#add('tpope/vim-commentary')
-call minpac#add('JoosepAlviste/nvim-ts-context-commentstring')
-call minpac#add('tpope/vim-endwise') " when using syntax
+call minpac#add('Slotos/mini.comment')
+
+call minpac#add('tpope/vim-endwise')
 
 call minpac#add('lukas-reineke/indent-blankline.nvim')
 call minpac#add('terryma/vim-expand-region')
