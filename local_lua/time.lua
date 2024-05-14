@@ -172,5 +172,51 @@ if not ... then
   test_sleep(2, 0.2)
 end
 
+local func = function(box, mess, times)
+  local _start, _end, _breaker
+  _start = M.clock()
+  for i = 1, times do
+    _breaker = box.something
+  end
+  _end = M.clock()
+
+  vim.print(string.format(mess, (_end - _start) * 1000))
+end
+
+M.test_global = function()
+  vim.cmd('let g:test_glob = {"something": "value"}')
+  local test_loc = {something = "value"}
+
+  local times = 10000000
+  local _start, _end, _breaker
+
+  _start = M.clock()
+  for i = 1, times do
+    _breaker = vim.g.test_glob.something
+  end
+  _end = M.clock()
+
+  vim.print(string.format("Global access took %0.2fms", (_end - _start) * 1000))
+
+  _start = M.clock()
+  for i = 1, times do
+    _breaker = test_loc.something
+  end
+  _end = M.clock()
+
+  vim.print(string.format("Local access took %0.2fms", (_end - _start) * 1000))
+
+  local glob_ref = vim.g.test_glob
+  _start = M.clock()
+  for i = 1, times do
+    _breaker = glob_ref.something
+  end
+  _end = M.clock()
+
+  vim.print(string.format("Local ref to global access took %0.2fms", (_end - _start) * 1000))
+
+  func(test_loc, "Passed local ref access took %0.2fms", times)
+  func(vim.g.test_glob, "Passed global ref access took %0.2fms", times)
+end
 
 return M
