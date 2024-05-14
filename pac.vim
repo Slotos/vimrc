@@ -30,6 +30,7 @@ call minpac#add('folke/trouble.nvim')
 call minpac#add('https://git.sr.ht/~whynothugo/lsp_lines.nvim')
 call minpac#add('https://git.sr.ht/~p00f/clangd_extensions.nvim')
 call minpac#add('mrcjkb/rustaceanvim')
+call minpac#add('pmizio/typescript-tools.nvim')
 " Configure efmls (null-ls is being archived)
 " See https://github.com/creativenull/efmls-configs-nvim
 
@@ -150,6 +151,7 @@ call minpac#add('uga-rosa/translate.nvim')
 " Test wrappers
 call minpac#add('nvim-neotest/neotest')
 call minpac#add('olimorris/neotest-rspec')
+call minpac#add('marilari88/neotest-vitest')
 
 call minpac#add('antoinemadec/FixCursorHold.nvim')
 

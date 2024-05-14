@@ -5,6 +5,10 @@ if vim.fn['pac#loaded']('neotest') then
     table.insert(adapters, require("neotest-rspec"))
   end
 
+  if vim.fn['pac#loaded']('neotest-vitest') then
+    table.insert(adapters, require("neotest-vitest"))
+  end
+
   local neotest = require("neotest")
 
   neotest.setup({
