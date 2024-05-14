@@ -23,7 +23,11 @@ local set_up_servers = {}
 
 local fthandlers = {
   ruby = function()
-    M.run_lsp("ruby_ls")
+    M.run_lsp("ruby_lsp", {
+      init_options = {
+        linters = {"rubocop"}
+      }
+    })
     M.run_lsp("solargraph", {
       settings = {
         solargraph = {
