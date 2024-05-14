@@ -53,6 +53,10 @@ local fthandlers = {
     })
   end,
   lua = function()
+    if vim.fn["pac#loaded"]("neodev.nvim") then
+      require("neodev").setup({})
+    end
+
     local runtime_path = vim.split(package.path, ";")
     table.insert(runtime_path, "lua/?.lua")
     table.insert(runtime_path, "lua/?/init.lua")
@@ -81,6 +85,9 @@ local fthandlers = {
           telemetry = {
             enable = false,
           },
+          completion = {
+            callSnippet = "Replace"
+          }
         },
       },
     })
