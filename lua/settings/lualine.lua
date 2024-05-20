@@ -27,8 +27,8 @@ if vim.fn['pac#loaded']('nvim-web-devicons') then
   local devicons = require'nvim-web-devicons'
   getDevIcon = function(bufnr)
     local filename = vim.fn.expand(string.format('#%s:t', bufnr))
-    local filetype = vim.api.nvim_buf_get_option(bufnr, 'filetype')
-    local buftype = vim.api.nvim_buf_get_option(bufnr, 'buftype')
+    local filetype = vim.api.nvim_get_option_value('filetype', { buf = bufnr })
+    local buftype = vim.api.nvim_get_option_value('buftype', { buf = bufnr })
     local extension = vim.fn.expand(string.format('#%s:e', bufnr))
 
     local icon, color
@@ -84,7 +84,7 @@ if vim.fn['pac#loaded']('lualine.nvim') then
       callback = function(args)
         -- {
         --   client_id = 1,
-        --   result = {
+        --   params = {
         --     token = "indexing-progress",
         --     value = {
         --       kind = "begin",
@@ -102,7 +102,7 @@ if vim.fn['pac#loaded']('lualine.nvim') then
         -- Incidentally, this is a decent "end" handler, so 🤷
         debounce_clear(data.client_id)
 
-        lsp_progress[data.client_id] = string.format("%s: %s", client.name, data.result.value.message or data.result.value.title)
+        lsp_progress[data.client_id] = string.format("%s: %s", client.name, data.params.value.message or data.params.value.title)
         throttled_lualine_refresh()
       end,
     })
