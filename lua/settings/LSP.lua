@@ -138,7 +138,6 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
   if vim.fn['pac#loaded']('cmp-nvim-lsp') then
     capabilities = vim.tbl_deep_extend("force", capabilities, require('cmp_nvim_lsp').default_capabilities()) or capabilities
   end
-  local open_code_action_menu = vim.fn['pac#loaded']('actions-preview.nvim') and require("actions-preview").code_actions or vim.lsp.buf.code_action
   local nvim_lightbulb_installed = vim.fn['pac#loaded']('nvim-lightbulb')
 
   vim.api.nvim_create_augroup('LspWatchers', { clear = true })
@@ -161,11 +160,6 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
       vim.keymap.set('n', '<leader>ll', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, keymap_opts(bufnr)) -- LSP list
       vim.keymap.set('n', '<leader>cl', vim.lsp.codelens.run, keymap_opts(bufnr)) -- Run codelens
       vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, keymap_opts(bufnr))
-      vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, keymap_opts(bufnr))
-      vim.keymap.set('n', 'gr', vim.lsp.buf.references, keymap_opts(bufnr))
-
-      vim.keymap.set('n', '<leader>ca', open_code_action_menu, keymap_opts(bufnr))
-      vim.keymap.set('v', '<leader>ca', open_code_action_menu, keymap_opts(bufnr))
 
       -- Commented out static capability check.
       vim.keymap.set('n', '<localleader>f', function() vim.lsp.buf.format({ async = true }) end, vim.tbl_extend("force", keymap_opts(bufnr), {desc = "Format buffer with LSP"}))

@@ -23,7 +23,6 @@ call minpac#add('folke/twilight.nvim') " Tree-sitter powered context highlightin
 " LSP
 call minpac#add('neovim/nvim-lspconfig')
 call minpac#add('williamboman/mason.nvim')
-call minpac#add('aznhe21/actions-preview.nvim')
 call minpac#add('kosayoda/nvim-lightbulb')
 call minpac#add('onsails/lspkind-nvim')
 call minpac#add('folke/trouble.nvim')
@@ -61,7 +60,7 @@ call minpac#add('dcampos/cmp-emmet-vim')
 call minpac#add('hrsh7th/cmp-omni')
 
 " Status and tab lines
-call minpac#add('Slotos/lualine.nvim', {'branch': 'tabs-highlight-formatting'})
+call minpac#add('Slotos/lualine.nvim', { 'branch': 'tabs-highlight-formatting' })
 
 " Notification library
 call minpac#add('rcarriga/nvim-notify')
@@ -125,8 +124,6 @@ call minpac#add('nvim-neotest/nvim-nio')
 call minpac#add('leoluz/nvim-dap-go')
 call minpac#add('theHamsta/nvim-dap-virtual-text')
 call minpac#add('jbyuki/one-small-step-for-vimkind')
-
-call minpac#add('Slotos/mini.comment')
 
 call minpac#add('tpope/vim-endwise')
 
