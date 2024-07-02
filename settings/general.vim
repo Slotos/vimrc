@@ -57,7 +57,7 @@ set hidden
 set shortmess=aFc
 set signcolumn=yes
 set list
-set listchars=tab:»·,nbsp:+,trail:·,extends:→,precedes:←
+set listchars=tab:\|\ ,nbsp:+,trail:·,extends:→,precedes:←
 
 set ignorecase      " Search ignoring case
 set smartcase       " Keep case when searching with *
