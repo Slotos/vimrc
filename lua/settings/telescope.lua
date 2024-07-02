@@ -1,11 +1,16 @@
 if vim.fn['pac#loaded']('telescope.nvim') then
   local telescope = require('telescope')
+  local actions = require('telescope.actions')
   local config = {
     defaults = {
       mappings = {
         i = {
-          ["<Esc>"] = require('telescope.actions').close
-        }
+          ["<Esc>"] = actions.close,
+          ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+        },
+        n = {
+          ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+        },
       },
       prompt_prefix = "   ",
       entry_prefix = "  ",
