@@ -18,14 +18,12 @@ endfunction
 call minpac#add('nvim-treesitter/nvim-treesitter', { 'branch': 'main', 'do': 'packloadall! | TSUpdate' })
 call minpac#add('nvim-treesitter/nvim-treesitter-context')
 call minpac#add('Slotos/aerial.nvim', { 'branch': 'be-a-plugin' })
-call minpac#add('folke/twilight.nvim') " Tree-sitter powered context highlighting
 
 " LSP
 call minpac#add('neovim/nvim-lspconfig')
 call minpac#add('williamboman/mason.nvim')
 call minpac#add('kosayoda/nvim-lightbulb')
 call minpac#add('onsails/lspkind-nvim')
-call minpac#add('folke/trouble.nvim')
 call minpac#add('https://git.sr.ht/~whynothugo/lsp_lines.nvim')
 call minpac#add('https://git.sr.ht/~p00f/clangd_extensions.nvim')
 call minpac#add('mrcjkb/rustaceanvim')
@@ -69,9 +67,6 @@ call minpac#add('rcarriga/nvim-notify')
 call minpac#add('rose-pine/neovim', { 'name': 'rose-pine' })
 call minpac#add('catppuccin/nvim', { 'name': 'catppuccin' })
 call minpac#add('Mofiqul/adwaita.nvim')
-
-" Colorscheme patches
-call minpac#add('folke/lsp-colors.nvim')
 
 " matchit/matchup replacement
 call minpac#add('Slotos/vim-matchup', {'branch': 'extract_nvim_ts_deprecations'})

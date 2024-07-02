@@ -28,22 +28,6 @@ if vim.fn['pac#loaded']('telescope.nvim') then
     telescope.load_extension('fzf')
   end
 
-  if vim.fn['pac#loaded']('trouble.nvim') then
-    local trouble = require("trouble.providers.telescope")
-    config = vim.tbl_deep_extend(
-      'force',
-      config,
-      {
-        defaults = {
-          mappings = {
-            i = { ["<c-q>"] = trouble.smart_open_with_trouble },
-            n = { ["<c-q>"] = trouble.smart_open_with_trouble },
-          }
-        }
-      }
-    )
-  end
-
   telescope.setup(config)
 
   local silentNoremap = function(mode, lhs, rhs, opts)
