@@ -86,7 +86,6 @@ lua <<LUA
   end
 
   -- Save for local reuse
-  vim.g.local_lsp_utils = load_local_module('lsp_utils')
   vim.g.local_throttle = load_local_module('throttle')
   vim.g.local_time = load_local_module('time')
 
