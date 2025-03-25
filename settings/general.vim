@@ -4,7 +4,6 @@ set autoread
 set autowrite
 set confirm
 set splitbelow
-set browsedir=buffer
 if has('vim_starting')
   set encoding=UTF-8
   scriptencoding UTF-8
@@ -57,7 +56,7 @@ set hidden
 set shortmess=aFc
 set signcolumn=yes
 set list
-set listchars=tab:\|\ ,nbsp:+,trail:·,extends:→,precedes:←
+set listchars=tab:\▏\ ,nbsp:+,trail:·,extends:→,precedes:←
 
 set ignorecase      " Search ignoring case
 set smartcase       " Keep case when searching with *
