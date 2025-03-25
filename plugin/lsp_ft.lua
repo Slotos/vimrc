@@ -15,14 +15,14 @@ local lsp_config = function(name, config)
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   if vim.fn["pac#loaded"]("cmp-nvim-lsp") then
     capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-      or capabilities
+        or capabilities
   end
 
   return lspconfig[name],
-    vim.tbl_deep_extend("force", {
-      capabilities = capabilities,
-      flags = { debounce_text_changes = 150 },
-    }, config or {})
+      vim.tbl_deep_extend("force", {
+        capabilities = capabilities,
+        flags = { debounce_text_changes = 150 },
+      }, config or {})
 end
 
 local set_up_servers = {}
@@ -30,7 +30,7 @@ local set_up_servers = {}
 local ruby_handler = function()
   utils.run_lsp("ruby_lsp", {
     init_options = {
-      linters = {"rubocop"}
+      linters = { "rubocop" }
     }
   })
   utils.run_lsp("solargraph", {
@@ -68,8 +68,13 @@ local lua_handler = function()
     on_init = function(client)
       local path = client.workspace_folders[1].name
       -- Skip if local luarc settings exist
-      if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
-        return
+      local fileConfig = {}
+      if vim.uv.fs_stat(path .. '/.luarc.json') then
+        local configFd = assert(vim.uv.fs_open(path .. '/.luarc.json', 'r', tonumber('444', 8)))
+        local configStat = assert(vim.uv.fs_fstat(configFd))
+        local configContents = assert(vim.uv.fs_read(configFd, configStat.size, 0))
+        assert(vim.uv.fs_close(configFd))
+        fileConfig = vim.json.decode(configContents)
       end
 
       client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
@@ -91,7 +96,7 @@ local lua_handler = function()
           -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
           -- library = vim.api.nvim_get_runtime_file("", true)
         }
-      })
+      }, fileConfig)
     end,
     settings = {
       Lua = {}
@@ -133,7 +138,103 @@ local c_handler = function()
 end
 
 local python_handler = function()
-  utils.run_lsp("pylsp", {})
+  utils.run_lsp("pylsp", {
+    settings = {
+      pylsp = {
+        plugins = {
+          pycodestyle = {
+            ignore = { 'E501' },
+            maxLineLength = 100
+          },
+        }
+      }
+    },
+    on_attach = function(client)
+      client.server_capabilities.renameProvider = false
+    end
+  })
+
+  utils.run_lsp("basedpyright", {})
+  utils.run_lsp("ruff", {
+    init_options = {
+      settings = {
+        lineLength = 100
+      }
+    }
+  })
+end
+
+local yaml_handler = function()
+  utils.run_lsp("yamlls", {
+    settings = {
+      yaml = {
+        validate = true,
+        hover = true,
+        completion = true,
+        format = {
+          enable = true,
+          proseWrap = 'always',
+        },
+        schemaStore = {
+          enable = true,
+        },
+        customTags = {
+          "!And scalar",
+          "!And mapping",
+          "!And sequence",
+          "!If scalar",
+          "!If mapping",
+          "!If sequence",
+          "!Not scalar",
+          "!Not mapping",
+          "!Not sequence",
+          "!Equals scalar",
+          "!Equals mapping",
+          "!Equals sequence",
+          "!Or scalar",
+          "!Or mapping",
+          "!Or sequence",
+          "!FindInMap scalar",
+          "!FindInMap mappping",
+          "!FindInMap sequence",
+          "!Base64 scalar",
+          "!Base64 mapping",
+          "!Base64 sequence",
+          "!Cidr scalar",
+          "!Cidr mapping",
+          "!Cidr sequence",
+          "!Ref scalar",
+          "!Ref mapping",
+          "!Ref sequence",
+          "!Sub scalar",
+          "!Sub mapping",
+          "!Sub sequence",
+          "!GetAtt scalar",
+          "!GetAtt mapping",
+          "!GetAtt sequence",
+          "!GetAZs scalar",
+          "!GetAZs mapping",
+          "!GetAZs sequence",
+          "!ImportValue scalar",
+          "!ImportValue mapping",
+          "!ImportValue sequence",
+          "!Select scalar",
+          "!Select mapping",
+          "!Select sequence",
+          "!Split scalar",
+          "!Split mapping",
+          "!Split sequence",
+          "!Join scalar",
+          "!Join mapping",
+          "!Join sequence",
+        },
+      }
+    }
+  })
+end
+
+local toml_handler = function()
+  utils.run_lsp("taplo")
 end
 
 local fthandlers = {
@@ -150,6 +251,8 @@ local fthandlers = {
   objcpp = c_handler,
   proto = c_handler,
   python = python_handler,
+  yaml = yaml_handler,
+  toml = toml_handler,
 }
 
 ---@param ft string
@@ -182,9 +285,9 @@ utils.run_lsp = function(lsp_name, opts, bufnr)
     local langserver, options = lsp_config(lsp_name, opts or {})
 
     local cmd = langserver
-    and langserver.document_config
-    and langserver.document_config.default_config
-    and langserver.document_config.default_config.cmd[1]
+        and langserver.document_config
+        and langserver.document_config.default_config
+        and langserver.document_config.default_config.cmd[1]
 
     if cmd and vim.fn.executable(cmd) == 1 then
       set_up_servers[lsp_name] = true
@@ -194,7 +297,7 @@ utils.run_lsp = function(lsp_name, opts, bufnr)
   end)
 end
 
-vim.api.nvim_create_autocmd({'FileType'}, {
+vim.api.nvim_create_autocmd({ 'FileType' }, {
   group = vim.api.nvim_create_augroup('LspFT', { clear = true }),
   callback = function(args)
     utils.setup_filetype_lsp(args.match)
