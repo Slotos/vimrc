@@ -37,8 +37,6 @@ if vim.fn['pac#loaded']('neo-tree.nvim') then
     })
   end
 
-  vim.g.neo_tree_remove_legacy_commands = 1
-
   require("neo-tree").setup({
     close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
     window = {
@@ -49,5 +47,10 @@ if vim.fn['pac#loaded']('neo-tree.nvim') then
         ["s"] = "vsplit_with_window_picker",
       },
     },
-  })
+    filesystem = {
+      group_empty_dirs = true,
+      use_libuv_file_watcher = true,
+      scan_mode = "deep",
+    }
+})
 end
