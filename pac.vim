@@ -137,9 +137,6 @@ call minpac#add('ThePrimeagen/refactoring.nvim')
 
 call minpac#add('anuvyklack/pretty-fold.nvim')
 
-" Translation tool
-call minpac#add('uga-rosa/translate.nvim')
-
 " Test wrappers
 call minpac#add('nvim-neotest/neotest')
 call minpac#add('olimorris/neotest-rspec')
