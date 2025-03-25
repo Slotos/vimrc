@@ -98,6 +98,7 @@ lua <<LUA
     dofile(this_file_path .. '/lua/settings/tree-explorer.lua')
     -- LSP configuration and completion
     dofile(this_file_path .. '/lua/settings/LSP.lua')
+    dofile(this_file_path .. '/lua/settings/diagnostic.lua')
     dofile(this_file_path .. '/lua/settings/telescope.lua')
     dofile(this_file_path .. '/lua/settings/git_conflict.lua')
     dofile(this_file_path .. '/lua/settings/lualine.lua')

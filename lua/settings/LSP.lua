@@ -111,25 +111,6 @@ if vim.fn['pac#loaded']('telescope-lsp-handlers.nvim') then
   })
 end
 
-if vim.fn['pac#loaded']('lsp_lines.nvim') then
-  require("lsp_lines").setup()
-  vim.diagnostic.config({
-    virtual_text = false,
-  })
-
-  vim.keymap.set(
-    "",
-    "<Leader>ld",
-    function()
-      vim.diagnostic.config({
-        virtual_text = vim.diagnostic.config().virtual_lines,
-        virtual_lines = not vim.diagnostic.config().virtual_lines,
-      })
-    end,
-    { desc = "Toggle lsp_lines" }
-  )
-end
-
 if vim.fn['pac#loaded']('nvim-lspconfig') then
   -- vim.lsp.set_log_level("debug")
 
@@ -200,9 +181,3 @@ if vim.fn['pac#loaded']('nvim-lspconfig') then
     require("mason").setup()
   end
 end
-
--- LSP is not the only thing setting diagnostics, just the primary one
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, keymap_opts())
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, keymap_opts())
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, keymap_opts())
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, keymap_opts())
