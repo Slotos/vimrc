@@ -109,7 +109,6 @@ lua <<LUA
     dofile(this_file_path .. '/lua/settings/neoai.lua')
     dofile(this_file_path .. '/lua/settings/nvim-cmp.lua')
     dofile(this_file_path .. '/lua/settings/refactoring.lua')
-    dofile(this_file_path .. '/lua/settings/ror.lua')
     dofile(this_file_path .. '/lua/settings/neotest.lua')
     dofile(this_file_path .. '/lua/settings/indentline.lua')
     dofile(this_file_path .. '/lua/settings/aerial.lua')

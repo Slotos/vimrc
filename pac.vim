@@ -27,7 +27,6 @@ call minpac#add('onsails/lspkind-nvim')
 call minpac#add('https://git.sr.ht/~whynothugo/lsp_lines.nvim')
 call minpac#add('https://git.sr.ht/~p00f/clangd_extensions.nvim')
 call minpac#add('mrcjkb/rustaceanvim')
-call minpac#add('pmizio/typescript-tools.nvim')
 " Configure efmls (null-ls is being archived)
 " See https://github.com/creativenull/efmls-configs-nvim
 
@@ -66,7 +65,6 @@ call minpac#add('rcarriga/nvim-notify')
 " Colorschemes
 call minpac#add('rose-pine/neovim', { 'name': 'rose-pine' })
 call minpac#add('catppuccin/nvim', { 'name': 'catppuccin' })
-call minpac#add('Mofiqul/adwaita.nvim')
 
 " matchit/matchup replacement
 call minpac#add('Slotos/vim-matchup', {'branch': 'extract_nvim_ts_deprecations'})
@@ -135,14 +133,13 @@ call minpac#add('AndrewRadev/bufferize.vim')
 
 call minpac#add('ThePrimeagen/refactoring.nvim')
 
-call minpac#add('anuvyklack/pretty-fold.nvim')
 
 " Test wrappers
 call minpac#add('nvim-neotest/neotest')
 call minpac#add('olimorris/neotest-rspec')
 call minpac#add('marilari88/neotest-vitest')
 
-call minpac#add('antoinemadec/FixCursorHold.nvim')
+call minpac#add('bbjornstad/pretty-fold.nvim')
 
 " QoL
 call minpac#add('folke/which-key.nvim')
