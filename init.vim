@@ -107,7 +107,6 @@ lua <<LUA
     dofile(this_file_path .. '/lua/settings/treesitter.lua')
     dofile(this_file_path .. '/lua/settings/folding.lua')
     dofile(this_file_path .. '/lua/settings/neoai.lua')
-    dofile(this_file_path .. '/lua/settings/nvim-cmp.lua')
     dofile(this_file_path .. '/lua/settings/refactoring.lua')
     dofile(this_file_path .. '/lua/settings/neotest.lua')
     dofile(this_file_path .. '/lua/settings/indentline.lua')

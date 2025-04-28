@@ -122,3 +122,5 @@ let g:netrw_winsize   = 30
 
 " diffopt
 set diffopt=filler,internal,closeoff,linematch:90,algorithm:histogram
+
+set completeopt+=menuone,noselect,popup,preinsert

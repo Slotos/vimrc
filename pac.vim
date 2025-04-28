@@ -39,27 +39,13 @@ call minpac#add('MunifTanjim/nui.nvim')
 call minpac#add('nvim-neo-tree/neo-tree.nvim')
 call minpac#add('s1n7ax/nvim-window-picker')
 
-" Completion engine
-call minpac#add('hrsh7th/cmp-nvim-lsp')
-call minpac#add('hrsh7th/cmp-nvim-lsp-signature-help')
-call minpac#add('hrsh7th/cmp-buffer')
-call minpac#add('hrsh7th/cmp-path')
-call minpac#add('ray-x/cmp-treesitter')
-call minpac#add('kdheepak/cmp-latex-symbols')
-call minpac#add('hrsh7th/cmp-emoji')
-call minpac#add('chrisgrieser/cmp-nerdfont')
-call minpac#add('hrsh7th/cmp-cmdline')
-call minpac#add('hrsh7th/nvim-cmp')
-call minpac#add('hrsh7th/vim-vsnip')
-call minpac#add('hrsh7th/vim-vsnip-integ')
-call minpac#add('mattn/emmet-vim')
-call minpac#add('dcampos/cmp-emmet-vim')
-call minpac#add('hrsh7th/cmp-omni')
+" Completion
+call minpac#add('saghen/blink.cmp', { 'rev': 'v1.1.1' })
 
 " Status and tab lines
 call minpac#add('Slotos/lualine.nvim', { 'branch': 'tabs-highlight-formatting' })
 
-" Notification library
+" Notification tooling
 call minpac#add('rcarriga/nvim-notify')
 
 " Colorschemes
@@ -112,11 +98,15 @@ call minpac#add('jeffkreeftmeijer/vim-numbertoggle')
 
 " Debug Adapter Protocol
 call minpac#add('mfussenegger/nvim-dap')
-call minpac#add('rcarriga/nvim-dap-ui')
-call minpac#add('nvim-neotest/nvim-nio')
 call minpac#add('leoluz/nvim-dap-go')
 call minpac#add('theHamsta/nvim-dap-virtual-text')
 call minpac#add('jbyuki/one-small-step-for-vimkind')
+
+" DAP / Test UIs
+call minpac#add('nvim-neotest/nvim-nio')
+call minpac#add('nvim-neotest/neotest')
+call minpac#add('olimorris/neotest-rspec')
+call minpac#add('rcarriga/nvim-dap-ui')
 
 call minpac#add('tpope/vim-endwise')
 
@@ -132,12 +122,6 @@ call minpac#add('jbyuki/nabla.nvim')
 call minpac#add('AndrewRadev/bufferize.vim')
 
 call minpac#add('ThePrimeagen/refactoring.nvim')
-
-
-" Test wrappers
-call minpac#add('nvim-neotest/neotest')
-call minpac#add('olimorris/neotest-rspec')
-call minpac#add('marilari88/neotest-vitest')
 
 call minpac#add('bbjornstad/pretty-fold.nvim')
 
