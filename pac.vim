@@ -127,5 +127,6 @@ call minpac#add('bbjornstad/pretty-fold.nvim')
 
 " QoL
 call minpac#add('folke/which-key.nvim')
+call minpac#add('ntpeters/vim-better-whitespace')
 
 call pac#reset_loaded()
