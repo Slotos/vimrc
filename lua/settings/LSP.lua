@@ -332,8 +332,22 @@ local lsp_servers = {
     }
   } },
   { "taplo" },
-  { "ts_ls" },
-  { "lexical", { cmd = { "lexical" } } },
+  { "ts_ls", {
+    init_options = {
+      preferences = {
+        includeInlayParameterNameHints = 'all',
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+        importModuleSpecifierPreference = 'non-relative',
+      },
+    },
+  } },
+  { "lexical",                        { cmd = { "lexical" } } },
   { "dockerls" },
   { "docker_compose_language_service" },
   { "emmet_language_server" },
