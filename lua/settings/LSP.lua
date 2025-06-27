@@ -145,6 +145,48 @@ if pcall(require, "mason") then
   require("mason").setup()
 end
 
+-- LSP Support functions
+-- ElixirLS
+local nil_buf_id = 999999
+local term_buf_id = nil_buf_id
+local function mix_test(command)
+  local row = vim.api.nvim_win_get_cursor(0)[1] - 1
+  local args = command.arguments[1]
+
+  -- delete the current buffer if it's still open
+  if vim.api.nvim_buf_is_valid(term_buf_id) then
+    vim.api.nvim_buf_delete(term_buf_id, { force = true })
+    term_buf_id = nil_buf_id
+  end
+
+  vim.cmd("botright new | lua vim.api.nvim_win_set_height(0, 15)")
+  term_buf_id = vim.api.nvim_get_current_buf()
+  vim.opt_local.number = false
+  vim.opt_local.cursorline = false
+
+  local cmd = "mix test " .. args.filePath
+
+  -- add the line number if it's for a specific describe/test block
+  if args.describe or args.testName then
+    cmd = cmd .. ":" .. (row + 1)
+  end
+
+  vim.fn.jobstart(cmd, {
+    on_exit = function(_, exit_code, _)
+      if exit_code == 0 then
+        vim.api.nvim_buf_delete(term_buf_id, { force = true })
+        term_buf_id = nil_buf_id
+        vim.notify("[elixir-tools] Success: " .. cmd, vim.log.levels.INFO)
+      else
+        vim.notify("[elixir-tools] Fail: " .. cmd, vim.log.levels.ERROR)
+      end
+    end,
+    term = true,
+  })
+
+  vim.cmd([[wincmd p]])
+end
+
 local lsp_servers = {
   { "ruby_lsp", {
     init_options = {
@@ -338,30 +380,98 @@ local lsp_servers = {
     }
   } },
   { "taplo" },
-  { "ts_ls", {
-    init_options = {
-      preferences = {
-        includeInlayParameterNameHints = 'all',
-        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayVariableTypeHints = true,
-        includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-        includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
-        includeInlayEnumMemberValueHints = true,
-        importModuleSpecifierPreference = 'non-relative',
+  -- { "ts_ls", {
+  --   init_options = {
+  --     preferences = {
+  --       includeInlayParameterNameHints = 'all',
+  --       includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+  --       includeInlayFunctionParameterTypeHints = true,
+  --       includeInlayVariableTypeHints = true,
+  --       includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+  --       includeInlayPropertyDeclarationTypeHints = true,
+  --       includeInlayFunctionLikeReturnTypeHints = true,
+  --       includeInlayEnumMemberValueHints = true,
+  --       importModuleSpecifierPreference = 'non-relative',
+  --     },
+  --   },
+  -- } },
+  { "vtsls", {
+    settings = {
+      typescript = {
+        inlayHints = {
+          enumMemberValues = { enabled = true },
+          functionLikeReturnTypes = { enabled = true },
+          parameterNames = { enabled = 'all' },
+          parameterTypes = { enabled = true },
+          propertyDeclarationTypes = { enabled = true },
+          variableTypes = { enabled = true },
+        },
+      },
+      javascript = {
+        inlayHints = {
+          enumMemberValues = { enabled = true },
+          functionLikeReturnTypes = { enabled = true },
+          parameterNames = { enabled = 'all' },
+          parameterTypes = { enabled = true },
+          propertyDeclarationTypes = { enabled = true },
+          variableTypes = { enabled = true },
+        },
       },
     },
   } },
-  { "lexical",                        { cmd = { "lexical" } } },
+  { "expert" },
   { "dockerls" },
   { "docker_compose_language_service" },
   { "emmet_language_server" },
+  { "bashls" },
+  { "elp" },
+  { "tofu_ls", {
+    filetypes = { "opentofu", "opentofu-vars", "terraform" } }
+  },
+  { "biome", {
+    root_dir = function(bufnr, on_dir)
+      -- This is a modified version of nvim-lspconfig function
+      -- Frankly, the default one breaks on _recommended_ way to configure biome
+      -- in big projects - see frontend folder in https://biomejs.dev/guides/big-projects/
+
+      -- The project root is where the LSP can be started from
+      -- As stated in the documentation above, this LSP supports monorepos and simple projects.
+      -- We select then from the project root, which is identified by the presence of a package
+      -- manager lock file.
+      local root_markers = { 'package-lock.json', 'yarn.lock', 'pnpm-lock.yaml', 'bun.lockb', 'bun.lock' }
+      -- Give the root markers equal priority by wrapping them in a table
+      root_markers = vim.fn.has('nvim-0.11.3') == 1 and { root_markers, { '.git' } }
+          or vim.list_extend(root_markers, { '.git' })
+      -- We fallback to the current working directory if no project root is found
+      local project_root = vim.fs.root(bufnr, root_markers) or vim.fn.getcwd()
+
+      -- We know that the buffer is using Biome if it has a config file
+      -- in its directory tree.
+      local filename = vim.api.nvim_buf_get_name(bufnr)
+      local biome_config_files = { 'biome.json', 'biome.jsonc' }
+      local is_buffer_using_biome = vim.fs.find(biome_config_files, {
+        path = filename,
+        type = 'file',
+        limit = 1,
+        upward = true,
+        stop = vim.fn.getcwd(),
+      })[1]
+      if not is_buffer_using_biome then
+        return
+      end
+
+      on_dir(project_root)
+    end,
+  } }
 }
 
 for _, lsp_server in ipairs(lsp_servers) do
-  local server_name, init_options = unpack(lsp_server)
+  local server_name = lsp_server[1]
+  local init_options = lsp_server[2]
   init_options = init_options or {}
+  if blinkLoaded then
+    init_options.capabilities = blinkMod.get_lsp_capabilities(init_options.capabilities, true)
+  end
   vim.lsp.config(server_name, init_options)
   vim.lsp.enable(server_name)
 end
