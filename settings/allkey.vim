@@ -89,3 +89,13 @@ endif
 " Browse command that opens arguments with system's `open`
 " Used by Fugitive's GBrowse
 command! -bar -nargs=1 Browse silent! !open <args>
+
+lua <<LUA
+vim.keymap.set('n', '<localleader>gh', function()
+  if vim.fn.exists(':IHToggle') > 0 then
+    vim.cmd.IHToggle()
+  else
+    vim.notify('Inlay hints are not loaded in the buffer', vim.log.levels.INFO)
+  end
+end)
+LUA

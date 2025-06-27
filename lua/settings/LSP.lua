@@ -100,6 +100,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Enable inlay hints
     if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
       vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+      vim.api.nvim_buf_create_user_command(
+        bufnr,
+        'IHToggle',
+        function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }), { bufnr = bufnr }) end,
+        { desc = "Toggle buffer's inlay hints" }
+      )
     end
 
     H.setupCompletion(client, args.buf)
