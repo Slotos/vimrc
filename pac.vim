@@ -130,4 +130,7 @@ call minpac#add('bbjornstad/pretty-fold.nvim')
 call minpac#add('folke/which-key.nvim')
 call minpac#add('ntpeters/vim-better-whitespace')
 
+" DevContainers
+call minpac#add('https://codeberg.org/esensar/nvim-dev-container')
+
 call pac#reset_loaded()
