@@ -83,7 +83,7 @@ call minpac#add('chrisbra/NrrwRgn')
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('idanarye/vim-merginal')
 call minpac#add('sindrets/diffview.nvim')
-call minpac#add('akinsho/git-conflict.nvim')
+call minpac#add('Slotos/conflict.nvim')
 call minpac#add('junegunn/gv.vim')
 call minpac#add('lewis6991/gitsigns.nvim')
 
