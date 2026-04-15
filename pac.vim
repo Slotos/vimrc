@@ -50,7 +50,7 @@ call minpac#add('Slotos/lualine.nvim', { 'branch': 'tabs-highlight-formatting' }
 call minpac#add('rcarriga/nvim-notify')
 
 " Colorschemes
-call minpac#add('rose-pine/neovim', { 'name': 'rose-pine' })
+call minpac#add('Slotos/rose-pine-neovim', { 'name': 'rose-pine' })
 call minpac#add('catppuccin/nvim', { 'name': 'catppuccin' })
 
 " matchit/matchup replacement
