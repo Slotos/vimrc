@@ -29,6 +29,7 @@ call minpac#add('https://git.sr.ht/~p00f/clangd_extensions.nvim')
 call minpac#add('mrcjkb/rustaceanvim')
 " Configure efmls (null-ls is being archived)
 " See https://github.com/creativenull/efmls-configs-nvim
+call minpac#add('rachartier/tiny-code-action.nvim')
 
 " Commonly used library
 call minpac#add('nvim-lua/plenary.nvim')

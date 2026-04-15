@@ -93,6 +93,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<leader>cl', vim.lsp.codelens.run, H.keymap_opts(bufnr))                -- Run codelens
     vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, H.keymap_opts(bufnr))
 
+    local tinyAction_present, tinyAction = pcall(require, 'tiny-code-action')
+    if tinyAction_present then
+      vim.keymap.set("n", "<leader>ca", function()
+        tinyAction.code_action()
+      end, { noremap = true, silent = true, buffer = true })
+    end
+
     -- Commented out static capability check.
     vim.keymap.set('n', '<localleader>f', function() vim.lsp.buf.format({ async = true }) end,
       vim.tbl_extend("force", H.keymap_opts(bufnr), { desc = "Format buffer with LSP" }))
