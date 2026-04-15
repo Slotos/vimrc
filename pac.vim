@@ -53,7 +53,7 @@ call minpac#add('rose-pine/neovim', { 'name': 'rose-pine' })
 call minpac#add('catppuccin/nvim', { 'name': 'catppuccin' })
 
 " matchit/matchup replacement
-call minpac#add('Slotos/vim-matchup', {'branch': 'extract_nvim_ts_deprecations'})
+call minpac#add('andymass/vim-matchup')
 
 " Open file:lineno
 call minpac#add('wsdjeg/vim-fetch')
